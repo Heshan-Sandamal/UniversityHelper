@@ -119,7 +119,7 @@
 <body>
 
         <div class="row" style="margin-left:30px;">
-            <h1 class="tlt2"><b><%=request.getAttribute("apartmentKey") %></b></h1> 
+            <h1 class="tlt2"><b><%=request.getAttribute("apartmentName") %></b></h1> 
         </div>
     
            <div class="col-md-8">
@@ -127,21 +127,21 @@
 						<ul id="etalage">
 							<li>
 								<a href="optionallink.html">
-									<img class="etalage_thumb_image img-responsive" src="resources/images/s1.png" alt="" >
-									<img class="etalage_source_image img-responsive" src="resources/images/s11.jpg" alt="" >
+									<img class="etalage_thumb_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s1.png" alt="" >
+									<img class="etalage_source_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s11.jpg" alt="" >
 								</a>
 							</li>
 							<li>
-								<img class="etalage_thumb_image img-responsive" src="resources/images/s2.png" alt="" >
-								<img class="etalage_source_image img-responsive" src="resources/images/s12.jpg" alt="" >
+								<img class="etalage_thumb_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s2.png" alt="" >
+								<img class="etalage_source_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s12.jpg" alt="" >
 							</li>
 							<li>
-								<img class="etalage_thumb_image img-responsive" src="resources/images/s3.png" alt=""  >
-								<img class="etalage_source_image img-responsive" src="resources/images/s13.jpg" alt="" >
+								<img class="etalage_thumb_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s3.png" alt=""  >
+								<img class="etalage_source_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s13.jpg" alt="" >
 							</li>
 						    <li>
-								<img class="etalage_thumb_image img-responsive" src="resources/images/s4.png"  alt="" >
-								<img class="etalage_source_image img-responsive" src="resources/images/s14.jpg" alt="" >
+								<img class="etalage_thumb_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s4.png"  alt="" >
+								<img class="etalage_source_image img-responsive" src="resources/uploads/<%= request.getAttribute("apartmentKey") %>/s14.jpg" alt="" >
 							</li>
 						</ul>
 

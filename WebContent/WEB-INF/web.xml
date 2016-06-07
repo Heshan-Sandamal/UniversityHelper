@@ -14,15 +14,29 @@
     <web-resource-collection>
       <web-resource-name>managers</web-resource-name>
       <description></description>
-      <url-pattern>/WelcomePage</url-pattern>
-      <url-pattern>/SearchApartment</url-pattern>
+      <url-pattern>/StudentHomePage</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>
     <auth-constraint>
       <description></description>
-      <role-name>manager</role-name>
+      <role-name>Student</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>mgr resources</display-name>
+    <web-resource-collection>
+      <web-resource-name>managers</web-resource-name>
+      <description></description>
+      <url-pattern>/AddApartment</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>PUT</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <description></description>
+      <role-name>ApartmentOwner</role-name>
     </auth-constraint>
   </security-constraint>
   <security-role>

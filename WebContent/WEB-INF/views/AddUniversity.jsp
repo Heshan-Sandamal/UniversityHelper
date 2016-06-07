@@ -31,6 +31,7 @@ html, body {
 	height: 32px;
 	outline: none;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+	
 }
 
 #pac-input {
@@ -68,11 +69,12 @@ html, body {
 	width: 345px;
 }
 </style>
+
 </head>
-<body>
+<body style="background:url('resources/images/Welcome-2_3.jpg') no-repeat center center fixed;">
 
 	<div class="page-header">
-		<h2>Add your apartment's details</h2>
+		<h2>Add University details</h2>
 	</div>
 
 	<div class="col-md-5">
@@ -83,26 +85,24 @@ html, body {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							Student sign up for University Helper <small>It's free!</small>
-							<%@ page import="java.util.ArrayList" %>
-							<%@ page import="com.universityHelper.models.University"%>
-							<%
-								ArrayList<University> uniList = (ArrayList<University>) request.getAttribute("UniversityList");
-							%>
-							
+							Register New University <small>It's free!</small>
 						</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form" action="AddApartment" method="post">
+						<form role="form" action="AddUniversity" method="post">
+
+
+
 							<div class="row">
 								<div class="col-xs-10 col-sm-10 col-md-10">
 									<div class="form-group">
-										<input type="text" name="name" id="apartment_name"
-											class="form-control input-sm" placeholder="Apartment Name">
+										<input type="text" name="university_name" id="university_name"
+											class="form-control input-sm" placeholder="University Name">
 									</div>
 								</div>
 
 							</div>
+
 
 
 							<div class="form-group">
@@ -122,49 +122,6 @@ html, body {
 									placeholder="longitude(Click Map to set value)" required>
 							</div>
 
-							<div class="form-group">
-								<input type="number" name="payment" id="payment"
-									class="form-control input-sm" placeholder="payment">
-							</div>
-
-							<div class="form-group">
-								<input type="number" name="capacity" id="capacity"
-									class="form-control input-sm"
-									placeholder="Capacity(Total No: of places)">
-							</div>
-
-							<div class="form-group">
-								<input type="number" name="availability" id="availablity"
-									class="form-control input-sm" placeholder="Available places">
-							</div>
-
-							<hr>
-							<div>
-								<ul class="list-group" name="universityList" id="universityList">
-
-								</ul>
-							</div>
-
-							<!-- Single button -->
-							<div class="btn-group form-group">
-								<button name="university" type="button"
-									class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
-									Select University <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-								
-								<% for(University uni:uniList){%>
-									<li><a href="#"><%= uni.getName()%></a></li>
-								<% }%>
-
-								</ul>
-							</div>
-
-
-							<hr>
-							
-							
 							<input type="submit" value="Register"
 								class="btn btn-info btn-block">
 
@@ -283,32 +240,23 @@ html, body {
 			});
 		}
 	</script>
+
 	<script>
-		$(".dropdown-menu li a")
-				.click(
-						function() {
-							var selText = $(this).text();
-							$(this).parents('.btn-group').find(
-									'.dropdown-toggle').html(
-									selText + ' <span class="caret"></span>');
-							$("#pac-input").val(selText);
-							//$("ul#universityList").appendTo("li").text(selText);
+		var $inputs = $('#university_name, #pac-input');
 
-							var list = document
-									.getElementById('universityList');
-							var entry = document.createElement('li');
-							entry.className = "list-group-item";
-							
+		$inputs.keyup(function() {
+			$inputs.val($(this).val());
+		});
+	</script>
 
-							
-							entry.innerHTML = "<input type='hidden' name='univesities' value='"+selText+"'/>";
-							entry.appendChild(document.createTextNode(selText));
-							list.appendChild(entry);
+	<script>
+		$("#university_name").keyup(function(e) {
+			//var selText = $(this).text();
+			alert(selText);
+			$("#pac-input").val(selText);
+			google.maps.event.trigger(searchBox, 'place_changed');
 
-							//$("#universityList ul").append('<li class="list-group-item">abss</li>');
-							google.maps.event.trigger(searchBox,
-									'place_changed');
-						});
+		});
 	</script>
 
 	<script

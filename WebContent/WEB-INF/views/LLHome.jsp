@@ -63,8 +63,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="AddApartment"> <img src="resources/images/add_home.png">Add
-							New Apartment
+					<li><a href="AddApartment"> <img
+							src="resources/images/add_home.png">Add New Apartment
 					</a></li>
 					<li><a href="SearchApartment"> <img
 							src="resources/images/home_search.png">Search Apartment
@@ -87,8 +87,8 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 						</ul></li>
-					<li><a href="#"><img
-							src="resources/images/system_log_out.png">Log out</a></li>
+					<li><a href="ApartmentLogOut"><imgsrc="resources/images/system_log_out.png">Log
+							out</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -98,12 +98,20 @@
 	<div class="container-fluid">
 		<hr>
 		<div class="row">
+			<%@ page import="java.util.ArrayList"%>
+			<%@ page import="com.universityHelper.models.Apartment"%>
+			<%
+				ArrayList<Apartment> aptList = (ArrayList<Apartment>) request.getAttribute("apartmentList");
+			%>
 
+			<%
+				for (Apartment apt : aptList) {
+			%>
 			<div class="col-md-3 col-xs-12">
 				<div class="card">
 					<div class="card-block" style="padding-bottom: 2px;">
-						<h4 class="card-title">2nd lane Upstairs</h4>
-						<h6 class="card-subtitle text-muted">2nd lane,Moratuwa</h6>
+						<h4 class="card-title"><%=apt.getName()%></h4>
+						<h6 class="card-subtitle text-muted"><%=apt.getAddress()%></h6>
 
 					</div>
 					<hr style="margin-bottom: 8px;">
@@ -113,76 +121,35 @@
 						alt="Card image">
 					<hr style="margin-top: 8px;">
 					<div class="card-block" style="padding-top: 2px;">
-						<button class="btn btn-info btn-sm">
-							<a href="#" class="card-link">Update Details</a>
-						</button>
+
+						<span><button class="btn btn-info btn-sm">
+								<a href="#" class="card-link">Update Details</a>
+							</button></span> 
+							<span style="float: left; margin-right: 10px; ">
+							<form action="AddApartmentImages" method="get">
+								<input type="hidden" name="ApartmentId"
+									value="<%=apt.getApartmentKey()%>">
+									<input type="hidden" name="name"
+									value="<%=apt.getName()%>">
+									<input type="hidden" name="address"
+									value="<%=apt.getAddress()%>">
+								<button class="btn btn-info btn-sm" type="submit">Add
+									Images</button>
+							</form>
+							</span>
 					</div>
 				</div>
 			</div>
+			<%
+				}
+			%>
 
-			<div class="col-md-3 col-xs-12">
-				<div class="card">
-					<div class="card-block" style="padding-bottom: 2px;">
-						<h4 class="card-title">2nd lane Upstairs</h4>
-						<h6 class="card-subtitle text-muted">2nd lane,Moratuwa</h6>
 
-					</div>
-					<hr style="margin-bottom: 8px;">
-					<img src="resources/images/27755719.jpg" class="img-responsive"
-						style="margin: auto; margin-top: 0px; width: 100%; height: 150px; padding-left: 7px; padding-right: 7px;"
-						alt="Card image">
-					<hr style="margin-top: 8px;">
-					<div class="card-block" style="padding-top: 2px;">
-						<button class="btn btn-info btn-sm">
-							<a href="#" class="card-link">Update Details</a>
-						</button>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-3 col-xs-12">
-				<div class="card">
-					<div class="card-block" style="padding-bottom: 2px;">
-						<h4 class="card-title">2nd lane Upstairs</h4>
-						<h6 class="card-subtitle text-muted">2nd lane,Moratuwa</h6>
-
-					</div>
-					<hr style="margin-bottom: 8px;">
-					<img src="resources/images/44540039.jpg" class="img-responsive"
-						style="margin: auto; margin-top: 0px; width: 100%; height: 150px; padding-left: 7px; padding-right: 7px;"
-						alt="Card image">
-					<hr style="margin-top: 8px;">
-					<div class="card-block" style="padding-top: 2px;">
-						<button class="btn btn-info btn-sm">
-							<a href="#" class="card-link">Update Details</a>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 col-xs-12">
-				<div class="card">
-					<div class="card-block" style="padding-bottom: 2px;">
-						<h4 class="card-title">2nd lane Upstairs</h4>
-						<h6 class="card-subtitle text-muted">2nd lane,Moratuwa</h6>
-
-					</div>
-					<hr style="margin-bottom: 8px;">
-					<img src="resources/images/27755719.jpg" class="img-responsive"
-						style="margin: auto; margin-top: 0px; width: 100%; height: 150px; padding-left: 7px; padding-right: 7px;"
-						alt="Card image">
-					<hr style="margin-top: 8px;">
-					<div class="card-block" style="padding-top: 2px;">
-						<button class="btn btn-info btn-sm">
-							<a href="#" class="card-link">Update Details</a>
-						</button>
-					</div>
-				</div>
-			</div>
 		</div>
 		<hr>
-		
-		</div>
-		<hr>
+
+	</div>
+	<hr>
 	</div>
 
 

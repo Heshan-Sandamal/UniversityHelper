@@ -15,16 +15,16 @@
     
     <div class="col-md-4">
       <section class="login-form">
-        <form method="post" action="#" role="login">
+        <form method="post" action="StudentLogIn" role="login">
             <div class="row">
                  <h2>Student Sign In</h2>
             </div>
              
           <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
            
-          <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="joestudent@gmail.com" />
+          <input type="text" name="userName" placeholder="Email" required class="form-control input-lg" value="joestudent@gmail.com" />
           
-          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+          <input type="password" class="form-control input-lg" name="password" id="password" placeholder="Password" required="" />
           
           
           <div class="pwstrength_viewport_progress"></div>
