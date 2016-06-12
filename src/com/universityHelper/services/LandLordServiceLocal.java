@@ -9,5 +9,5 @@ import com.universityHelper.models.LandLordProfile;
 public interface LandLordServiceLocal {
 	
 	public boolean addLandLord(LandLord landLord,LandLordProfile landLordProfile);
-	public boolean logIn(LandLordProfile landLordProfile);
+	public String logIn(LandLordProfile landLordProfile);
 }

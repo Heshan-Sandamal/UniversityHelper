@@ -38,24 +38,25 @@ public class LLLogIn extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		LandLord l=new LandLord();
-//		l.setName("heshan");
-//		l.addContactNo("12121sd");
-//		l.addContactNo("12121s1d");
-//		l.addContactNo("12121sd2");
-//		l.addContactNo("12121s21d");
-//		l.addContactNo("12121svvd");
-//		
-//		String name=landLordService.addLandLord(l);
-//		
-//		response.getWriter().print(name);
-		
-		
-		RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// LandLord l=new LandLord();
+		// l.setName("heshan");
+		// l.addContactNo("12121sd");
+		// l.addContactNo("12121s1d");
+		// l.addContactNo("12121sd2");
+		// l.addContactNo("12121s21d");
+		// l.addContactNo("12121svvd");
+		//
+		// String name=landLordService.addLandLord(l);
+		//
+		// response.getWriter().print(name);
+
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp");
 		view.forward(request, response);
 	}
 
@@ -69,16 +70,18 @@ public class LLLogIn extends HttpServlet {
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
 		
-		boolean logIn = landLordService.logIn(new LandLordProfile(){{setPassword(password);setUserName(userName);}});
+		String logIn = landLordService.logIn(new LandLordProfile(){{setPassword(password);setUserName(userName);}});
 		
-		if(logIn){
-			response.sendRedirect("LLHome");
-			//request.
-			
-			
-		}else{
-			request.setAttribute("error", "wrong info");
+		if(logIn==null){
+			request.setAttribute("error", "User Name not exists");
+			request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp").forward(request, response);			
+		}else if(logIn.equals("WP")){
+			request.setAttribute("error", "Wrond password");
 			request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp").forward(request, response);
+		}else{
+			request.login("ApartmentOwner", "12345");
+			response.sendRedirect("LLHome");
+			request.getSession().setAttribute("ApartmentOwnerId",logIn);	
 		}
 		
 		//doGet(request, response);

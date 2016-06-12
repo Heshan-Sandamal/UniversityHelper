@@ -33,7 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event){		
-				event.preventDefault();
+				//event.preventDefault();
 				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 			});
 		});
@@ -47,11 +47,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	<% Student student=(Student)request.getAttribute("Student"); %>
 	
-	<div id="home" class="banner">
+	<div id="home" class="banner" style="background:url(resources/uploads/student/<%= student.getStudentId() %>/cover/img1.jpg)no-repeat center 0px;">
 		<div class="banner-info">
 			<div class="container">
 				<div class="col-md-4 header-left">
-					<img src="resources/images/img1.jpg" alt=""/>
+					<img src="resources/uploads/student/<%= student.getStudentId() %>/profile/img1.jpg" alt=""/>
+					<a href="AddStudentImages">Update profile pic</a>
 				</div>
 				<div class="col-md-8 header-right">
 					<h2>Hello</h2>
@@ -81,8 +82,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
+				
 			</div>
+			
 		</div>
+		<a href="AddStudentCover">Update cover pic</a>
 	</div>
 	<!--//banner-->
 	<!--top-nav-->
@@ -97,12 +101,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<div class="menu">
 					<ul class="nav navbar">
-						<li><a href="#about" class="scroll">Search Apartment</a></li>
+						<li><a href="SearchApartment" class="scroll">Search Apartment</a></li>
 						<li><a href="#work" class="scroll">Discussion Thread</a></li>
 						<li><a href="#education" class="scroll">Student Details</a></li>
 						<li><a href="#skills" class="scroll">Update Details</a></li>
 						<li><a href="#projects" class="scroll">Settings</a></li>
-						<li><a href="#contact" class="scroll">Log out</a></li>
+						<li><a href="ApartmentLogOut" class="scroll">Log out</a></li>
 					</ul>
 					<div class="clearfix"> </div>
 				</div>

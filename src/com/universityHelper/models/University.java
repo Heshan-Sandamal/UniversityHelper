@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,21 +24,21 @@ public class University implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Type(type = "objectid")
 	private String universityId;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false,unique=true)
 	private String name;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private double longitude;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private double lattitude;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String address;
-	
-	@ManyToMany
-	private Set<Apartment> apartmentList=new HashSet<>();
+
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Apartment> apartmentList = new HashSet<>();
 
 	public String getUniversityId() {
 		return universityId;
@@ -85,5 +86,24 @@ public class University implements Serializable {
 
 	public void setApartmentList(Set<Apartment> apartmentList) {
 		this.apartmentList = apartmentList;
+	}
+
+	@Override
+	public boolean equals(Object university) {
+		if (this.name.equals(((University) university).name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return this.name.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

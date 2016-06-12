@@ -4,13 +4,15 @@
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		
 		<class>com.universityHelper.models.Apartment</class>
-		<class>com.universityHelper.models.ApartmentKey</class>
+		<class>com.universityHelper.models.Comment</class>
 		<class>com.universityHelper.models.Course</class>
 		<class>com.universityHelper.models.LandLord</class>
 		<class>com.universityHelper.models.LandLordProfile</class>
+		<class>com.universityHelper.models.Post</class>
 		<class>com.universityHelper.models.Student</class>
 		<class>com.universityHelper.models.StudentProfile</class>
 		<class>com.universityHelper.models.University</class>
+		<class>com.universityHelper.models.ApartmentComment</class>
 		
 		
 		<properties>

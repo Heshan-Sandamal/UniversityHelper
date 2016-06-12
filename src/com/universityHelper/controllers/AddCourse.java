@@ -3,6 +3,7 @@ package com.universityHelper.controllers;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,9 @@ public class AddCourse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	SessionContext ctx;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -47,6 +51,9 @@ public class AddCourse extends HttpServlet {
 		courseService.addCourse(course);
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		 
+		
 	}
 
 	/**

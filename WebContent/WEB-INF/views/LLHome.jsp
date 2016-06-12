@@ -10,6 +10,12 @@
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap4.css" rel="stylesheet" />
+<link href="resources/css/bootstrap.css rel="stylesheet">
+
+<link rel="stylesheet" href="resources/css/swipebox.css">
+<!--//Custom Theme files-->
+<!--js-->
+<script src="resources/js/jquery-1.11.1.min.js"></script>
 
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -18,14 +24,26 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<link href="resources/css/styleStudentProfile.css" type="text/css"
+	rel="stylesheet" media="all">
+	<link href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="resources/js/move-top.js"></script>
+<script type="text/javascript" src="resources/js/easing.js"></script>
+<style>
+.active {
+	padding-right: 3px;
+}
+</style>
+
 </head>
 <body>
 
 	<div class="page-header"
-		style="background-image: url('resources/images/homeOwner.png'); background-repeat: no-repeat; margin: 0;">
+		style="background-image: url('resources/images/a.jpg'); background-repeat: no-repeat; margin: 0;">
 		<div class="row">
 			<div class="col-md-2">
-				<img src="resources/images/20131009_C8029_PHOTO_EN_31871.jpg"
+				<img src="resources/images/img1.jpg"
 					class="img-responsive" alt="Responsive image"
 					style="margin: 5px; height: 130px; border: 4px solid white; padding: 5px;">
 			</div>
@@ -38,63 +56,31 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
+
+	<div class="top-nav wow">
+		<div class="container">
+			<div class="navbar-header logo">
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"><img
-					src="resources/images/small-home-button.png" /></a>
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu</button>
 			</div>
-
-			<style>
-.active {
-	padding-right: 3px;
-}
-</style>
-
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="AddApartment"> <img
-							src="resources/images/add_home.png">Add New Apartment
-					</a></li>
-					<li><a href="SearchApartment"> <img
-							src="resources/images/home_search.png">Search Apartment
-					</a></li>
-					<li><a href="#"> <img src="resources/images/setting.png">Settings<span
-							class="sr-only">(current)</span></a></li>
+				<div class="menu">
+					<ul class="nav navbar">
+						<li><a href="SearchApartment" class="scroll">Search
+								Apartment</a></li>
+						<li><a href="#work" class="scroll">Discussion Thread</a></li>
 
-
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul></li>
-					<li><a href="ApartmentLogOut"><imgsrc="resources/images/system_log_out.png">Log
-							out</a></li>
-				</ul>
+						<li><a href="#projects" class="scroll">Settings</a></li>
+						<li><a href="ApartmentLogOut" class="scroll">Log out</a></li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
 			</div>
-			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
-	</nav>
+	</div>
+
 	<div class="container-fluid">
 		<hr>
 		<div class="row">
@@ -108,9 +94,9 @@
 				for (Apartment apt : aptList) {
 			%>
 			<div class="col-md-3 col-xs-12">
-				<div class="card">
+				<div class="card navbar navbar-inverse">
 					<div class="card-block" style="padding-bottom: 2px;">
-						<h4 class="card-title"><%=apt.getName()%></h4>
+						<h4 class="card-title  text-muted"><%=apt.getName()%></h4>
 						<h6 class="card-subtitle text-muted"><%=apt.getAddress()%></h6>
 
 					</div>
@@ -124,33 +110,27 @@
 
 						<span><button class="btn btn-info btn-sm">
 								<a href="#" class="card-link">Update Details</a>
-							</button></span> 
-							<span style="float: left; margin-right: 10px; ">
+							</button></span> <span style="float: left; margin-right: 10px;">
 							<form action="AddApartmentImages" method="get">
 								<input type="hidden" name="ApartmentId"
-									value="<%=apt.getApartmentKey()%>">
-									<input type="hidden" name="name"
-									value="<%=apt.getName()%>">
-									<input type="hidden" name="address"
-									value="<%=apt.getAddress()%>">
+									value="<%=apt.getApartmentKey()%>"> <input
+									type="hidden" name="name" value="<%=apt.getName()%>"> <input
+									type="hidden" name="address" value="<%=apt.getAddress()%>">
 								<button class="btn btn-info btn-sm" type="submit">Add
 									Images</button>
 							</form>
-							</span>
+						</span>
 					</div>
 				</div>
 			</div>
 			<%
 				}
 			%>
-
-
 		</div>
 		<hr>
 
 	</div>
 	<hr>
-	</div>
 
 
 	<div class="row">

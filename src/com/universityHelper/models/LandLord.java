@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +54,7 @@ public class LandLord implements Serializable {
 		this.address = address;
 	}
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	private Set<String> contactNoList=new HashSet<>();;
 	
 	
@@ -133,6 +134,9 @@ public class LandLord implements Serializable {
 		this.apartmentList.add(apartment);
 	}
 	
-	
+	@Override
+	public String toString() {
+		return this.landLordId;
+	}
    
 }

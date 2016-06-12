@@ -1,5 +1,6 @@
 package com.universityHelper.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.hql.ast.origin.hql.parse.HQLParser.exists_key_return;
 
+import com.universityHelper.models.Apartment;
 import com.universityHelper.models.LandLord;
 import com.universityHelper.models.LandLordProfile;
 
@@ -49,20 +51,22 @@ public class LandLordService implements LandLordServiceLocal {
 	}
 
 	@Override
-	public boolean logIn(LandLordProfile landLordProfile) {
+	public String logIn(LandLordProfile landLordProfile) {
 		
 		LandLordProfile exitstingLLOb = em.find(LandLordProfile.class, landLordProfile.getUserName());
 		if(exitstingLLOb==null){
-			return false;
+			return null;
 		}
 		if(landLordProfile.getPassword().equals(exitstingLLOb.getPassword())){
-			return true;
+			return exitstingLLOb.getLandLord().getLandLordId();
 		}else{
-			return false;
+			return "WP";	//wrong password
 		}
 		
 		
 	}
+	
+	
 	
 	
     

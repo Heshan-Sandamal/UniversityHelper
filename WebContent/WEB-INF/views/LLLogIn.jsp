@@ -22,9 +22,9 @@
              
           <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
            
-          <input type="text" name="userName" required class="form-control input-lg" value="joestudent@gmail.com" />
+          <input type="text" name="userName" required class="form-control input-lg" value="HS" />
           
-          <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+          <input type="password" name="password" class="form-control input-lg" id="password" placeholder="121212" required="" />
           
           <span>
           	<ul>

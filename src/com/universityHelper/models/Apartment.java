@@ -1,6 +1,7 @@
 package com.universityHelper.models;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -48,11 +49,55 @@ public class Apartment implements Serializable {
 	}
 	
 	
-	@ManyToMany(mappedBy="apartmentList")
+	@ManyToMany(mappedBy="apartmentList",fetch=FetchType.EAGER)
 	private Set<University> university;
 	
+	@OneToMany
+	private Set<ApartmentComment> apartmentComment;
+	
+	@ManyToMany
+	private Set<Student> studentSubscribers;
+	
+	//studentId,rating
+	@ElementCollection
+	private Map<String,Double> ratings;
+	
+	private double rate;
+	
+	public double getRate() {
+		return rate;
+	}
+
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
+
 	public double getLattitude() {
 		return lattitude;
+	}
+
+	public Set<Student> getStudentSubscribers() {
+		return studentSubscribers;
+	}
+
+	public void setStudentSubscribers(Set<Student> studentSubscribers) {
+		this.studentSubscribers = studentSubscribers;
+	}
+
+	public Map<String, Double> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Map<String, Double> ratings) {
+		this.ratings = ratings;
+	}
+
+	public Set<ApartmentComment> getApartmentComment() {
+		return apartmentComment;
+	}
+
+	public void setApartmentComment(Set<ApartmentComment> apartmentComment) {
+		this.apartmentComment = apartmentComment;
 	}
 
 	public void setLattitude(double lattitude) {
@@ -76,7 +121,7 @@ public class Apartment implements Serializable {
 	}
 
 	public int getAvilablePlaces() {
-		return avilablePlaces;
+		return this.avilablePlaces;
 	}
 
 	public void setAvilablePlaces(int avilablePlaces) {

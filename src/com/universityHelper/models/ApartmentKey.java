@@ -7,7 +7,6 @@ import javax.persistence.Embeddable;
 
 import org.hibernate.annotations.Type;
 
-@Embeddable
 public class ApartmentKey implements Serializable {
 
 	private Integer apartmentId;

@@ -2,6 +2,7 @@ package com.universityHelper.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -28,25 +29,68 @@ public class Student implements Serializable {
 	@Type(type = "objectid")
 	private String studentId;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String firstName;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String lastName;
-	
+
 	private Date dob;
 	private String homeTown;
-	
-	
-	@OneToOne( mappedBy="student")
-	@JoinColumn(name = "studentProfileFK",nullable=false)
+
+	@OneToOne(mappedBy = "student")
+	@JoinColumn(name = "studentProfileFK", nullable = false)
 	private StudentProfile studentProfile;
-	
+
 	private String contactNo;
-	
+
 	@ManyToOne
 	private Course course;
+
+	@OneToMany
+	private Set<Post> postList;
+
+	@OneToMany
+	private Set<ApartmentComment> apartmentComment;
+
+	@ManyToMany
+	private Set<Apartment> subscribedApartments;
 	
+	public Set<Comment> getPostComments() {
+		return postComments;
+	}
+
+	public void setPostComments(Set<Comment> postComments) {
+		this.postComments = postComments;
+	}
+
+	@OneToMany
+	private Set<Comment> postComments;
+	
+	public Set<Apartment> getSubscribedApartments() {
+		return subscribedApartments;
+	}
+
+	public void setSubscribedApartments(Set<Apartment> subscribedApartments) {
+		this.subscribedApartments = subscribedApartments;
+	}
+
+	public Set<Post> getPostList() {
+		return postList;
+	}
+
+	public void setPostList(Set<Post> post) {
+		this.postList = postList;
+	}
+
+	public Set<ApartmentComment> getApartmentComment() {
+		return apartmentComment;
+	}
+
+	public void setApartmentComment(Set<ApartmentComment> apartmentComment) {
+		this.apartmentComment = apartmentComment;
+	}
+
 	public Course getCourse() {
 		return course;
 	}
@@ -103,7 +147,6 @@ public class Student implements Serializable {
 		this.contactNo = contactNo;
 	}
 
-
 	public Student() {
 		super();
 	}
@@ -116,6 +159,21 @@ public class Student implements Serializable {
 		this.studentId = studentId;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		Student student = (Student) obj;
+		if (studentId.equals(student.getStudentId())) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return studentId.hashCode();
+	}
 
 }

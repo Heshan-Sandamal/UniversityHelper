@@ -55,12 +55,14 @@ public class ViewApartmentDetails extends HttpServlet {
 		RequestDispatcher view=request.getRequestDispatcher("WEB-INF/views/ApartmentDetails.jsp");
 		
 		//set apartment details as attributes of request
-		request.setAttribute("apartmentKey", apartment.getName());
+		request.setAttribute("apartmentName", apartment.getName());
 		request.setAttribute("lattitude", apartment.getLattitide());
 		request.setAttribute("longitude", apartment.getLongitude());
 		request.setAttribute("address", apartment.getAddress());
 		request.setAttribute("availability",apartment.getAvilablePlaces());
 		request.setAttribute("payment", apartment.getPayment());
+		request.setAttribute("apartmentKey", apartment.getApartmentKey());
+		request.setAttribute("rate", apartment.getRate());
 		
 		//forward request to view
 		view.forward(request, response);

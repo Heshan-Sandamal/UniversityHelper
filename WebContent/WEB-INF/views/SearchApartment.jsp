@@ -220,6 +220,10 @@ html, body {
 																							+ '<p style="padding:0px;margin:0px;">Available places: '
 																							+ item["avilablePlaces"]
 																							+ '</p>'
+																							+ '<b><p style="padding:0px;margin:0px;">Ratings: '
+																							+ item["rate"]
+																							+'/5'
+																							+ '</p></b>'
 																							+ '</div>';
 
 																					var infowindow = new google.maps.InfoWindow(
