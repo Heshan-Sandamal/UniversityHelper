@@ -37,7 +37,7 @@ public class University implements Serializable {
 	@Column(nullable = false)
 	private String address;
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="university",fetch=FetchType.EAGER)
 	private Set<Apartment> apartmentList = new HashSet<>();
 
 	public String getUniversityId() {

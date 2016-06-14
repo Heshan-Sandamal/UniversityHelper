@@ -48,7 +48,9 @@ public class DeleteApartment extends HttpServlet {
 
 
 		String apartmentId=request.getParameter("ApartmentId");
-		boolean deleted=apartmentService.deleteApartment(apartmentId);
+		String password=request.getParameter("password");
+		String userName=request.getParameter("userName");
+		boolean deleted=apartmentService.deleteApartment(apartmentId,userName,password);
 		response.sendRedirect("LLHome");
 		
 	}

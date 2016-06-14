@@ -241,6 +241,12 @@
 												</div>
 											</div>
 											<div class="modal-footer">
+												Enter UserName:
+												<input type="text" name="userName" id="email" class="form-control input-sm" placeholder="User Name">
+												Enter password:
+												<input type="password" name="password" class="form-control input-sm" placeholder="Password">
+											</div>
+											<div class="modal-footer">
 
 												<button class="btn btn-warning btn-lg" type="submit">Yes</button>
 												<button type="button" class="btn btn-default btn-lg"

@@ -19,5 +19,5 @@ public interface ApartmentServiceLocal {
 	public boolean addComment(ApartmentComment acm, String apartmentId, String studentId);
 	public ArrayList<ApartmentComment> getApartmentComments(String apartmentId);
 	public boolean addRatings(String studentId, String apartmentId, Double rating);
-	public boolean deleteApartment(String apartmentId);
+	boolean deleteApartment(String apartmentId, String userName, String password);
 }

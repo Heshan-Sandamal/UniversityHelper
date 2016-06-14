@@ -25,6 +25,7 @@ import com.universityHelper.models.Apartment;
 import com.universityHelper.models.ApartmentComment;
 import com.universityHelper.models.ApartmentKey;
 import com.universityHelper.models.LandLord;
+import com.universityHelper.models.LandLordProfile;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.University;
 
@@ -288,11 +289,20 @@ public class ApartmentService implements ApartmentServiceLocal {
 	}
 
 	@Override
-	public boolean deleteApartment(String apartmentId) {
-		Apartment apartment=em.find(Apartment.class, apartmentId);
-		apartment.getRatings().clear();
-		em.remove(apartment);
-		return true;
+	public boolean deleteApartment(String apartmentId,String userName,String password) {
+		
+		LandLordProfile exitstingLLOb = em.find(LandLordProfile.class, userName);
+		
+		if(exitstingLLOb.getPassword().equals(password)){
+			Apartment apartment=em.find(Apartment.class, apartmentId);
+			apartment.getRatings().clear();
+			em.remove(apartment);
+			return true;
+		}else{
+			return false;	//wrong password
+		}
+		
+		
 	}
 
 }

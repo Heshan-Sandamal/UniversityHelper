@@ -49,7 +49,7 @@ public class Apartment implements Serializable {
 	}
 	
 	
-	@ManyToMany(mappedBy="apartmentList",fetch=FetchType.EAGER,cascade = CascadeType.MERGE)
+	@ManyToMany(fetch=FetchType.EAGER,cascade = CascadeType.MERGE)
 	private Set<University> university;
 	
 	@OneToMany(cascade=CascadeType.REMOVE)

@@ -83,7 +83,7 @@ public class Student implements Serializable {
 	@OneToMany
 	private Set<ApartmentComment> apartmentComment;
 
-	@ManyToMany
+	@ManyToMany(mappedBy="studentSubscribers")
 	private Set<Apartment> subscribedApartments;
 	
 	public Set<Comment> getPostComments() {
