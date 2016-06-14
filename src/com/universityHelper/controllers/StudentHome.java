@@ -40,6 +40,9 @@ public class StudentHome extends HttpServlet {
 		
 		String userId=request.getSession().getAttribute("StudentId").toString();
 		Student student=studentService.getStudentDetails(userId);
+		if(student.getFburl()==null){
+			student.setFburl("not specified");
+		}
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/StudentHomePage.jsp");
 		request.setAttribute("Student", student);
 		

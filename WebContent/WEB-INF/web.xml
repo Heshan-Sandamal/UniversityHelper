@@ -15,6 +15,18 @@
       <web-resource-name>managers</web-resource-name>
       <description></description>
       <url-pattern>/StudentHome</url-pattern>
+       <url-pattern>/UpdateStudentDetails</url-pattern>
+      <url-pattern>/AddPost</url-pattern>
+      <url-pattern>/DeletePost</url-pattern>
+      <url-pattern>/UpdatePost</url-pattern>
+      <url-pattern>/AddStudentCover</url-pattern>
+      <url-pattern>/AddStudentImages</url-pattern>
+      <url-pattern>/MyApartments</url-pattern>
+      <url-pattern>/ViewMyPosts</url-pattern>
+      <url-pattern>/ViewPostDetails</url-pattern>
+      <url-pattern>/ViewStudentProfile</url-pattern>
+      <url-pattern>/ViewStudents</url-pattern>
+      <url-pattern>/DiscussionThread</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>
       <http-method>POST</http-method>
@@ -38,6 +50,8 @@
       <web-resource-name>managers</web-resource-name>
       <description></description>
       <url-pattern>/AddApartment</url-pattern>
+      <url-pattern>/LLHome</url-pattern>
+      <url-pattern>/AddApartmentImages</url-pattern>
       <url-pattern>/LLHome</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>

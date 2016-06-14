@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.universityHelper.models.Student;
 import com.universityHelper.models.StudentProfile;
+import com.universityHelper.other.Encrypt;
 import com.universityHelper.services.StudentServiceLocal;
 
 /**
@@ -78,13 +79,19 @@ public class StudentSignUp extends HttpServlet {
 		
 		s.setHomeTown(request.getParameter("address"));
 		s.setContactNo(request.getParameter("contactNo"));
+		s.setFburl(request.getParameter("fburl"));
+		
+		s.setEmail(request.getParameter("email"));
+		s.setExamYear(Integer.valueOf(request.getParameter("examYear")));
 		
 		System.out.println("uni is"+request.getParameter("university"));
 
 		StudentProfile sp = new StudentProfile();
 		sp.setUserName(request.getParameter("userName"));
+		
+		
 
-		sp.setPassword(request.getParameter("password"));
+		sp.setPassword(Encrypt.WriteEncrypt(request.getParameter("password")));
 
 		sp.setStudent(s);
 

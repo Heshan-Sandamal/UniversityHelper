@@ -13,4 +13,7 @@ public interface PostServiceLocal {
 	public Post viewPostDetails(String postId);
 	public boolean addComment(Comment acm, String postId, String studentId);
 	public ArrayList<Post> getAllPosts();
+	public ArrayList<Post> getPostsOfStudent(String studentId);
+	public boolean deletePost(String postId);
+	public boolean updatePost(String studentId, Post post);
 }

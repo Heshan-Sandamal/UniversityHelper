@@ -76,6 +76,7 @@ public class AddApartmentImages extends HttpServlet {
 			}
 			Iterator itr = items.iterator();
 			String folder = apartmentId;
+			int i=0;
 			while (itr.hasNext()) {
 				FileItem item = (FileItem) itr.next();
 
@@ -96,13 +97,13 @@ public class AddApartmentImages extends HttpServlet {
 
 						//"F:\\uploads\\"+folder
 						ServletContext context = getServletContext();
-						String absoluteFilePath = context.getRealPath("/resources/uploads/"+folder);
+						String absoluteFilePath = context.getRealPath("/resources/uploads/apartment/" + folder);
 						//String absoluteFilePath =request.getContextPath()+ folder;
 						File directory = new File(absoluteFilePath);
 						directory.mkdirs();
 
 						
-						File uploadedFile = new File(absoluteFilePath, FilenameUtils.getName(item.getName()));
+						File uploadedFile = new File(absoluteFilePath,"img"+(i++)+".jpg");
 						// uploadedFile.getParentFile().mkdirs();
 						item.write(uploadedFile);
 					} catch (Exception e) {

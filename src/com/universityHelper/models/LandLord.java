@@ -62,7 +62,7 @@ public class LandLord implements Serializable {
 	private LandLordProfile landLordProfile;
 	
 	
-	@OneToMany(mappedBy="landLordId")
+	@OneToMany(mappedBy="landLordId",fetch=FetchType.EAGER)
 	private Set<Apartment> apartmentList=new HashSet<>();
 	
 	

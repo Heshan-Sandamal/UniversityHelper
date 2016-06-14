@@ -29,10 +29,10 @@ public class ApartmentComment implements Serializable {
 	@Type(type = "objectid")
 	private String id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Apartment apartment;
 	
 	private String description;

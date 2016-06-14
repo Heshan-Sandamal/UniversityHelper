@@ -59,12 +59,12 @@ public class PostService implements PostServiceLocal {
 	@Override
 	public Post viewPostDetails(String postId) {
 		Post post = em.find(Post.class, postId);
-		
+
 		ArrayList<Comment> sortedList = new ArrayList(post.getComments());
 		Collections.sort(sortedList);
-		
+
 		post.setComments(new TreeSet<Comment>(sortedList));
-		
+
 		return post;
 	}
 
@@ -88,9 +88,9 @@ public class PostService implements PostServiceLocal {
 			if (student.getPostComments() == null) {
 				student.setPostComments(new TreeSet<Comment>());
 			}
-			
+
 			student.getPostComments().add(acm);
-			
+
 			em.persist(acm);
 			return true;
 		}
@@ -102,11 +102,39 @@ public class PostService implements PostServiceLocal {
 	public ArrayList<Post> getAllPosts() {
 		String query = "SELECT c FROM Post c ORDER BY c.dateTime DESC";
 		TypedQuery<Post> queryRes = em.createQuery(query, Post.class);
-		
+
 		// query.setParameter(1, );
-		ArrayList<Post> list = (ArrayList<Post>) queryRes.getResultList(); 
-		//Collections.sort(list.get(0).getComments().);
+		ArrayList<Post> list = (ArrayList<Post>) queryRes.getResultList();
+		// Collections.sort(list.get(0).getComments().);
 		return list;
+	}
+
+	@Override
+	public ArrayList<Post> getPostsOfStudent(String studentId) {
+
+		Student student = em.find(Student.class, studentId);
+
+		ArrayList<Post> sortedList = new ArrayList(student.getPostList());
+		Collections.sort(sortedList);
+
+		return sortedList;
+	}
+
+	@Override
+	public boolean deletePost(String postId) {
+		Post post=em.find(Post.class, postId);
+		em.remove(post);
+		return true;
+	}
+
+	@Override
+	public boolean updatePost(String studentId, Post post) {
+		Post postFetched=em.find(Post.class, post.getId());
+		postFetched.setContent(post.getContent());;
+		postFetched.setTopic(post.getTopic());
+		postFetched.setDateTime(post.getDateTime());
+		em.merge(postFetched);
+		return true;
 	}
 
 }

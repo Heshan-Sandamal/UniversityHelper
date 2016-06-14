@@ -37,6 +37,36 @@ public class Student implements Serializable {
 
 	private Date dob;
 	private String homeTown;
+	
+	private String fburl;
+	
+	private int examYear;
+	
+	private String email;
+
+	public int getExamYear() {
+		return examYear;
+	}
+
+	public void setExamYear(int examYear) {
+		this.examYear = examYear;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFburl() {
+		return fburl;
+	}
+
+	public void setFburl(String fburl) {
+		this.fburl = fburl;
+	}
 
 	@OneToOne(mappedBy = "student")
 	@JoinColumn(name = "studentProfileFK", nullable = false)
@@ -47,7 +77,7 @@ public class Student implements Serializable {
 	@ManyToOne
 	private Course course;
 
-	@OneToMany
+	@OneToMany(mappedBy="student",orphanRemoval=true)
 	private Set<Post> postList;
 
 	@OneToMany
@@ -64,7 +94,7 @@ public class Student implements Serializable {
 		this.postComments = postComments;
 	}
 
-	@OneToMany
+	@OneToMany(mappedBy="student",orphanRemoval=true)
 	private Set<Comment> postComments;
 	
 	public Set<Apartment> getSubscribedApartments() {

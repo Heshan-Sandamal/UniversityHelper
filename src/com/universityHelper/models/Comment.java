@@ -31,7 +31,7 @@ public class Comment implements Serializable,Comparable<Comment>{
 	@Sort
 	private Date timeStamp;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Post post;
 
 	public String getId() {
@@ -74,7 +74,7 @@ public class Comment implements Serializable,Comparable<Comment>{
 		this.student = student;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
 
 	public Comment() {

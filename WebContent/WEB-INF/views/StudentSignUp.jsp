@@ -86,7 +86,7 @@
 			    			</div>
 			    			
 			    			<div class="form-group">
-			    				<input type="date" name=birthday id="email" class="form-control input-sm" placeholder="birthday">
+			    				<input type="date" name=birthday id="birthday" class="form-control input-sm" placeholder="birthday" required>
 			    			</div>
 			    			
                             <div class="form-group">
@@ -110,6 +110,9 @@
 			    				<input type="tel" name="contactNo" id="email" class="form-control input-sm" placeholder="Contact No">
 			    			</div>
                             
+                            <div class="form-group">
+			    				<input type="text" name="fburl" id="email" class="form-control input-sm" placeholder="Facebook link">
+			    			</div>
                             
                             
 			    			<input type="submit" value="Register" class="btn btn-info btn-block">

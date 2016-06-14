@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.universityHelper.other.Encrypt;
 import com.universityHelper.services.StudentServiceLocal;
 
 /**
@@ -53,6 +54,9 @@ public class StudentLogIn extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 
+		
+		System.out.println("Encrypt one :"+Encrypt.WriteEncrypt(password));
+		
 		String studentId=studentService.logInStudent(userName, password);
 		
 		if (studentId==null) {

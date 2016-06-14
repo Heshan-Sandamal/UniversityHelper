@@ -64,7 +64,7 @@ public class AddPost extends HttpServlet {
 		post.setComments(new TreeSet<>());
 		
 		boolean added=postService.addPost(studentId,post);
-		//doGet(request, response);
+		response.sendRedirect("ViewMyPosts");
 	}
 
 }

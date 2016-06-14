@@ -46,7 +46,7 @@ public class AddRatings extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String studentId="575bab8f632522078c90c86f";
+		String studentId=request.getSession().getAttribute("StudentId").toString();
 		String apartmentId=request.getParameter("apartmentKey");
 		Double rating=FloatingDecimal.parseDouble(request.getParameter("rating"));
 		

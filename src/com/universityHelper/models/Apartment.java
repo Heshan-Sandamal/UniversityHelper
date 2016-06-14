@@ -27,7 +27,7 @@ public class Apartment implements Serializable {
 	@Type(type = "objectid")
 	private String apartmentKey;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private LandLord landLordId;
 	
 	private double lattitude;
@@ -49,13 +49,13 @@ public class Apartment implements Serializable {
 	}
 	
 	
-	@ManyToMany(mappedBy="apartmentList",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="apartmentList",fetch=FetchType.EAGER,cascade = CascadeType.MERGE)
 	private Set<University> university;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.REMOVE)
 	private Set<ApartmentComment> apartmentComment;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private Set<Student> studentSubscribers;
 	
 	//studentId,rating

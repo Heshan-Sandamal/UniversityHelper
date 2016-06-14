@@ -287,4 +287,12 @@ public class ApartmentService implements ApartmentServiceLocal {
 
 	}
 
+	@Override
+	public boolean deleteApartment(String apartmentId) {
+		Apartment apartment=em.find(Apartment.class, apartmentId);
+		apartment.getRatings().clear();
+		em.remove(apartment);
+		return true;
+	}
+
 }

@@ -65,6 +65,12 @@ public class LandLordService implements LandLordServiceLocal {
 		
 		
 	}
+
+	@Override
+	public LandLord getLandLord(String apartmentOwnerId) {
+		LandLord landLord=em.find(LandLord.class, apartmentOwnerId);
+		return landLord;
+	}
 	
 	
 	

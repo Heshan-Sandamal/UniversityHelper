@@ -15,8 +15,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 
-public class Post implements Serializable {
-
+public class Post implements Serializable, Comparable<Post> {
 
 	@Transient
 	private static final long serialVersionUID = 1L;
@@ -24,17 +23,17 @@ public class Post implements Serializable {
 	public Post() {
 		super();
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Type(type = "objectid")
 	private String id;
-	
+
 	private String topic;
-	
+
 	private String content;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -84,11 +83,47 @@ public class Post implements Serializable {
 	}
 
 	private Date dateTime;
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
-	
-	@OneToMany(fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER,cascade=CascadeType.REMOVE)
 	private Set<Comment> comments;
-   
+
+	@Override
+	public int compareTo(Post post) {
+		if (this.getDateTime().before(post.getDateTime())) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+
+	@Override
+	public boolean equals(Object ob) {
+		Post post = (Post) ob;
+
+		if (post.getId().equals(this.getId())) {
+			return true;
+		} else {
+			return false;
+		}
+
+		
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return this.id;
+	}
+	@Override
+	public int hashCode() {
+		if(this.id!=null){
+			return this.id.hashCode();
+		}else{return super.hashCode();}
+		
+	}
+	
 }

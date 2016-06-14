@@ -37,9 +37,9 @@ public class DiscussionThread extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		ArrayList<Post> postList=postService.getAllPosts();
 		request.setAttribute("postList", postList);
-		
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/DiscussionThread.jsp");
 		view.forward(request, response);
 	}

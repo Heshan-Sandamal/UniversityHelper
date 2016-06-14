@@ -63,6 +63,7 @@ public class ViewApartmentDetails extends HttpServlet {
 		request.setAttribute("payment", apartment.getPayment());
 		request.setAttribute("apartmentKey", apartment.getApartmentKey());
 		request.setAttribute("rate", apartment.getRate());
+		request.setAttribute("apartmentOwnerId", apartment.getLandLordId().getLandLordId());
 		
 		//forward request to view
 		view.forward(request, response);

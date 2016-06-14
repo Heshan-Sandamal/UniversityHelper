@@ -13,22 +13,28 @@
 <body
 	style="background: url('resources/images//Documenting-success.jpg') no-repeat center center fixed; background-size: 100%; -webkit-background-size: 100%;">
 	<div class="container-fluid">
-		<div class="col-md-1"></div>
-		<div class="col-md-6">
-			<h2>Add post Details</h2>
-			<div class="well">
-				<form role="form" action="AddPost" method="post">
-					<h4>Post Title</h4>
-					<input type="text" class="form-control" name="topic">
-					<h4>Post Content</h4>
-					<div class="form-group">
-						<textarea class="form-control" rows="3" name="content"></textarea>
-					</div>
 
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<div class="card" z-default=30 z-hover=40 height="300px">
+				<h2>Add post Details</h2>
+				<div class="well">
+					<form role="form" action="AddPost" method="post">
+						<h4>Post Title</h4>
+						<input type="text" class="form-control" name="topic">
+						<h4>Post Content</h4>
+						<div class="form-group">
+							<textarea class="form-control" rows="3" name="content"></textarea>
+						</div>
+
+						<button type="submit" class="btn btn-success">Submit</button>
+						<a href="StudentHome"><button type="button" class="btn btn-warning">cancel</button></a>	
+					</form>
+					
+				</div>
 			</div>
 		</div>
 	</div>
+	<script src="resources/js/card-depth.js"></script>
 </body>
 </html>

@@ -10,4 +10,5 @@ public interface LandLordServiceLocal {
 	
 	public boolean addLandLord(LandLord landLord,LandLordProfile landLordProfile);
 	public String logIn(LandLordProfile landLordProfile);
+	public LandLord getLandLord(String apartmentOwnerId);
 }

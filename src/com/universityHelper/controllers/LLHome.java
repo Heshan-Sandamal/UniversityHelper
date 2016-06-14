@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.universityHelper.models.Apartment;
+import com.universityHelper.models.LandLord;
 import com.universityHelper.models.Student;
 import com.universityHelper.services.ApartmentServiceLocal;
+import com.universityHelper.services.LandLordService;
+import com.universityHelper.services.LandLordServiceLocal;
 import com.universityHelper.services.StudentServiceLocal;
 
 import jdk.nashorn.internal.runtime.Context;
@@ -30,7 +33,7 @@ public class LLHome extends HttpServlet {
 	 */
 
 	@EJB
-	ApartmentServiceLocal apartmentService;
+	LandLordServiceLocal landLordService;
 
 	@EJB
 	StudentServiceLocal studentService;
@@ -48,8 +51,13 @@ public class LLHome extends HttpServlet {
 			throws ServletException, IOException {
 
 		if (request.getSession().getAttribute("ApartmentOwnerId") != null) {
-			ArrayList<Apartment> aprtmentList = apartmentService.getApartmentListOfLandLord(request.getSession().getAttribute("ApartmentOwnerId").toString());
-			request.setAttribute("apartmentList", aprtmentList);
+			
+			String apartmentOwnerId =request.getSession().getAttribute("ApartmentOwnerId").toString();
+			
+			LandLord landLord=landLordService.getLandLord(apartmentOwnerId);
+			
+			request.setAttribute("landLord", landLord);
+			
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/LLHome.jsp");
 			view.forward(request, response);
 		}

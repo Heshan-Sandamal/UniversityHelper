@@ -130,25 +130,25 @@ html, body {
 			<ul id="etalage">
 				<li><a href="optionallink.html"> <img
 						class="etalage_thumb_image img-responsive"
-						src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s1.png"
+						src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img0.jpg"
 						alt=""> <img class="etalage_source_image img-responsive"
-						src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s11.jpg"
+						src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img0.jpg"
 						alt="">
 				</a></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s2.png"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img1.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s12.jpg"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img1.jpg"
 					alt=""></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s3.png"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img2.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s13.jpg"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img2.jpg"
 					alt=""></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s4.png"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img3.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/<%=request.getAttribute("apartmentKey")%>/s14.jpg"
+					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img3.jpg"
 					alt=""></li>
 			</ul>
 
@@ -192,6 +192,25 @@ html, body {
 					</tr>
 
 					<tr>
+						<td>Contact No:</td>
+						<td>07155252133</td>
+
+					</tr>
+					
+
+					<tr>
+						<td>Owner profile</td>
+						<td><form action="LLProfile" method="post">
+								<input type="hidden" name="apartmentOwnerId"
+									value="<%=request.getAttribute("apartmentOwnerId")%>">
+								<a href="" onclick="parentNode.submit();return false;"><h4
+										style="font-family: Roboto; line-height: 1.6;"><%=request.getAttribute("apartmentOwnerId")%></h4></a>
+							</form></td>
+
+					</tr>
+
+
+					<tr>
 						<td>Other details</td>
 						<td>2000</td>
 
@@ -209,9 +228,9 @@ html, body {
 
 				<table>
 					<tr>
-						<td style="padding-right: 18px;"><input id="input-21e" value="5" type="number"
-							class="rating" min="0" max="5" step="0.5" data-size="xs">
-						</td>
+						<td style="padding-right: 18px;"><input id="input-21e"
+							value="5" type="number" class="rating" min="0" max="5" step="0.5"
+							data-size="xs"></td>
 						<td><button type="button" class="btn btn-info btn-xs"
 								data-toggle="modal" data-target="#ratingModel">Rate
 								this apartment</button></td>
@@ -342,7 +361,7 @@ html, body {
 	$('.tlt2').textillate({initialDelay:1200,loop:true,out:{effect:'pulse',delay:200},in:{effect:'pulse'}});
 	</script>
 	<script>
-		var rateVal=<%= request.getAttribute("rate")%>;
+		var rateVal=<%=request.getAttribute("rate")%>;
         $('#input-21e').val(rateVal);
           var marker;
         var map;
@@ -479,20 +498,22 @@ html, body {
       }
     </script>
 
-	
+
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvHohFe2Dm4cVd1ZP81MUmCG7S-GTGt34&libraries=places&callback=initAutocomplete"
 		async defer></script>
-		
+
 	<script>
-		<% if(request.getAttribute("rateStatus")!=null && Boolean.parseBoolean(request.getAttribute("rateStatus").toString())==true){ %>
+		<%if (request.getAttribute("rateStatus") != null
+					&& Boolean.parseBoolean(request.getAttribute("rateStatus").toString()) == true) {%>
 			alert("Rated successfully");
-		<%}else if(request.getAttribute("rateStatus")!=null && Boolean.parseBoolean(request.getAttribute("rateStatus").toString())==false){ %> 	
+		<%} else if (request.getAttribute("rateStatus") != null
+					&& Boolean.parseBoolean(request.getAttribute("rateStatus").toString()) == false) {%> 	
 			alert("Subscribed users only allowed to rate");
-		<%} %> 
+		<%}%> 
 	</script>
-	
-	
-		
+
+
+
 </body>
 </html>

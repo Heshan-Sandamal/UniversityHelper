@@ -62,167 +62,135 @@
 		<div class="row">
 
 			<!-- Blog Post Content Column -->
-			<div class="col-lg-8">
+			<div class="col-lg-10">
+				<div class="card" z-default=30 z-hover=40 height="200px">
+					<!-- Blog Post -->
 
-				<!-- Blog Post -->
-				
-				
-				<%@ page import="com.universityHelper.models.Post"%>
-				<% Post post=(Post)request.getAttribute("post");  %>
 
-				<!-- Title -->
-				<h1><%= post.getTopic() %></h1>
+					<%@ page import="com.universityHelper.models.Post"%>
+					<%
+						Post post = (Post) request.getAttribute("post");
+					%>
 
-				<!-- Author -->
-				<p class="lead">
-					 by <a href="#"><%= post.getStudent().getStudentProfile().getUserName() %></a>
-				</p>
+					<!-- Title -->
+					<h1><%=post.getTopic()%></h1>
 
-				<hr>
 
-                <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on <%= post.getDateTime()%></p>
 
-                <hr>
-				<!-- Blog Comments -->
-				
-                <!-- Post Content -->
-                <p class="lead"><%= post.getContent() %></p>
 
-                <hr>
-                
-                
-				<%@ page import="com.universityHelper.models.Comment"%>
-				<%@ page import="java.util.Collection" %>
-
-				<%
-					Collection<Comment> acmList = (Collection<Comment>) post.getComments();
-				%>
-                
-                <p><%= acmList.size() %> Comments</p>
-                
-                <div class="well">
-					<h4>Leave a Comment:</h4>
-					<form role="form" action="AddPostComments" method="post">
-						<div class="form-group">
-							<textarea class="form-control" rows="3" name="comment"></textarea>
-						</div>
-						<input type="hidden" name="studentId" value="<%= request.getSession().getAttribute("StudentId")%>">
-						<input type="hidden" name="postId" value="<%= post.getId()%>">
-						
-						<button type="submit" class="btn btn-primary">Submit</button>
+					<!-- Author -->
+					<form action="ViewStudentProfile" method="get" id="my_form">
+						<input type="hidden" name="userName"
+							value="<%=post.getStudent().getStudentProfile().getUserName()%>">
+						<p class="lead">
+							by <a href="javascript:{}"
+								onclick="document.getElementById('my_form').submit();return false;"><%=post.getStudent().getStudentProfile().getUserName()%></a>
+						</p>
 					</form>
-				</div>
-				
+					<hr>
 
-				<!-- Posted Comments -->
+					<!-- Date/Time -->
+					<p>
+						<span class="glyphicon glyphicon-time"></span> Posted on
+						<%=post.getDateTime()%></p>
 
-				<!-- Comment -->
+					<hr>
+					<!-- Blog Comments -->
 
-				<%
-					for (Comment acm : acmList) {
-				%>
-				<div class="media">
-					<a class="pull-left" href="#"> <img class="media-object"
-						src="http://placehold.it/64x64" alt="">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">
-							<%=acm.getStudent().getStudentProfile().getUserName()%>
-							<small><%=acm.getTimeStamp().toString()%></small>
-						</h4>
-						<%=acm.getContent()%>
+					<!-- Post Content -->
+					<p><%=post.getContent()%></p>
+
+					<hr>
+
+
+					<%@ page import="com.universityHelper.models.Comment"%>
+					<%@ page import="java.util.Collection"%>
+
+					<%
+						Collection<Comment> acmList = (Collection<Comment>) post.getComments();
+					%>
+
+					<p><%=acmList.size()%>
+						Comments
+					</p>
+
+					<div class="well">
+						<h4>Leave a Comment:</h4>
+						<form role="form" action="AddPostComments" method="post">
+							<div class="form-group">
+								<textarea class="form-control" rows="3" name="comment"></textarea>
+							</div>
+							<input type="hidden" name="studentId"
+								value="<%=request.getSession().getAttribute("StudentId")%>">
+							<input type="hidden" name="postId" value="<%=post.getId()%>">
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
 					</div>
+
+
+					<!-- Posted Comments -->
+
+					<!-- Comment -->
+
+					<%
+						for (Comment acm : acmList) {
+					%>
+					<div class="media">
+						<a class="pull-left" href="#"> <img class="media-object"
+							src="resources/uploads/student/<%=acm.getStudent().getStudentId()%>/profile/img1.jpg" alt="" height="64ppx" width="64px">
+						</a>
+						<div class="media-body">
+							<h4 class="media-heading">
+								<form action="ViewStudentProfile" method="get" id="my_form1">
+									<input type="hidden" name="userName"
+										value="<%=acm.getStudent().getStudentProfile().getUserName()%>">
+
+									<a href="javascript:{}"
+										onclick="document.getElementById('my_form1').submit();return false;"><%=acm.getStudent().getStudentProfile().getUserName()%></a>
+
+								</form>
+								<small><%=acm.getTimeStamp().toString()%></small>
+							</h4>
+
+
+
+							<p><%=acm.getContent()%></p>
+						</div>
+					</div>
+					<hr>
+					<%
+						}
+					%>
+
+
+					<!-- Comment -->
+					<!-- Comments Form -->
 				</div>
-				<hr>
-				<%
-					}
-				%>
-
-
-				<!-- Comment -->
-				<!-- Comments Form -->
-				
-
 				<hr>
 
 			</div>
+			<hr>
 
-			<!-- Blog Sidebar Widgets Column -->
-			<div class="col-md-4">
-
-				<!-- Blog Search Well -->
-				<div class="well">
-					<h4>Blog Search</h4>
-					<div class="input-group">
-						<input type="text" class="form-control"> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
+			<!-- Footer -->
+			<footer>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>Copyright &copy; Your Website 2014</p>
 					</div>
-					<!-- /.input-group -->
 				</div>
-
-				<!-- Blog Categories Well -->
-				<div class="well">
-					<h4>Blog Categories</h4>
-					<div class="row">
-						<div class="col-lg-6">
-							<ul class="list-unstyled">
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-							</ul>
-						</div>
-						<div class="col-lg-6">
-							<ul class="list-unstyled">
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-								<li><a href="#">Category Name</a></li>
-							</ul>
-						</div>
-					</div>
-					<!-- /.row -->
-				</div>
-
-				<!-- Side Widget Well -->
-				<div class="well">
-					<h4>Side Widget Well</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Inventore, perspiciatis adipisci accusamus laudantium odit aliquam
-						repellat tempore quos aspernatur vero.</p>
-				</div>
-
-			</div>
+				<!-- /.row -->
+			</footer>
 
 		</div>
-		<!-- /.row -->
+		<!-- /.container -->
 
-		<hr>
+		<!-- jQuery -->
+		<script src="resources/js/jquery-1.9.1.min.js"></script>
 
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
-				</div>
-			</div>
-			<!-- /.row -->
-		</footer>
-
-	</div>
-	<!-- /.container -->
-
-	<!-- jQuery -->
-	<script src="resources/js/jquery-1.9.1.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="resources/js/bootstrap.min.js"></script>
-
+		<!-- Bootstrap Core JavaScript -->
+		<script src="resources/js/bootstrap.min.js"></script>
+		<script src="resources/js/card-depth.js"></script>
 </body>
 
 </html>
