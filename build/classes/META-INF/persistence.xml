@@ -23,8 +23,8 @@
                         value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider"/>
 			
 			<property name="hibernate.ogm.datastore.database" value="universityHelper" />
-			<property name="hibernate.ogm.datastore.host" value="127.0.0.1" />
-			<property name="hibernate.ogm.datastore.port" value="27017" />
+			<property name="hibernate.ogm.datastore.host" value="ds015713.mlab.com" />
+			<property name="hibernate.ogm.datastore.port" value="15713" />		
 			<property name="hibernate.ogm.datastore.username" value="heshan" />
 			<property name="hibernate.ogm.datastore.password" value="12345" />
 			<property name="hibernate.ogm.mongodb.safe" value="true"/>
