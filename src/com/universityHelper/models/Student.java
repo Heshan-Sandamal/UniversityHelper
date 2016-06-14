@@ -80,7 +80,7 @@ public class Student implements Serializable {
 	@OneToMany(mappedBy="student",orphanRemoval=true)
 	private Set<Post> postList;
 
-	@OneToMany
+	@OneToMany(mappedBy="student",orphanRemoval=true)
 	private Set<ApartmentComment> apartmentComment;
 
 	@ManyToMany(mappedBy="studentSubscribers")

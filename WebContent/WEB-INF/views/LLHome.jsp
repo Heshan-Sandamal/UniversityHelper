@@ -240,10 +240,10 @@
 													</div>
 												</div>
 											</div>
-											<div class="modal-footer">
-												Enter UserName:
+											<div class="modal-body">
+												<h5>Enter UserName:</h5>
 												<input type="text" name="userName" id="email" class="form-control input-sm" placeholder="User Name">
-												Enter password:
+												<h5>Enter password:</h5>
 												<input type="password" name="password" class="form-control input-sm" placeholder="Password">
 											</div>
 											<div class="modal-footer">
