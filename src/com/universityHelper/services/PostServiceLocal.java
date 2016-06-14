@@ -16,4 +16,5 @@ public interface PostServiceLocal {
 	public ArrayList<Post> getPostsOfStudent(String studentId);
 	public boolean deletePost(String postId);
 	public boolean updatePost(String studentId, Post post);
+	public boolean deleteComment(String commentId);
 }

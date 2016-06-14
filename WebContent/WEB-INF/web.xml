@@ -27,6 +27,8 @@
       <url-pattern>/ViewStudentProfile</url-pattern>
       <url-pattern>/ViewStudents</url-pattern>
       <url-pattern>/DiscussionThread</url-pattern>
+      <url-pattern>/SubscribeToApartment</url-pattern>
+      <url-pattern>/AddApartmentComments</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>
       <http-method>POST</http-method>

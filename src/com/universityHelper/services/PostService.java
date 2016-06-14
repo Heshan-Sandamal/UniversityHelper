@@ -137,4 +137,13 @@ public class PostService implements PostServiceLocal {
 		return true;
 	}
 
+	@Override
+	public boolean deleteComment(String commentId) {
+		System.out.println(commentId);
+		Comment comment=em.find(Comment.class, commentId);
+		System.out.println(comment.getContent());
+		em.remove(comment);
+		return true;
+	}
+
 }

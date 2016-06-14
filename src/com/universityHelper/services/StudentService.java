@@ -2,12 +2,14 @@ package com.universityHelper.services;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.universityHelper.controllers.StudentSignUp;
 import com.universityHelper.models.Apartment;
@@ -15,6 +17,7 @@ import com.universityHelper.models.Course;
 import com.universityHelper.models.LandLord;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.StudentProfile;
+import com.universityHelper.models.University;
 import com.universityHelper.other.Encrypt;
 
 /**
@@ -35,9 +38,17 @@ public class StudentService implements StudentServiceLocal {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public boolean signUpStudent(StudentProfile studentProfile, Student student) {
+	public boolean signUpStudent(StudentProfile studentProfile, Student student, String courseName) {
 
-		Course course = em.find(Course.class, "574ae72f63250f370c624ed3");
+		String query = "Select c from Course c where c.name='" + courseName + "'";
+		TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
+
+		// query.setParameter(1, );
+		Course course = queryRes.getSingleResult();
+		if (course == null) {
+			return false;
+		}
+		// Course course = em.find(Course.class, "574ae72f63250f370c624ed3");
 		student.setCourse(course);
 
 		em.persist(studentProfile);
@@ -108,21 +119,36 @@ public class StudentService implements StudentServiceLocal {
 
 	@Override
 	public Student getStudentProfileDetails(String userName) {
-		StudentProfile studentProfile=em.find(StudentProfile.class, userName);
+		StudentProfile studentProfile = em.find(StudentProfile.class, userName);
 		return studentProfile.getStudent();
 	}
 
 	@Override
 	public ArrayList<Apartment> getMyApartments(String studentId) {
-		Student student=em.find(Student.class, studentId);
+		Student student = em.find(Student.class, studentId);
 		return new ArrayList<Apartment>(student.getSubscribedApartments());
 	}
 
 	@Override
-	public boolean updateStudentDetails(StudentProfile sp, Student s) {
-		StudentProfile studentProfile=em.find(StudentProfile.class, sp.getUserName());
-		Student student=em.find(Student.class, s.getStudentId());
+	public boolean updateStudentDetails(StudentProfile sp, Student s,String courseName) {
 		
+		StudentProfile studentProfile = em.find(StudentProfile.class, sp.getUserName());
+		Student student = em.find(Student.class, s.getStudentId());
+		
+		System.out.println("cur"+courseName+"end");
+		
+		String query = "Select c from Course c where c.name='" + courseName + "'";
+		TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
+
+		// query.setParameter(1, );
+		Course course = queryRes.getSingleResult();
+		if (course == null) {
+			return false;
+		}
+		// Course course = em.find(Course.class, "574ae72f63250f370c624ed3");
+		student.setCourse(course);
+		
+
 		student.setContactNo(s.getContactNo());
 		student.setDob(s.getDob());
 		student.setFburl(s.getFburl());
@@ -131,14 +157,13 @@ public class StudentService implements StudentServiceLocal {
 		student.setHomeTown(s.getHomeTown());
 		student.setEmail(s.getEmail());
 		student.setExamYear(s.getExamYear());
-		
-		
+
 		studentProfile.setPassword(sp.getPassword());
-		
+
 		em.merge(student);
 		em.merge(studentProfile);
 		return true;
-		
+
 	}
 
 }

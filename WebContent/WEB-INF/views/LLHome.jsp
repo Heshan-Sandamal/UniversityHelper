@@ -201,27 +201,23 @@
 						<hr style="margin-top: 8px;">
 						<div class="card-block" style="padding-top: 2px;">
 							<div class="row">
-								<div class="col-md-3">
-									<span style="float: left; margin-right: 10px;">
-										<form action="UpdateApartment" method="get">
-											<input type="hidden" name="ApartmentId"
-												value="<%=apt.getApartmentKey()%>">
-											<button class="btn btn-warning btn-sm" type="submit">
-												Update</a>
-											</button>
-										</form>
-								</div>
 								<div class="col-md-5">
-									<form action="AddApartmentImages" method="get">
-										<input type="hidden" name="ApartmentId"
-											value="<%=apt.getApartmentKey()%>"> <input
-											type="hidden" name="name" value="<%=apt.getName()%>">
-										<input type="hidden" name="address"
-											value="<%=apt.getAddress()%>">
-										<button class="btn btn-info btn-sm" type="submit">Add
-											Images</button>
+									<form action="ApartmentSubscribers" method="get">
+										<input type="hidden" name="ApartmentKey"
+											value="<%=apt.getApartmentKey()%>">
+										<button class="btn btn-info btn-sm" type="submit">
+											Subscribers</a>
+										</button>
 									</form>
-									</span>
+								</div>
+								<div class="col-md-4">
+									<form action="UpdateApartment" method="get">
+										<input type="hidden" name="ApartmentId"
+											value="<%=apt.getApartmentKey()%>">
+										<button class="btn btn-warning btn-sm" type="submit">
+											Update</a>
+										</button>
+									</form>
 								</div>
 								<div class="col-md-3">
 									<button class="btn btn-danger btn-sm" type="button"
@@ -231,8 +227,6 @@
 
 									<div class="modal fade" id="myModal<%=index%>" role="dialog">
 										<div class="modal-dialog">
-
-											<!-- Modal content-->
 											<div class="modal-content">
 												<form action="DeleteApartment" method="post">
 													<input type="hidden" name="ApartmentId"
@@ -265,11 +259,24 @@
 													</div>
 												</form>
 											</div>
-
 										</div>
 									</div>
 								</div>
+							</div>
+							<div class="row" style="margin-top: 15px;">
+								<div class="col-md-5">
+									<form action="AddApartmentImages" method="get">
+										<input type="hidden" name="ApartmentId"
+											value="<%=apt.getApartmentKey()%>"> <input
+											type="hidden" name="name" value="<%=apt.getName()%>">
+										<input type="hidden" name="address"
+											value="<%=apt.getAddress()%>">
+										<button class="btn btn-primary btn-sm" type="submit">Add
+											Images</button>
+									</form>
 
+								</div>
+								<div class="col-md-5"></div>
 							</div>
 						</div>
 					</div>

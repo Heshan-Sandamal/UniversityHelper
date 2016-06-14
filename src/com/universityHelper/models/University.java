@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -39,6 +40,9 @@ public class University implements Serializable {
 
 	@ManyToMany(mappedBy="university",fetch=FetchType.EAGER)
 	private Set<Apartment> apartmentList = new HashSet<>();
+	
+	@OneToMany(mappedBy="university")
+	private Set<Course> courseList;
 
 	public String getUniversityId() {
 		return universityId;
@@ -105,5 +109,12 @@ public class University implements Serializable {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+	
+	public void setCourseList(Set<Course> courseList) {
+		this.courseList = courseList;
+	}public Set<Course> getCourseList() {
+		return courseList;
 	}
 }

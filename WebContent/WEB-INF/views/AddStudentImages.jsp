@@ -53,7 +53,7 @@ body {
 
 							<div class="form-group">
 								<input type="text" name="studentId" id="id"
-									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("ApartmentOwnerId") %>">
+									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("studentId") %>">
 							</div>
 
 

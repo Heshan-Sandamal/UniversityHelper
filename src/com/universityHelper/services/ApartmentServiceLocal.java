@@ -8,6 +8,7 @@ import javax.json.JsonObject;
 
 import com.universityHelper.models.Apartment;
 import com.universityHelper.models.ApartmentComment;
+import com.universityHelper.models.Student;
 
 
 @Local
@@ -22,4 +23,5 @@ public interface ApartmentServiceLocal {
 	boolean deleteApartment(String apartmentId, String userName, String password);
 	public Apartment getApartmentDetailsForUpdate(String apartmentId);
 	public boolean updateApartment(Apartment ap, String[] universityList);
+	public ArrayList<Student> getApartmentSubscribers(String apartmentId);
 }

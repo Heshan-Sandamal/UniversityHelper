@@ -45,37 +45,43 @@ body {
 	<%@ page import="java.text.ParseException"%>
 	<%@ page import="java.util.Calendar"%>
 	<%@ page import="java.util.Date"%>
-	
-	
-	
+	<%@ page import="com.universityHelper.models.Course"%>
+	<%@ page import="java.util.ArrayList"%>
+
+
+
 	<%
 		Student student = (Student) request.getAttribute("student");
-		
-		
+
 		DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
-		Date date=null;
+		Date date = null;
 		try {
-			date = (Date)formatter.parse(student.getDob().toString());
+			date = (Date) formatter.parse(student.getDob().toString());
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		       
 
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		String formatedDate;
-		if((cal.get(Calendar.MONTH) + 1)<10){
-			formatedDate =   cal.get(Calendar.YEAR) + "-0" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE)  ;
-		}else{
-			formatedDate =   cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE)  ;
+		if ((cal.get(Calendar.MONTH) + 1) < 10) {
+			formatedDate = cal.get(Calendar.YEAR) + "-0" + (cal.get(Calendar.MONTH) + 1) + "-"
+					+ cal.get(Calendar.DATE);
+		} else {
+			formatedDate = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-"
+					+ cal.get(Calendar.DATE);
 		}
-		
-		
-		System.out.print("In jsp"+formatedDate);
+
+		System.out.print("In jsp" + formatedDate);
 	%>
 
-	
+
+	<%
+		ArrayList<Course> courseList = (ArrayList<Course>) request.getAttribute("courseList");
+	%>
+
+
 	<div class="container">
 		<div class="row centered-form">
 			<div
@@ -145,9 +151,10 @@ body {
 							</div>
 
 							<div class="form-group">
-								<input type="date" name="birthday" id="birthday" value="<%=formatedDate%>"
-									 class=" form-control input-sm" placeholder="birthday">
-									
+								<input type="date" name="birthday" id="birthday"
+									value="<%=formatedDate%>" class=" form-control input-sm"
+									placeholder="birthday">
+
 							</div>
 
 							<div class="form-group">
@@ -158,16 +165,23 @@ body {
 
 							<!-- Single button -->
 							<div class="btn-group form-group">
+								<input type="text" id="pac-input" name="course" class="form-control input-sm" readonly="readonly" required="required" value="<%=student.getCourse().getName()%>">
+
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
-									Select University <span class="caret"></span>
+									Select Course <span class="caret"></span>
 								</button>
 								<ul name="university" class="dropdown-menu"
-									value="<%=student.getCourse().getUniversity()%>" text="<%=student.getCourse().getUniversity()%>">
-									<li><a href="#">University of Moratuwa</a></li>
-									<li><a href="#">University of Peradeniya</a></li>
-									<li><a href="#">University of Ruhuna</a></li>
+									value="<%=student.getCourse().getName()%>" text="<%=student.getCourse().getName()%>">
+
+									<%
+										for (Course course : courseList) {
+									%>
+									<li><a href="#"><%=course.getName()%></a></li>
+									<%
+										}
+									%>
 
 								</ul>
 							</div>
@@ -194,8 +208,18 @@ body {
 			</div>
 		</div>
 	</div>
-	
-	
-	
+	<script>
+		$(".dropdown-menu li a").click(
+				function() {
+					var selText = $(this).text();
+					$(this).parents('.btn-group').find('.dropdown-toggle')
+							.html(selText + ' <span class="caret"></span>');
+					$("#pac-input").val(selText);
+					//$("ul#universityList").appendTo("li").text(selText);
+
+				});
+	</script>
+
+
 </body>
 </html>

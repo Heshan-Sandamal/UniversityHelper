@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.universityHelper.models.Course;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.StudentProfile;
 import com.universityHelper.other.Encrypt;
+import com.universityHelper.services.CourseServiceLocal;
 import com.universityHelper.services.StudentServiceLocal;
 
 /**
@@ -29,7 +32,10 @@ public class UpdateStudentDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	StudentServiceLocal studentService;
+	StudentServiceLocal studentService;;
+	
+	@EJB
+	CourseServiceLocal courseService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -84,6 +90,9 @@ public class UpdateStudentDetails extends HttpServlet {
 //		
 //		System.out.println("FOramtted date "+birthday);
 //student.setDob(birthday );
+		
+		ArrayList<Course> courseList=courseService.getAllCourses();
+		request.setAttribute("courseList",courseList );
 
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdateStudentDetails.jsp");
 		request.setAttribute("student", student);
@@ -113,6 +122,8 @@ public class UpdateStudentDetails extends HttpServlet {
 		}
 
 		s.setDob(birthday);
+		
+		String course=request.getParameter("course");
 
 		s.setHomeTown(request.getParameter("address"));
 		s.setContactNo(request.getParameter("contactNo"));
@@ -132,7 +143,9 @@ public class UpdateStudentDetails extends HttpServlet {
 
 		s.setStudentProfile(sp);
 
-		studentService.updateStudentDetails(sp, s);
+		studentService.updateStudentDetails(sp, s,course);
+		
+		response.sendRedirect("StudentHome");
 
 	}
 

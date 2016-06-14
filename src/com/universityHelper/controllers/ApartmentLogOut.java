@@ -30,6 +30,8 @@ public class ApartmentLogOut extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.logout();
+		request.removeAttribute("StudentId");
+		request.removeAttribute("ApartmentOwnerId");
 		response.sendRedirect("WelcomePage");
 	}
 

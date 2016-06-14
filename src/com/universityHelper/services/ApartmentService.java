@@ -157,6 +157,7 @@ public class ApartmentService implements ApartmentServiceLocal {
 				ob2.add("avilablePlaces", ap.getAvilablePlaces());
 				ob2.add("name", ap.getName());
 				ob2.add("rate", ap.getRate());
+				ob2.add("studentSex", ap.getStudentSex());
 
 				job.add(ob2.build());
 
@@ -344,6 +345,12 @@ public class ApartmentService implements ApartmentServiceLocal {
 		em.merge(apartment);
 		
 		return true;
+	}
+
+	@Override
+	public ArrayList<Student> getApartmentSubscribers(String apartmentId) {
+		Apartment aprtment=em.find(Apartment.class, apartmentId);
+		return new ArrayList<>(aprtment.getStudentSubscribers());
 	}
 
 }

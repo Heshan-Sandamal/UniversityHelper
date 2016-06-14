@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.universityHelper.models.Course;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.StudentProfile;
 import com.universityHelper.other.Encrypt;
+import com.universityHelper.services.CourseServiceLocal;
 import com.universityHelper.services.StudentServiceLocal;
 
 /**
@@ -34,6 +37,10 @@ public class StudentSignUp extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	
+	@EJB
+	CourseServiceLocal courseService;
+	
 	public StudentSignUp() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,6 +53,8 @@ public class StudentSignUp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		ArrayList<Course> courseList=courseService.getAllCourses();
+		request.setAttribute("courseList",courseList );
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/StudentSignUp.jsp");
 		view.forward(request, response);
 
@@ -89,6 +98,8 @@ public class StudentSignUp extends HttpServlet {
 		StudentProfile sp = new StudentProfile();
 		sp.setUserName(request.getParameter("userName"));
 		
+		String course=request.getParameter("course");
+		
 		
 
 		sp.setPassword(Encrypt.WriteEncrypt(request.getParameter("password")));
@@ -99,7 +110,7 @@ public class StudentSignUp extends HttpServlet {
 		
 		
 
-		studentService.signUpStudent(sp, s);
+		studentService.signUpStudent(sp, s,course);
 
 	}
 

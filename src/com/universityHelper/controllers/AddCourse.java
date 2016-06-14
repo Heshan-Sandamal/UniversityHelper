@@ -23,10 +23,10 @@ public class AddCourse extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	
+
 	@EJB
 	CourseServiceLocal courseService;
-	
+
 	public AddCourse() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,24 +36,29 @@ public class AddCourse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	
+
 	SessionContext ctx;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 		Course course = new Course();
 
-		course.setName("TLM");
-		course.setUniversity("Mora");
-		
-		courseService.addCourse(course);
+		String university = "University of moratuwa";
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		course.setName("Fashion Design");
+		// course.setUniversity("Mora");
+
+		boolean added = courseService.addCourse(course, university);
+
+		if (added) {
+			response.getWriter().write("added success");
+		} else {
+			response.getWriter().write("added faild");
+		}
 		
-		 
-		
+
 	}
 
 	/**

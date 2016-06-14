@@ -138,7 +138,8 @@
 					%>
 					<div class="media">
 						<a class="pull-left" href="#"> <img class="media-object"
-							src="resources/uploads/student/<%=acm.getStudent().getStudentId()%>/profile/img1.jpg" alt="" height="64ppx" width="64px">
+							src="resources/uploads/student/<%=acm.getStudent().getStudentId()%>/profile/img1.jpg"
+							alt="" height="64ppx" width="64px">
 						</a>
 						<div class="media-body">
 							<h4 class="media-heading">
@@ -156,7 +157,22 @@
 
 
 							<p><%=acm.getContent()%></p>
+							<form action="ViewPostDetails" method="post">
+								<%
+									if (request.getSession().getAttribute("StudentId").toString().equals(acm.getStudent().getStudentId())
+												|| request.getSession().getAttribute("StudentId").toString()
+														.equals(acm.getPost().getStudent().getStudentId())) {
+								%>
+								<input type="hidden" name="commentId" value="<%=acm.getId()%>">
+								<input type="hidden" name="postId" value="<%=post.getId()%>">
+								<a href="" onclick="parentNode.submit();return false;"><p style="font-size: 11px;">delete</p></a>
+
+								<%
+									}
+								%>
+							</form>
 						</div>
+
 					</div>
 					<hr>
 					<%

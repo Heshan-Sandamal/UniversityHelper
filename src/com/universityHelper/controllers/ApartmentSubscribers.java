@@ -10,26 +10,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.universityHelper.models.ApartmentComment;
-import com.universityHelper.models.Post;
-import com.universityHelper.services.PostServiceLocal;
+import com.universityHelper.models.Apartment;
+import com.universityHelper.models.Student;
+import com.universityHelper.services.ApartmentServiceLocal;
+import com.universityHelper.services.StudentServiceLocal;
 
 /**
- * Servlet implementation class ViewPostDetails
+ * Servlet implementation class MyApartments
  */
-@WebServlet("/ViewPostDetails")
-public class ViewPostDetails extends HttpServlet {
+@WebServlet("/ApartmentSubscribers")
+public class ApartmentSubscribers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	@EJB
-	PostServiceLocal postService;
 	
-    public ViewPostDetails() {
+	@EJB
+	ApartmentServiceLocal apartmentService;
+	
+    public ApartmentSubscribers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,33 +39,23 @@ public class ViewPostDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		String postId;//request.getParameter("postId");
-		if(request.getParameter("postId")==null){
-			HttpSession curSession=request.getSession();
-			postId=curSession.getAttribute("postId").toString();
-			curSession.removeAttribute("postId");
-		}else{
-			postId=request.getParameter("postId");
-		}
-		Post post=postService.viewPostDetails(postId);
+		String apartmentId = request.getParameter("ApartmentKey").toString();
+
+		ArrayList<Student> studentList = apartmentService.getApartmentSubscribers(apartmentId);
+		request.setAttribute("studentList", studentList);
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ViewPostDetails.jsp");
-		request.setAttribute("post", post);
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentSubscribers.jsp");
 		view.forward(request, response);
 		
-	
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String commentId=request.getParameter("commentId");
-		boolean deleted=postService.deleteComment(commentId);
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -214,6 +214,9 @@ html, body {
 																							+ '<p style="padding:0px;margin:0px;">'
 																							+ item["address"]
 																							+ '</p>'
+																							+ '<p style="padding:0px;margin:0px;">For: '
+																							+ item["studentSex"]
+																							+ '</p>'
 																							+ '<p style="padding:0px;margin:0px;">Payment: '
 																							+ item["payment"]
 																							+ '</p>'

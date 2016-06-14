@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -32,7 +34,8 @@ public class Course implements Serializable {
 	@OneToMany(mappedBy="course")
 	private Set<Student> studentList=new HashSet<>();
 	
-	private String university;
+	@ManyToOne
+	private University university;
 	
 	
 	public String getCourseId() {
@@ -65,12 +68,12 @@ public class Course implements Serializable {
 	}
 
 
-	public String getUniversity() {
+	public University getUniversity() {
 		return university;
 	}
 
 
-	public void setUniversity(String university) {
+	public void setUniversity(University university) {
 		this.university = university;
 	}
 
