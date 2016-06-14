@@ -71,6 +71,32 @@ public class LandLordService implements LandLordServiceLocal {
 		LandLord landLord=em.find(LandLord.class, apartmentOwnerId);
 		return landLord;
 	}
+
+	@Override
+	public void updateLandLord(LandLord ld, LandLordProfile llp) {
+		
+		
+		System.out.println("user name"+llp.getUserName()+"ds");
+		
+		LandLordProfile lardLordProfile=em.find(LandLordProfile.class,llp.getUserName());
+		LandLord landLord=em.find(LandLord.class,ld.getLandLordId());
+		
+		
+		System.out.println(lardLordProfile);
+		
+		lardLordProfile.setPassword(llp.getPassword());
+		
+		landLord.setFirstName(ld.getFirstName());
+		landLord.setLastName(ld.getLastName());
+		landLord.setAddress(ld.getAddress());
+		landLord.setEmail(ld.getEmail());
+		landLord.setContactNoList(ld.getContactNoList());
+		
+		
+		em.merge(landLord);
+		em.merge(lardLordProfile);
+		
+	}
 	
 	
 	

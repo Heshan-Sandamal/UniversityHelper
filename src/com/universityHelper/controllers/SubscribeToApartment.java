@@ -3,6 +3,7 @@ package com.universityHelper.controllers;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,9 +49,12 @@ public class SubscribeToApartment extends HttpServlet {
 		
 		boolean subscribed=studentService.subscribeToApartment(studentId,apartmentId);
 		
-		
-		
-		doGet(request, response);
+		if(subscribed){
+			response.sendRedirect("ViewApartmentDetails");
+			request.getSession().setAttribute("ApartmentKey", apartmentId);
+		}else{
+			response.getWriter().write("Unable to subscribe>make sure you logged in before subscribing");
+		}
 	}
 
 }

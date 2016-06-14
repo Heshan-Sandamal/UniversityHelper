@@ -20,4 +20,6 @@ public interface ApartmentServiceLocal {
 	public ArrayList<ApartmentComment> getApartmentComments(String apartmentId);
 	public boolean addRatings(String studentId, String apartmentId, Double rating);
 	boolean deleteApartment(String apartmentId, String userName, String password);
+	public Apartment getApartmentDetailsForUpdate(String apartmentId);
+	public boolean updateApartment(Apartment ap, String[] universityList);
 }

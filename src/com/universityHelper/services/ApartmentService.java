@@ -305,4 +305,45 @@ public class ApartmentService implements ApartmentServiceLocal {
 		
 	}
 
+	@Override
+	public Apartment getApartmentDetailsForUpdate(String apartmentId) {
+		Apartment apartment = em.find(Apartment.class, apartmentId);
+		return apartment;
+	}
+
+	@Override
+	public boolean updateApartment(Apartment ap, String[] universityList) {
+		Apartment apartment = em.find(Apartment.class, ap.getApartmentKey());
+		
+		apartment.setName(ap.getName());
+		apartment.setAddress(ap.getAddress());
+		apartment.setAvilablePlaces(ap.getAvilablePlaces());
+		apartment.setCapacity(ap.getCapacity());
+		apartment.setLattitide(ap.getLattitide());
+		apartment.setLongitude(ap.getLongitude());
+		apartment.setPayment(ap.getPayment());
+		apartment.setStudentSex(ap.getStudentSex());
+		
+		String query = "SELECT c FROM University c where ";
+		for (int x = 0; x < universityList.length; x++) {
+			query += "c.name='" + universityList[x] + "'";
+			if (x != universityList.length - 1) {
+
+				query += " OR ";
+
+			}
+
+		}
+
+		TypedQuery<University> queryRes = em.createQuery(query, University.class);
+		// query.setParameter(1, );
+		List<University> list = queryRes.getResultList();
+		
+		apartment.getUniversity().clear();
+		apartment.setUniversity(new HashSet<>(list));
+		em.merge(apartment);
+		
+		return true;
+	}
+
 }

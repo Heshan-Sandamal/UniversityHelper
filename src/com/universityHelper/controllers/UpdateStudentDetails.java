@@ -88,9 +88,6 @@ public class UpdateStudentDetails extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdateStudentDetails.jsp");
 		request.setAttribute("student", student);
 		view.forward(request, response);
-
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
 	}
 
 	/**

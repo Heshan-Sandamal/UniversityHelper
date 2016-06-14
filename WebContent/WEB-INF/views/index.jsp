@@ -97,7 +97,8 @@
 </div>
 <script>
 	$('.tlt').textillate({initialDelay:1000});
-	$('.tlt2').textillate({initialDelay:1200,loop:true,out:{effect:'shake'}});
+	$('.tlt2').textillate({initialDelay:1200,out:{effect:'shake'}});
+	//$('.tlt2').textillate({initialDelay:1200,loop:true,out:{effect:'shake'}});
 	</script>
 </body>
 </html>

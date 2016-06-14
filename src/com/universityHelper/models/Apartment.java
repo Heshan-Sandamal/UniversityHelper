@@ -62,7 +62,7 @@ public class Apartment implements Serializable {
 	@OneToMany(mappedBy = "apartment", cascade = CascadeType.REMOVE)
 	private Set<ApartmentComment> apartmentComment;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
 	private Set<Student> studentSubscribers;
 
 	// studentId,rating

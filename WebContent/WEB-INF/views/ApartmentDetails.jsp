@@ -1,3 +1,4 @@
+<%@page import="com.universityHelper.models.University"%>
 <%@page import="javax.swing.text.StyledEditorKit.BoldAction"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -119,9 +120,31 @@ html, body {
 </head>
 <body>
 
+	<%@ page import="com.universityHelper.models.Apartment"%>
+	<%@ page import="java.util.ArrayList"%>
+
+	<%
+		Apartment apartment = (Apartment) request.getAttribute("apartment");
+	%>
+
+	<%
+		ArrayList contactLIst = new ArrayList(apartment.getLandLordId().getContactNoList());
+		ArrayList<University> universityList = new ArrayList(apartment.getUniversity());
+
+		String contact1 = "";
+		String contact2 = "";
+		if (contactLIst.size() >= 1) {
+			contact1 = contactLIst.get(0).toString();
+		}
+		String contact = "";
+		if (contactLIst.size() >= 2) {
+			contact2 = contactLIst.get(0).toString();
+		}
+	%>
+
 	<div class="row" style="margin-left: 30px;">
 		<h1 class="tlt2">
-			<b><%=request.getAttribute("apartmentName")%></b>
+			<b><%=apartment.getName()%></b>
 		</h1>
 	</div>
 
@@ -130,25 +153,25 @@ html, body {
 			<ul id="etalage">
 				<li><a href="optionallink.html"> <img
 						class="etalage_thumb_image img-responsive"
-						src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img0.jpg"
+						src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img0.jpg"
 						alt=""> <img class="etalage_source_image img-responsive"
-						src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img0.jpg"
+						src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img0.jpg"
 						alt="">
 				</a></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img1.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img1.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img1.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img1.jpg"
 					alt=""></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img2.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img2.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img2.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img2.jpg"
 					alt=""></li>
 				<li><img class="etalage_thumb_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img3.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img3.jpg"
 					alt=""> <img class="etalage_source_image img-responsive"
-					src="resources/uploads/apartment/<%=request.getAttribute("apartmentKey")%>/img3.jpg"
+					src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img3.jpg"
 					alt=""></li>
 			</ul>
 
@@ -159,23 +182,23 @@ html, body {
 				<tbody>
 					<tr>
 						<td>Address</td>
-						<td><%=request.getAttribute("address")%></td>
+						<td><%=apartment.getAddress()%></td>
 
 					</tr>
 
 					<tr>
 						<td>Full places</td>
-						<td><%=request.getAttribute("availability")%></td>
+						<td><%=apartment.getCapacity()%></td>
 
 					</tr>
 					<tr>
 						<td>Avilable places</td>
-						<td><%=request.getAttribute("availability")%></td>
+						<td><%=apartment.getAvilablePlaces()%></td>
 
 					</tr>
 					<tr>
 						<td>Payment</td>
-						<td><%=request.getAttribute("payment")%></td>
+						<td><%=apartment.getPayment()%></td>
 
 					</tr>
 
@@ -187,38 +210,41 @@ html, body {
 
 					<tr>
 						<td>Contact No:</td>
-						<td>07155252133</td>
+						<td><%=contact1%> <%=contact1%></td>
 
 					</tr>
 
-					<tr>
-						<td>Contact No:</td>
-						<td>07155252133</td>
-
-					</tr>
-					
 
 					<tr>
 						<td>Owner profile</td>
 						<td><form action="LLProfile" method="post">
 								<input type="hidden" name="apartmentOwnerId"
-									value="<%=request.getAttribute("apartmentOwnerId")%>">
-								<a href="" onclick="parentNode.submit();return false;"><h4
-										style="font-family: Roboto; line-height: 1.6;"><%=request.getAttribute("apartmentOwnerId")%></h4></a>
+									value="<%=apartment.getLandLordId().getLandLordId()%>">
+								<a href="" onclick="parentNode.submit();return false;"><h6
+										style="font-family: Roboto;"><%=apartment.getLandLordId().getFirstName()%>
+										<%=apartment.getLandLordId().getLastName()%></h6></a>
 							</form></td>
 
 					</tr>
 
 
 					<tr>
-						<td>Other details</td>
-						<td>2000</td>
+						<td>For</td>
+						<td><%=apartment.getStudentSex()%></td>
 
 					</tr>
 
 					<tr>
 						<td>For students of:</td>
-						<td>University of Moratuwa</td>
+						<td>
+							<%
+								for (University university : universityList) {
+							%>
+								<%=university.getName()%>,
+							<%
+								}
+							%>
+						</td>
 
 					</tr>
 				</tbody>
@@ -253,11 +279,11 @@ html, body {
 							</div>
 							<div class="modal-body">
 								<input type="hidden" name="apartmentKey"
-									value="<%=request.getAttribute("apartmentKey")%>"> <input
+									value="<%=apartment.getApartmentKey()%>"> <input
 									type="hidden" name="apartmentName"
-									value="<%=request.getAttribute("apartmentName")%>"> <input
+									value="<%=apartment.getName()%>"> <input
 									type="hidden" name="address"
-									value="<%=request.getAttribute("address")%>"> <input
+									value="<%=apartment.getAddress()%>"> <input
 									id="input-21b" value="5" type="number" name="rating"
 									class="rating" min="0" max="5" step="0.5" data-size="xs">
 
@@ -279,11 +305,11 @@ html, body {
 			<div>
 				<form action="SubscribeToApartment" method="post">
 					<input type="hidden" name="apartmentKey"
-						value="<%=request.getAttribute("apartmentKey")%>">
+						value="<%=apartment.getApartmentKey()%>">
 					<h4>Subscribe to apartment</h4>
 					<p>You wil get notifications about the future updates of this
 						apartment</p>
-					<button type="submit" class="btn btn-success btn-md">Subscribe</button>
+					<button type="submit" class="btn btn-success btn-md"><%=request.getAttribute("subscribeStatus")%></button>
 				</form>
 			</div>
 			<div style="padding-bottom: 10px;">
@@ -301,11 +327,11 @@ html, body {
 								<button type="submit" class="btn btn-warning btn-md">View
 									feedbacks</button>
 								<input type="hidden" name="apartmentKey"
-									value="<%=request.getAttribute("apartmentKey")%>"> <input
+									value="<%=apartment.getApartmentKey()%>"> <input
 									type="hidden" name="apartmentName"
-									value="<%=request.getAttribute("apartmentName")%>"> <input
+									value="<%=apartment.getName()%>"> <input
 									type="hidden" name="address"
-									value="<%=request.getAttribute("address")%>">
+									value="<%=apartment.getAddress()%>">
 							</form>
 						</td>
 
@@ -323,11 +349,11 @@ html, body {
 								</div>
 								<div class="modal-body">
 									<input type="hidden" name="apartmentKey"
-										value="<%=request.getAttribute("apartmentKey")%>"> <input
+										value="<%=apartment.getApartmentKey()%>"> <input
 										type="hidden" name="apartmentName"
-										value="<%=request.getAttribute("apartmentName")%>"> <input
+										value="<%=apartment.getName()%>"> <input
 										type="hidden" name="address"
-										value="<%=request.getAttribute("address")%>">
+										value="<%=apartment.getAddress()%>">
 									<textarea class="form-control" rows="3" name="comment"></textarea>
 								</div>
 
@@ -361,7 +387,7 @@ html, body {
 	$('.tlt2').textillate({initialDelay:1200,loop:true,out:{effect:'pulse',delay:200},in:{effect:'pulse'}});
 	</script>
 	<script>
-		var rateVal=<%=request.getAttribute("rate")%>;
+		var rateVal=<%=apartment.getRate()%>;
         $('#input-21e').val(rateVal);
           var marker;
         var map;

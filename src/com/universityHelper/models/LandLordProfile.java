@@ -52,4 +52,7 @@ public class LandLordProfile implements Serializable {
 		this.password = password;
 	}
    
+	
+	
+	
 }

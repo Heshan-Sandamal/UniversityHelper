@@ -143,7 +143,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<h3 class="title"> My Other Apartments</h3>
+		<h3 class="title">My Other Apartments</h3>
 		<hr>
 		<div class="row">
 			<%@ page import="java.util.ArrayList"%>
@@ -171,17 +171,14 @@
 						<hr style="margin-top: 8px;">
 						<div class="card-block" style="padding-top: 2px;">
 
-							<span><button class="btn btn-info btn-sm">
-									<a href="#" class="card-link">Update Details</a>
-								</button></span> <span style="float: left; margin-right: 10px;">
-								<form action="AddApartmentImages" method="get">
-									<input type="hidden" name="ApartmentId"
-										value="<%=apt.getApartmentKey()%>"> <input
-										type="hidden" name="name" value="<%=apt.getName()%>">
-									<input type="hidden" name="address"
-										value="<%=apt.getAddress()%>">
-									<button class="btn btn-info btn-sm" type="submit">Add
-										Images</button>
+							<span>
+								<form action="ViewApartmentDetails" method="post">
+									<button type="submit" class="btn btn-info btn-md">
+										View Details 
+									</button>
+									<input type="hidden" name="apartmentKey"
+											value="<%=apt.getApartmentKey()%>">
+							</span> <span style="float: left; margin-right: 10px;">
 								</form>
 							</span>
 						</div>
