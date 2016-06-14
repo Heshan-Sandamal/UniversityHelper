@@ -86,8 +86,12 @@ public class AddApartment extends HttpServlet {
 			double payment = FloatingDecimal.parseDouble(request.getParameter("payment"));
 			int avilablePlaces = Integer.parseInt(request.getParameter("availability"));
 			String university = request.getParameter("university");
+			String studentSex = request.getParameter("studentSex");
 			String[] universityList = request.getParameterValues("univesities");
-
+			
+			
+			System.out.println(studentSex);
+			
 			// create Apartment object using submitted details
 			Apartment ap = new Apartment();
 
@@ -100,6 +104,7 @@ public class AddApartment extends HttpServlet {
 			ap.setAddress(address); // set address
 			ap.setPayment(payment); // set payment
 			ap.setRate(0.0);
+			ap.setStudentSex(studentSex);
 
 			// send apartment object to apartment service bean to persists
 			boolean aptStatus = apartmentService.addApartment(ap,apartmentOwnerId.toString(), universityList);

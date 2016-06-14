@@ -20,26 +20,24 @@ public class Apartment implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Type(type = "objectid")
 	private String apartmentKey;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private LandLord landLordId;
-	
+
 	private double lattitude;
 	private double longitude;
 	private String name;
 	private String address;
 	private int capacity;
-	
-	
+
 	private int avilablePlaces;
 	private double payment;
-	
+
 	public int getCapacity() {
 		return capacity;
 	}
@@ -47,23 +45,32 @@ public class Apartment implements Serializable {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	
-	
-	@ManyToMany(fetch=FetchType.EAGER,cascade = CascadeType.MERGE)
+
+	private String studentSex;
+
+	public String getStudentSex() {
+		return studentSex;
+	}
+
+	public void setStudentSex(String studentSex) {
+		this.studentSex = studentSex;
+	}
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Set<University> university;
-	
-	@OneToMany(mappedBy = "apartment",cascade=CascadeType.REMOVE)
+
+	@OneToMany(mappedBy = "apartment", cascade = CascadeType.REMOVE)
 	private Set<ApartmentComment> apartmentComment;
-	
+
 	@ManyToMany(cascade = CascadeType.MERGE)
 	private Set<Student> studentSubscribers;
-	
-	//studentId,rating
+
+	// studentId,rating
 	@ElementCollection
-	private Map<String,Double> ratings;
-	
+	private Map<String, Double> ratings;
+
 	private double rate;
-	
+
 	public double getRate() {
 		return rate;
 	}
@@ -143,43 +150,41 @@ public class Apartment implements Serializable {
 	public void setUniversity(Set<University> university) {
 		this.university = university;
 	}
-	
-	
+
 	public Apartment() {
 		super();
 	}
-	
+
 	public String getApartmentKey() {
 		return apartmentKey;
 	}
+
 	public void setApartmentKey(String apartmentKey) {
 		this.apartmentKey = apartmentKey;
 	}
-	
+
 	public double getLattitide() {
 		return lattitude;
 	}
+
 	public void setLattitide(double lattitude) {
 		this.lattitude = lattitude;
 	}
+
 	public double getLongitude() {
 		return longitude;
 	}
+
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	
 
 	public LandLord getLandLordId() {
 		return landLordId;
 	}
+
 	public void setLandLordId(LandLord landLordId) {
 		this.landLordId = landLordId;
 	}
-	
-	
-	
-	
+
 }
-
-

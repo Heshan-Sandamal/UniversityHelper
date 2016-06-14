@@ -84,12 +84,12 @@ html, body {
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							Student sign up for University Helper <small>It's free!</small>
-							<%@ page import="java.util.ArrayList" %>
+							<%@ page import="java.util.ArrayList"%>
 							<%@ page import="com.universityHelper.models.University"%>
 							<%
 								ArrayList<University> uniList = (ArrayList<University>) request.getAttribute("UniversityList");
 							%>
-							
+
 						</h3>
 					</div>
 					<div class="panel-body">
@@ -108,6 +108,13 @@ html, body {
 							<div class="form-group">
 								<input type="text" name="address" id="address"
 									class="form-control input-sm" placeholder="Address">
+							</div>
+
+							<div class="form-group">
+								<div class="radio">
+									<label><input type="radio" name="studentSex" value="Boys">Boys</label>
+									<label><input type="radio" name="studentSex" value="Girls">Girls</label>
+								</div>
 							</div>
 
 							<div class="form-group">
@@ -153,18 +160,22 @@ html, body {
 									Select University <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-								
-								<% for(University uni:uniList){%>
-									<li><a href="#"><%= uni.getName()%></a></li>
-								<% }%>
+
+									<%
+										for (University uni : uniList) {
+									%>
+									<li><a href="#"><%=uni.getName()%></a></li>
+									<%
+										}
+									%>
 
 								</ul>
 							</div>
 
 
 							<hr>
-							
-							
+
+
 							<input type="submit" value="Register"
 								class="btn btn-info btn-block">
 
@@ -298,9 +309,7 @@ html, body {
 									.getElementById('universityList');
 							var entry = document.createElement('li');
 							entry.className = "list-group-item";
-							
 
-							
 							entry.innerHTML = "<input type='hidden' name='univesities' value='"+selText+"'/>";
 							entry.appendChild(document.createTextNode(selText));
 							list.appendChild(entry);
