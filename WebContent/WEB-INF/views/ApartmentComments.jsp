@@ -27,17 +27,34 @@
 
 </head>
 
-<body>
+<body
+	style="background: url(resources/images/reducedopacity_sm_07.jpg) no-repeat center 0px;">
 
 
 	<!-- Page Content -->
 	<div class="container">
-		<h1>Feedbacks for the Apartment</h1>
-		<div class="row">
+		<div class="row" style="margin-left: 30px;">
+			<div class="col-md-8">
+				
+			</div>
+			<div class="col-md-2" >
 
+				<a href="StudentHome"><img src="resources/images/restart-1.png">Student
+					Home</a>
+			</div>
+			<div class="col-md-2">
+
+				<a href="SearchApartment"><img
+					src="resources/images/restart-1.png">Search Apartment</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-1"></div>
 			<!-- Blog Post Content Column -->
 			<div class="col-lg-10">
-				<div class="card" z-default=30 z-hover=40 height="200px">
+				<h1>Feedbacks for the Apartment</h1>
+				<div class="card" z-default=80 z-hover=120 height="200px"
+					style="background-color: white;">
 					<!-- Blog Post -->
 
 					<!-- Title -->
@@ -68,7 +85,7 @@
 					<%
 						for (ApartmentComment acm : acmList) {
 					%>
-					<div class="media">
+					<div class="media"">
 						<a class="pull-left" href="#"> <img class="media-object"
 							src="resources/uploads/student/<%=acm.getStudent().getStudentId()%>/profile/img1.jpg"
 							alt="" height="64px" width="64px" alt="">

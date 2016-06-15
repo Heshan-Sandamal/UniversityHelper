@@ -11,7 +11,7 @@
 <link href="resources/css/blog-post.css" rel="stylesheet">
 </head>
 <body
-	style="background: url('resources/images//Documenting-success.jpg') no-repeat center center fixed; background-size: 100%; -webkit-background-size: 100%;">
+	style="background: url('resources/images//Documenting-success.jpg') no-repeat center center fixed; background-size: 100%; -webkit-background-size: 100%; ">
 	<div class="container-fluid">
 
 
@@ -23,10 +23,10 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<div class="card" z-default=30 z-hover=40 height="300px">
-				<h2>Add post Details</h2>
+				<h2>Update post Details</h2>
 				<div class="well">
 					<form role="form" action="UpdatePost" method="post">
-						<h4>Update post</h4>
+						<h4>Post Topic</h4>
 						<input type="text" class="form-control" name="topic" value="<%=post.getTopic()%>">
 						<h4>Post Content</h4>
 						<div class="form-group">

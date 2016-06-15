@@ -15,7 +15,7 @@
       <web-resource-name>managers</web-resource-name>
       <description></description>
       <url-pattern>/StudentHome</url-pattern>
-       <url-pattern>/UpdateStudentDetails</url-pattern>
+      <url-pattern>/UpdateStudentDetails</url-pattern>
       <url-pattern>/AddPost</url-pattern>
       <url-pattern>/DeletePost</url-pattern>
       <url-pattern>/UpdatePost</url-pattern>
