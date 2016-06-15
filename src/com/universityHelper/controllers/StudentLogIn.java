@@ -55,6 +55,7 @@ public class StudentLogIn extends HttpServlet {
 		String password = request.getParameter("password");
 
 		
+		
 		System.out.println("Encrypt one :"+Encrypt.WriteEncrypt(password));
 		
 		String studentId=studentService.logInStudent(userName, password);
@@ -67,6 +68,7 @@ public class StudentLogIn extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/views/StudentLogIn.jsp").forward(request, response);
 			
 		}else{
+			request.logout();
 			request.login("Student", "12345");
 			response.sendRedirect("StudentHome");
 			request.getSession().setAttribute("StudentId",studentId);	

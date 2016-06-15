@@ -1,6 +1,7 @@
 package com.universityHelper.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -110,7 +111,25 @@ public class StudentSignUp extends HttpServlet {
 		
 		
 
-		studentService.signUpStudent(sp, s,course);
+		boolean added=studentService.signUpStudent(sp, s,course);
+		
+		if (!added) {
+			response.getWriter().write("User Name Already exists");
+		}else{
+			PrintWriter out = response.getWriter();
+
+		    out.println("<html>");
+		    out.println("<head>");
+		    out.println("<title>Registered</title>");
+		    out.println("</head>");
+		    out.println("<body bgcolor=\"white\">");
+		    out.println("<h2>You successfully registered.Please logIn<h2/>");
+		    out.println("<a href='StudentLogIn'><h4>Log In</h4></a>");
+		    out.println("</body>");
+		    out.println("</html>");
+		    
+				
+		}
 
 	}
 

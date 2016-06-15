@@ -40,22 +40,29 @@ public class StudentService implements StudentServiceLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public boolean signUpStudent(StudentProfile studentProfile, Student student, String courseName) {
 
-		String query = "Select c from Course c where c.name='" + courseName + "'";
-		TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
+		StudentProfile existingOb = em.find(StudentProfile.class, studentProfile.getUserName());
 
-		// query.setParameter(1, );
-		Course course = queryRes.getSingleResult();
-		if (course == null) {
+		if (existingOb == null) {
+			String query = "Select c from Course c where c.name='" + courseName + "'";
+			TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
+
+			// query.setParameter(1, );
+			Course course = queryRes.getSingleResult();
+			if (course == null) {
+				return false;
+			}
+			// Course course = em.find(Course.class,
+			// "574ae72f63250f370c624ed3");
+			student.setCourse(course);
+
+			em.persist(studentProfile);
+			em.persist(student);
+			return true;
+		} else {
 			return false;
 		}
-		// Course course = em.find(Course.class, "574ae72f63250f370c624ed3");
-		student.setCourse(course);
-
-		em.persist(studentProfile);
-		em.persist(student);
 		// em.getTransaction().rollback();
 
-		return true;
 	}
 
 	@Override
@@ -130,13 +137,13 @@ public class StudentService implements StudentServiceLocal {
 	}
 
 	@Override
-	public boolean updateStudentDetails(StudentProfile sp, Student s,String courseName) {
-		
+	public boolean updateStudentDetails(StudentProfile sp, Student s, String courseName) {
+
 		StudentProfile studentProfile = em.find(StudentProfile.class, sp.getUserName());
 		Student student = em.find(Student.class, s.getStudentId());
-		
-		System.out.println("cur"+courseName+"end");
-		
+
+		System.out.println("cur" + courseName + "end");
+
 		String query = "Select c from Course c where c.name='" + courseName + "'";
 		TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
 
@@ -147,7 +154,6 @@ public class StudentService implements StudentServiceLocal {
 		}
 		// Course course = em.find(Course.class, "574ae72f63250f370c624ed3");
 		student.setCourse(course);
-		
 
 		student.setContactNo(s.getContactNo());
 		student.setDob(s.getDob());
@@ -164,6 +170,27 @@ public class StudentService implements StudentServiceLocal {
 		em.merge(studentProfile);
 		return true;
 
+	}
+
+	@Override
+	public boolean unsubscribeApartment(String studentId, String apartmentId) {
+
+		Student student = em.find(Student.class, studentId);
+		Apartment apartment = em.find(Apartment.class, apartmentId);
+		student.getSubscribedApartments().remove(apartment);
+		apartment.getStudentSubscribers().remove(student);
+		em.merge(student);
+		em.merge(apartment);
+		return true;
+
+	}
+
+	@Override
+	public boolean updateAboutMe(String studentId, String content) {
+		Student student = em.find(Student.class, studentId);
+		student.setAboutMe(content);
+		em.merge(student);
+		return true;
 	}
 
 }

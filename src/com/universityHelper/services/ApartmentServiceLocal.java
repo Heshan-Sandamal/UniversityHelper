@@ -24,4 +24,5 @@ public interface ApartmentServiceLocal {
 	public Apartment getApartmentDetailsForUpdate(String apartmentId);
 	public boolean updateApartment(Apartment ap, String[] universityList);
 	public ArrayList<Student> getApartmentSubscribers(String apartmentId);
+	public boolean deleteComment(String commentId);
 }

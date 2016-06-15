@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.junit.Assert;
+import org.junit.Test;
 
 import com.universityHelper.models.Apartment;
 import com.universityHelper.models.ApartmentKey;
@@ -72,6 +73,7 @@ public class AddApartment extends HttpServlet {
 	 *      response)
 	 */
 
+	@Test
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -89,6 +91,14 @@ public class AddApartment extends HttpServlet {
 			String studentSex = request.getParameter("studentSex");
 			String[] universityList = request.getParameterValues("univesities");
 			
+		
+			
+			if(universityList==null ||  universityList.length<=0){
+				
+				response.getWriter().write("Unable to add apartment.You must added atleast 1 university for you apartment");
+				//doGet(request, response);
+				return;
+			}
 			
 			System.out.println(studentSex);
 			
@@ -113,10 +123,9 @@ public class AddApartment extends HttpServlet {
 			// ap.getUniversity().add(arg0)
 
 			if (aptStatus) {
-				response.getWriter().println("Apartment added successfully");
+				response.sendRedirect("LLHome");
 			} else {
-				RequestDispatcher view = request.getRequestDispatcher(request.getPathInfo());
-				view.forward(request, response);
+				
 			}
 		}
 

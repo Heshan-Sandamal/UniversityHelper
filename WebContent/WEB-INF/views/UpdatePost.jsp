@@ -27,10 +27,10 @@
 				<div class="well">
 					<form role="form" action="UpdatePost" method="post">
 						<h4>Post Topic</h4>
-						<input type="text" class="form-control" name="topic" value="<%=post.getTopic()%>">
+						<input type="text" class="form-control" name="topic" value="<%=post.getTopic()%>" required="required">
 						<h4>Post Content</h4>
 						<div class="form-group">
-							<textarea class="form-control" rows="3" name="content"><%=post.getContent()%></textarea>
+							<textarea class="form-control" rows="3" name="content" required="required"><%=post.getContent()%></textarea>
 						</div>
 						<input type="hidden" class="form-control" name="postId" value="<%=post.getId()%>">
 						<button type="submit" class="btn btn-success">Submit</button>

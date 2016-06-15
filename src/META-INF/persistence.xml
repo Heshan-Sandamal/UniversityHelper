@@ -13,6 +13,7 @@
 		<class>com.universityHelper.models.StudentProfile</class>
 		<class>com.universityHelper.models.University</class>
 		<class>com.universityHelper.models.ApartmentComment</class>
+		<class>com.universityHelper.models.CommentNotification</class>
 		
 		
 		<properties>

@@ -39,12 +39,7 @@ public class AddPostComments extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-
-		//RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentComments.jsp");
-		//request.setAttribute("commentsList", commentsList);
-		//view.forward(request, response);
-		
+	
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

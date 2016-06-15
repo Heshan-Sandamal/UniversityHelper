@@ -55,41 +55,6 @@ public class UpdateStudentDetails extends HttpServlet {
 		Student student = studentService.getStudentDetails(request.getSession().getAttribute("StudentId").toString());
 		student.getStudentProfile().setPassword(Encrypt.readEncrypt(student.getStudentProfile().getPassword()));
 
-//		SimpleDateFormat readFormat = new SimpleDateFormat("EEE MMM dd yyyy hh:mm aaa");
-//		Date birthday = null;
-//		
-//		birthday=student.getDob();
-//		
-//		
-//		DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
-//		Date date=null;
-//		try {
-//			date = (Date)formatter.parse(birthday.toString());
-//		} catch (ParseException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		System.out.println(date);        
-//
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(date);
-//		String formatedDate = (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DATE) + "/" +         cal.get(Calendar.YEAR);
-//		System.out.println("formatedDate : " + formatedDate); 
-//		
-//		
-//		
-//
-//		DateFormat writeFormat = new SimpleDateFormat("MM/dd/yyyy");
-//		
-//		
-//		try {
-//			birthday = writeFormat.parse(formatedDate);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("FOramtted date "+birthday);
-//student.setDob(birthday );
 		
 		ArrayList<Course> courseList=courseService.getAllCourses();
 		request.setAttribute("courseList",courseList );

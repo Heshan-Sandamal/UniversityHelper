@@ -58,26 +58,26 @@ body {
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="text" name="firstName" id="first_name"
-											class="form-control input-sm" placeholder="First Name">
+											class="form-control input-sm" placeholder="First Name" required="required">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="text" name="lastName" id="last_name"
-											class="form-control input-sm" placeholder="Last Name">
+											class="form-control input-sm" placeholder="Last Name" required="required">
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<input type="email" name="email" id="email"
-									class="form-control input-sm" placeholder="Email Address">
+									class="form-control input-sm" placeholder="Email Address" required="required">
 							</div>
 
 
 							<div class="form-group">
 								<input type="text" name="userName" id="email"
-									class="form-control input-sm" placeholder="User Name">
+									class="form-control input-sm" placeholder="User Name" required="required">
 							</div>
 
 
@@ -85,31 +85,31 @@ body {
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="password" name="password" id="password"
-											class="form-control input-sm" placeholder="Password">
+											class="form-control input-sm" placeholder="Password" required="required">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="password" name="password_confirmation"
 											id="password_confirmation" class="form-control input-sm"
-											placeholder="Confirm Password">
+											placeholder="Confirm Password" required="required">
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<input type="text" name="address" id="email"
-									class="form-control input-sm" placeholder="Address/ Home town">
+									class="form-control input-sm" placeholder="Address/ Home town" readonly="readonly">
 							</div>
 
 							<div class="form-group">
 								<input type="date" name=birthday id="birthday"
-									class="form-control input-sm" placeholder="birthday" required>
+									class="form-control input-sm" placeholder="birthday" required="required">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="examYear" id="email"
-									class="form-control input-sm" placeholder="A/L exam year">
+									class="form-control input-sm" placeholder="A/L exam year" required="required" min="1990">
 							</div>
 
 							<!-- Single button -->
@@ -145,7 +145,7 @@ body {
 
 
 							<input type="submit" value="Register"
-								class="btn btn-info btn-block">
+								class="btn btn-info btn-block" onclick="return Validate()">
 
 						</form>
 					</div>
@@ -165,6 +165,19 @@ body {
 					//$("ul#universityList").appendTo("li").text(selText);
 
 				});
+	</script>
+	
+	<script type="text/javascript">
+		function Validate() {
+			var password = document.getElementById("password").value;
+			var confirmPassword = document
+					.getElementById("password_confirmation").value;
+			if (password != confirmPassword) {
+				alert("Passwords do not match.");
+				return false;
+			}
+			return true;
+		}
 	</script>
 
 </body>

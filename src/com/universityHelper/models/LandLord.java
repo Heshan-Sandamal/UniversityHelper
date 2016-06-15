@@ -44,7 +44,13 @@ public class LandLord implements Serializable {
 	private String lastName;
 	private String email;
 	private String address;
+	private String aboutMe;
 	
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}public String getAboutMe() {
+		return aboutMe;
+	}
 	
 	public String getAddress() {
 		return address;

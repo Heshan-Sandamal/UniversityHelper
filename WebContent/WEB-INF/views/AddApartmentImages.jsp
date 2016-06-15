@@ -53,18 +53,18 @@ body {
 
 							<div class="form-group">
 								<input type="text" name="ApartmentId" id="id"
-									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("ApartmentId") %>">
+									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("ApartmentId") %>" readonly="readonly">
 							</div>
 
 
 							<div class="form-group">
 								<input type="text"  id="name"
-									class="form-control input-sm" placeholder="Apartment Name" value="<%= request.getAttribute("name") %>">
+									class="form-control input-sm" placeholder="Apartment Name" value="<%= request.getAttribute("name") %>" readonly="readonly">
 							</div>
 
 							<div class="form-group">
 								<input type="text" id="address"
-									class="form-control input-sm" placeholder="Address/ Home town" value="<%= request.getAttribute("address") %>">
+									class="form-control input-sm" placeholder="Address/ Home town" value="<%= request.getAttribute("address") %>" readonly="readonly">
 							</div>
 
 							

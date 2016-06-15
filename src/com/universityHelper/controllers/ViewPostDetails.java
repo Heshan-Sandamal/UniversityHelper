@@ -43,6 +43,10 @@ public class ViewPostDetails extends HttpServlet {
 		String postId;//request.getParameter("postId");
 		if(request.getParameter("postId")==null){
 			HttpSession curSession=request.getSession();
+			if(curSession.getAttribute("postId")==null){
+				response.getWriter().write("Illegal post Id requested");
+				return;
+			}
 			postId=curSession.getAttribute("postId").toString();
 			curSession.removeAttribute("postId");
 		}else{

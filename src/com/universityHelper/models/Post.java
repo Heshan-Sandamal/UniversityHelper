@@ -87,8 +87,19 @@ public class Post implements Serializable, Comparable<Post> {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Student student;
 
-	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER,cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<Comment> comments;
+
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private Set<CommentNotification> commentNotification;
+
+	public void setCommentNotification(Set<CommentNotification> commentNotification) {
+		this.commentNotification = commentNotification;
+	}
+
+	public Set<CommentNotification> getCommentNotification() {
+		return commentNotification;
+	}
 
 	@Override
 	public int compareTo(Post post) {
@@ -109,21 +120,21 @@ public class Post implements Serializable, Comparable<Post> {
 			return false;
 		}
 
-		
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return this.id;
 	}
+
 	@Override
 	public int hashCode() {
-		if(this.id!=null){
+		if (this.id != null) {
 			return this.id.hashCode();
-		}else{return super.hashCode();}
-		
+		} else {
+			return super.hashCode();
+		}
+
 	}
-	
+
 }

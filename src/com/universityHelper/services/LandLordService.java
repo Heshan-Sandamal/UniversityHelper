@@ -14,6 +14,7 @@ import org.hibernate.hql.ast.origin.hql.parse.HQLParser.exists_key_return;
 import com.universityHelper.models.Apartment;
 import com.universityHelper.models.LandLord;
 import com.universityHelper.models.LandLordProfile;
+import com.universityHelper.other.Encrypt;
 
 /**
  * Session Bean implementation class LandLordService
@@ -35,18 +36,18 @@ public class LandLordService implements LandLordServiceLocal {
 
 	@Override
 	public boolean addLandLord(LandLord landLord,LandLordProfile landLordProfile) {
-//		LandLord ll=em.find(LandLord.class,"56fd975b416283e627c3402f" );
-//		
-//
-//		TypedQuery<LandLord> query = em.createQuery(
-//		        "SELECT c FROM LandLord c where c.name=:name", LandLord.class);
-//		List<LandLord> a=query.setParameter("name", "heshan").getResultList();
-//		
-//		em.persist(landLord);
-//		return a.get(0).getName();
-		em.persist(landLordProfile);
-		em.persist(landLord);
-		return true;
+		
+		LandLordProfile lp=em.find(LandLordProfile.class, landLordProfile.getUserName());
+		
+		if(lp==null){
+			em.persist(landLordProfile);
+			em.persist(landLord);
+			return true;
+		}else{
+			return false;
+		}
+		
+		
 		
 	}
 
@@ -57,7 +58,7 @@ public class LandLordService implements LandLordServiceLocal {
 		if(exitstingLLOb==null){
 			return null;
 		}
-		if(landLordProfile.getPassword().equals(exitstingLLOb.getPassword())){
+		if(landLordProfile.getPassword().equals(Encrypt.readEncrypt(exitstingLLOb.getPassword()))){
 			return exitstingLLOb.getLandLord().getLandLordId();
 		}else{
 			return "WP";	//wrong password
@@ -73,7 +74,7 @@ public class LandLordService implements LandLordServiceLocal {
 	}
 
 	@Override
-	public void updateLandLord(LandLord ld, LandLordProfile llp) {
+	public boolean updateLandLord(LandLord ld, LandLordProfile llp) {
 		
 		
 		System.out.println("user name"+llp.getUserName()+"ds");
@@ -96,6 +97,21 @@ public class LandLordService implements LandLordServiceLocal {
 		em.merge(landLord);
 		em.merge(lardLordProfile);
 		
+		return true;
+		
+	}
+
+	@Override
+	public LandLord getLandLordfromUserName(String userName) {
+		LandLordProfile lardLordProfile=em.find(LandLordProfile.class,userName);
+		return lardLordProfile.getLandLord();
+	}
+
+	@Override
+	public boolean updateAboutMe(String ownerId, String content) {
+		LandLord landLord=em.find(LandLord.class,ownerId);
+		landLord.setAboutMe(content);
+		return true;
 	}
 	
 	

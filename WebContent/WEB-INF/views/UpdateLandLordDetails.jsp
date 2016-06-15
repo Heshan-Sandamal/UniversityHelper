@@ -77,14 +77,14 @@ body {
 									<div class="form-group">
 										<input type="text" name="firstName" id="firstName"
 											class="form-control input-sm" placeholder="First Name"
-											value="<%=landLord.getFirstName()%>">
+											value="<%=landLord.getFirstName()%>" required="required">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="text" name="lastName" id="last_name"
 											class="form-control input-sm" placeholder="Last Name"
-											value="<%=landLord.getLastName()%>">
+											value="<%=landLord.getLastName()%>" required="required">
 									</div>
 								</div>
 							</div>
@@ -92,14 +92,14 @@ body {
 							<div class="form-group">
 								<input type="email" name="email" id="email"
 									class="form-control input-sm" placeholder="Email Address"
-									value="<%=landLord.getEmail()%>">
+									value="<%=landLord.getEmail()%>" required="required">
 							</div>
 
 
 							<div class="form-group">
 								<input type="text" name="userName" id="email"
 									class="form-control input-sm" placeholder="User Name"
-									value="<%=landLord.getLandLordProfile().getUserName()%>" readonly="readonly">
+									value="<%=landLord.getLandLordProfile().getUserName()%>" readonly="readonly" required="required">
 							</div>
 
 
@@ -108,7 +108,7 @@ body {
 									<div class="form-group">
 										<input type="password" name="password" id="password"
 											class="form-control input-sm" placeholder="Password"
-											value="<%=landLord.getLandLordProfile().getPassword()%>">
+											value="<%=landLord.getLandLordProfile().getPassword()%>" required="required">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -116,7 +116,7 @@ body {
 										<input type="password" name="password_confirmation"
 											id="password_confirmation" class="form-control input-sm"
 											placeholder="Confirm Password"
-											value="<%=landLord.getLandLordProfile().getPassword()%>">
+											value="<%=landLord.getLandLordProfile().getPassword()%>" required="required">
 									</div>
 								</div>
 							</div>
@@ -124,7 +124,7 @@ body {
 							<div class="form-group">
 								<input type="text" name="address" id="email"
 									class="form-control input-sm" placeholder="Address/ Home town"
-									value="<%=landLord.getAddress()%>">
+									value="<%=landLord.getAddress()%>" required="required">
 							</div>
 
 
@@ -141,7 +141,7 @@ body {
 							</div>
 
 							<input type="submit" value="Register"
-								class="btn btn-info btn-block">
+								class="btn btn-info btn-block" onclick="return Validate()">
 
 						</form>
 					</div>
@@ -149,5 +149,18 @@ body {
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("password_confirmation").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+	
 </body>
 </html>

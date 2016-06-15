@@ -111,8 +111,7 @@ public class AddApartmentImages extends HttpServlet {
 					}
 				}
 			}
-			response.getWriter().append("Served at: ").append(request.getContextPath());
-			// doGet(request, response);
+			response.sendRedirect("LLHome");
 		}
 
 	}

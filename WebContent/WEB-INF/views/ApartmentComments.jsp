@@ -34,10 +34,8 @@
 	<!-- Page Content -->
 	<div class="container">
 		<div class="row" style="margin-left: 30px;">
-			<div class="col-md-8">
-				
-			</div>
-			<div class="col-md-2" >
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
 
 				<a href="StudentHome"><img src="resources/images/restart-1.png">Student
 					Home</a>
@@ -97,6 +95,21 @@
 							</h4>
 							<%=acm.getDescription()%>
 						</div>
+						<form action="ViewApartmentComments" method="post">
+							<%
+								if (request.getSession().getAttribute("StudentId") !=null && request.getSession().getAttribute("StudentId").toString().equals(acm.getStudent().getStudentId())) {
+							%>
+							<input type="hidden" name="commentId" value="<%=acm.getId()%>">
+							<input type="hidden" name="apartmentKey" value="<%=request.getParameter("apartmentKey")%>">
+							<input type="hidden" name="apartmentName" value="<%=request.getParameter("apartmentName")%>">
+							<input type="hidden" name="address" value="<%=request.getParameter("address")%>">
+							<a href="" onclick="parentNode.submit();return false;"><p
+									style="font-size: 11px;">delete</p></a>
+
+							<%
+								}
+							%>
+						</form>
 					</div>
 					<hr>
 					<%

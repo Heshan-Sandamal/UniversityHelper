@@ -21,10 +21,10 @@
 				<div class="well">
 					<form role="form" action="AddPost" method="post">
 						<h4>Post Title</h4>
-						<input type="text" class="form-control" name="topic">
+						<input type="text" class="form-control" name="topic" required="required">
 						<h4>Post Content</h4>
 						<div class="form-group">
-							<textarea class="form-control" rows="3" name="content"></textarea>
+							<textarea class="form-control" rows="3" name="content" required="required"></textarea>
 						</div>
 
 						<button type="submit" class="btn btn-success">Submit</button>

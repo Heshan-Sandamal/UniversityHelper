@@ -19,4 +19,6 @@ public interface StudentServiceLocal {
 	public ArrayList<Apartment> getMyApartments(String studentId);
 	public boolean updateStudentDetails(StudentProfile sp, Student s, String course);
 	public boolean signUpStudent(StudentProfile sp, Student s, String course);
+	public boolean unsubscribeApartment(String studentId, String apartmentId);
+	public boolean updateAboutMe(String studentId, String content);
 }

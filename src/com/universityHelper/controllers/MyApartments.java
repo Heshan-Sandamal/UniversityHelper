@@ -54,8 +54,17 @@ public class MyApartments extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String studentId = request.getSession().getAttribute("StudentId").toString();
+		String apartmentId=request.getParameter("apartmentKey");
+		boolean updated=studentService.unsubscribeApartment(studentId,apartmentId);
+		
+		if(updated){
+			doGet(request, response);
+		}else{
+			response.getWriter().write("Unable to unsubscribe");
+		}
+		
 	}
 
 }

@@ -5,6 +5,8 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
+<%@page import="com.universityHelper.models.CommentNotification"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <title>Student Home</title>
@@ -18,7 +20,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
 
 
 
@@ -64,6 +80,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<%
 		Student student = (Student) request.getAttribute("Student");
+
+		ArrayList<CommentNotification> cn = new ArrayList(student.getCommentNotification());
 	%>
 
 	<div id="home" class="banner"
@@ -147,7 +165,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								Thread</a></li>
 						<li><a href=AddPost class="scroll">Add New post</a></li>
 						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
-						<li><a href="UpdateStudentDetails" class="scroll">Update Details</a></li>
+						<li><a href="UpdateStudentDetails" class="scroll">Update
+								Details</a></li>
+						<li><a href="StudentAboutMe" class="scroll">About Me</a></li>
 						<li><a href="ViewStudents" class="scroll">Student Details</a></li>
 						<li><a href="" class="scroll" data-toggle="modal"
 							data-target="#myModalLogOut">Log out</a></li>
@@ -161,7 +181,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--about-->
 	<div class="container">
 		<div class="row">
-			
+
+			<%
+				for (CommentNotification com : cn) {
+			%>
+
 			<div class="col-md-4">
 				.
 				<div class="card" z-default=30 z-hover=40 height="50px">
@@ -170,117 +194,79 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<img src="resources/images/commentNotification.png" height="50px">
 						</div>
 						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
+							<form action="ViewPostDetails" method="get">
+								<a href="" onclick="parentNode.submit();return false;">
+									<h5><%=com.getPost().getTopic().substring(0, 25)%></h5>
+									<p><%=com.getContent()%></p> <input type="hidden" name="postId"
+									value="<%=com.getPost().getId()%>">
+								</a>
+							</form>
 						</div>
 						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px" width="30px">
-							
+							<form action="StudentHome" method="post">
+								<a href="" onclick="parentNode.submit();return false;"
+									title="Delete Notification"> <img
+									src="resources/images/accepted.png" height="35px" width="30px">
+									<input type="hidden" name="notificationId"
+									value="<%=com.getId()%>">
+								</a>
+							</form>
 						</div>
-						
+
 
 
 					</div>
-					
+
 				</div>
-				
+
 			</div>
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px" width="30px">
-							
-						</div>
-						
 
+			<%
+				}
+			%>
 
-					</div>
-					
-				</div>
-				
-			</div>
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px" width="30px">
-							
-						</div>
-						
-
-
-					</div>
-					
-				</div>
-				
-			</div>
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1 Notification about post 1Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px" width="30px">
-							
-						</div>
-						
-
-
-					</div>
-					
-				</div>
-				
-			</div>
 		</div>
 
 		<div class="modal fade" id="myModalLogOut" role="dialog">
-		<div class="modal-dialog">
+			<div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<form action="ApartmentLogOut" method="get">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<div class="row">
-							<div class="col-md-3">
-								<img src="resources/images/logout-button-hi.png">
-							</div>
-							<div class="" col-md-9>
-								<h3 class="modal-title">Are you sure to Log out??</h3>
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form action="ApartmentLogOut" method="get">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<div class="row">
+								<div class="col-md-3">
+									<img src="resources/images/logout-button-hi.png">
+								</div>
+								<div class="" col-md-9>
+									<h3 class="modal-title">Are you sure to Log out??</h3>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="modal-footer">
-		
-						<button class="btn btn-warning btn-lg" type="submit">Yes</button>
-						<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</button>
-					</div>
-				</form>
+						<div class="modal-footer">
+
+							<button class="btn btn-warning btn-lg" type="submit">Yes</button>
+							<button type="button" class="btn btn-default btn-lg"
+								data-dismiss="modal">No</button>
+						</div>
+					</form>
+				</div>
+
 			</div>
-
 		</div>
-	</div>
 
 
+		<div id="about" class="about" style="padding-top: 20px;">
+			<div class="container" style="padding-top: 20px;">
+				<h3 class="title">About Me</h3>
+				<div class="col-md-12 about-left">
+					<p><%=student.getAboutMe()%></p>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="resources/js/bootstrap.js"></script>
 		<script src="resources/js/card-depth.js"></script>

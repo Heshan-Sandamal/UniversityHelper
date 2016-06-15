@@ -22,39 +22,49 @@ import com.universityHelper.services.StudentServiceLocal;
 @WebServlet("/ApartmentSubscribers")
 public class ApartmentSubscribers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	@EJB
-	ApartmentServiceLocal apartmentService;
-	
-    public ApartmentSubscribers() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String apartmentId = request.getParameter("ApartmentKey").toString();
 
-		ArrayList<Student> studentList = apartmentService.getApartmentSubscribers(apartmentId);
-		request.setAttribute("studentList", studentList);
-		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentSubscribers.jsp");
-		view.forward(request, response);
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	@EJB
+	ApartmentServiceLocal apartmentService;
+
+	public ApartmentSubscribers() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		if (request.getParameter("ApartmentKey") != null) {
+
+			String apartmentId = request.getParameter("ApartmentKey").toString();
+
+			ArrayList<Student> studentList = apartmentService.getApartmentSubscribers(apartmentId);
+			request.setAttribute("studentList", studentList);
+
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentSubscribers.jsp");
+			view.forward(request, response);
+
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+		}else{
+			response.getWriter().write("Illegal apartment key");
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

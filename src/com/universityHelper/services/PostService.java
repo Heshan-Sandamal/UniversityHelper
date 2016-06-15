@@ -17,6 +17,7 @@ import org.junit.runner.manipulation.Sorter;
 
 import com.universityHelper.models.Apartment;
 import com.universityHelper.models.Comment;
+import com.universityHelper.models.CommentNotification;
 import com.universityHelper.models.Post;
 import com.universityHelper.models.Student;
 
@@ -90,6 +91,29 @@ public class PostService implements PostServiceLocal {
 			}
 
 			student.getPostComments().add(acm);
+			
+			CommentNotification cn=new CommentNotification();
+			cn.setPost(post);
+			
+			cn.setStatus(0);
+			cn.setContent("Comment added "+acm.getContent());
+			
+			student=post.getStudent();
+			cn.setStudent(student);
+			
+			if(student.getCommentNotification()==null){
+				student.setCommentNotification(new HashSet<>());
+			}
+			
+			student.getCommentNotification().add(cn);
+			
+			if(post.getCommentNotification()==null){
+				post.setCommentNotification(new HashSet<>());
+			}
+			
+			post.getCommentNotification().add(cn);
+			
+			em.persist(cn);
 
 			em.persist(acm);
 			return true;
@@ -144,6 +168,38 @@ public class PostService implements PostServiceLocal {
 		System.out.println(comment.getContent());
 		em.remove(comment);
 		return true;
+	}
+
+	@Override
+	public ArrayList<Post> searchPosts(String searchVal) {
+		searchVal=searchVal.toLowerCase();
+		String query = "SELECT c FROM Post c WHERE c.content LIKE  '%"+searchVal+"%'";
+		TypedQuery<Post> queryRes = em.createQuery(query, Post.class);
+
+		// query.setParameter(1, );
+		ArrayList<Post> list = (ArrayList<Post>) queryRes.getResultList();
+		// Collections.sort(list.get(0).getComments().);
+		return list;
+	}
+	
+	@Override
+	public ArrayList<Post> searchPostsOfStudent(String studentId,String searchVal) {
+		searchVal=searchVal.toLowerCase();
+		String query = "SELECT c FROM Post c WHERE c.content LIKE  '%"+searchVal+"%'";
+		TypedQuery<Post> queryRes = em.createQuery(query, Post.class);
+
+		// query.setParameter(1, );
+		ArrayList<Post> list = (ArrayList<Post>) queryRes.getResultList();
+		// Collections.sort(list.get(0).getComments().);
+		ArrayList<Post> matchList=new ArrayList<>();
+		
+		for (Post post : list) {
+			if(post.getStudent().getStudentId().equals(studentId)){
+				matchList.add(post);
+			}
+		}
+		
+		return matchList;
 	}
 
 }

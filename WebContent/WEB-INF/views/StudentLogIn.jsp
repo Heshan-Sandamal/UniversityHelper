@@ -24,8 +24,7 @@
 
 						<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive"
 							alt="" /> <input type="text" name="userName" placeholder="Email"
-							required class="form-control input-lg"
-							value="joestudent@gmail.com" /> <input type="password"
+							required class="form-control input-lg" value="joestudent@gmail.com" /> <input type="password"
 							class="form-control input-lg" name="password" id="password"
 							placeholder="Password" required="" />
 
@@ -69,7 +68,7 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<form action="SendMail" method="post">
+				<form action="RecoverStudentPassword" method="post">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<div class="row">
@@ -82,7 +81,7 @@
 						</div>
 					</div>
 					<div class="model-body">
-						<input type="text" class="form-input" name="userName"
+						<input type="text"  class="form-control input-lg" name="userName"
 							placeholder="User Name">
 					</div>
 					<div class="modal-footer">

@@ -105,7 +105,7 @@ html, body {
 								<div class="col-xs-10 col-sm-10 col-md-10">
 									<div class="form-group">
 										<input type="text" name="name" id="apartment_name"
-											class="form-control input-sm" placeholder="Apartment Name" value="<%=apartment.getName()%>">
+											class="form-control input-sm" placeholder="Apartment Name" value="<%=apartment.getName()%>" required="required">
 									</div>
 								</div>
 
@@ -133,29 +133,29 @@ html, body {
 							<div class="form-group">
 								<input type="text" name="lattitude" id="lattitude"
 									class="form-control input-sm"
-									placeholder="lattitude(Click Map to set value)" required value="<%=apartment.getLattitide()%>">
+									placeholder="lattitude(Click Map to set value)" required="required" value="<%=apartment.getLattitide()%>" >
 							</div>
 
 							<div class="form-group">
 								<input type="text" name="longitude" id="longitude"
 									class="form-control input-sm"
-									placeholder="longitude(Click Map to set value)"  value="<%=apartment.getLongitude()%>" required>
+									placeholder="longitude(Click Map to set value)"  value="<%=apartment.getLongitude()%>" required="required">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="payment" id="payment"
-									class="form-control input-sm" placeholder="payment"  value="<%=apartment.getPayment()%>">
+									class="form-control input-sm" placeholder="payment"  value="<%=apartment.getPayment()%>" required="required" min="0">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="capacity" id="capacity"
 									class="form-control input-sm"
-									placeholder="Capacity(Total No: of places)"  value="<%=apartment.getCapacity()%>">
+									placeholder="Capacity(Total No: of places)"  value="<%=apartment.getCapacity()%>" required="required" min="0">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="availability" id="availablity"
-									class="form-control input-sm" placeholder="Available places"  value="<%=apartment.getAvilablePlaces()%>">
+									class="form-control input-sm" placeholder="Available places"  value="<%=apartment.getAvilablePlaces()%>" required="required" min="0">
 							</div>
 
 							<hr>

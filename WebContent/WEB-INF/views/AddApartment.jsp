@@ -98,7 +98,7 @@ html, body {
 								<div class="col-xs-10 col-sm-10 col-md-10">
 									<div class="form-group">
 										<input type="text" name="name" id="apartment_name"
-											class="form-control input-sm" placeholder="Apartment Name">
+											class="form-control input-sm" placeholder="Apartment Name" required="required">
 									</div>
 								</div>
 
@@ -107,12 +107,12 @@ html, body {
 
 							<div class="form-group">
 								<input type="text" name="address" id="address"
-									class="form-control input-sm" placeholder="Address">
+									class="form-control input-sm" placeholder="Address" required="required">
 							</div>
 
 							<div class="form-group">
-								<div class="radio">
-									<label><input type="radio" name="studentSex" value="Boys">Boys</label>
+								<div class="radio" >
+									<label><input type="radio" name="studentSex" value="Boys" checked="checked">Boys</label>
 									<label><input type="radio" name="studentSex" value="Girls">Girls</label>
 								</div>
 							</div>
@@ -131,32 +131,32 @@ html, body {
 
 							<div class="form-group">
 								<input type="number" name="payment" id="payment"
-									class="form-control input-sm" placeholder="payment">
+									class="form-control input-sm" placeholder="payment" required="required">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="capacity" id="capacity"
 									class="form-control input-sm"
-									placeholder="Capacity(Total No: of places)">
+									placeholder="Capacity(Total No: of places)" required="required">
 							</div>
 
 							<div class="form-group">
 								<input type="number" name="availability" id="availablity"
-									class="form-control input-sm" placeholder="Available places">
+									class="form-control input-sm" placeholder="Available places" required="required">
 							</div>
 
 							<hr>
 							<div>
-								<ul class="list-group" name="universityList" id="universityList">
+								<ul class="list-group" name="universityList" id="universityList" >
 
 								</ul>
 							</div>
 
 							<!-- Single button -->
 							<div class="btn-group form-group">
-								<button name="university" type="button"
+								<button name="university" type="button" 
 									class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
+									aria-haspopup="true" aria-expanded="false" >
 									Select University <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
@@ -310,7 +310,7 @@ html, body {
 							var entry = document.createElement('li');
 							entry.className = "list-group-item";
 
-							entry.innerHTML = "<input type='hidden' name='univesities' value='"+selText+"'/>";
+							entry.innerHTML = "<input type='hidden' name='univesities' value='"+selText+"' required='required' />";
 							entry.appendChild(document.createTextNode(selText));
 							list.appendChild(entry);
 

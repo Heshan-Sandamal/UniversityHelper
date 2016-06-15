@@ -60,12 +60,14 @@
 					style="margin: 5px; height: 190px; border: 4px solid white; padding: 5px;">
 				<a href="AddLandLordImage">Update profile pic</a>
 			</div>
-			<div class="col-md-8" style="color: white;">
-				<h1><%=landLord.getFirstName()%>
-					<%=landLord.getLastName()%></h1>
-				<h5><%=landLord.getAddress()%></h5>
-				<h5>0117445355</h5>
-
+			<div style="padding-top: 30px; color: white;" class="col-md-8">
+				<b>
+					<h1><%=landLord.getFirstName()%>
+						<%=landLord.getLastName()%></h1>
+					<h5><%=landLord.getAddress()%></h5>
+					<h5>0117445355</h5>
+					<h5><%=landLord.getEmail()%></h5>
+				</b>
 
 			</div>
 		</div>
@@ -83,12 +85,19 @@
 				id="bs-example-navbar-collapse-1">
 				<div class="menu">
 					<ul class="nav navbar">
+						<li><a href="LLHome" class="scroll"><h3>
+									<b>Home</b>
+								</h3></a></li>
 						<li><a href="SearchApartment" class="scroll">Search
 								Apartment</a></li>
-						<li><a href="#work" class="scroll">Discussion Thread</a></li>
-
-						<li><a href="#projects" class="scroll">Settings</a></li>
-						<li><a href="ApartmentLogOut" class="scroll">Log out</a></li>
+						<li><a href="AddApartment" class="scroll">Add Apartment</a></li>
+						<li><a href="#MyApartments" id="nav" class="scroll">My
+								Apartments</a></li>
+						<li><a href="UpdateLandLordDetails" class="scroll">Update
+								Details</a></li>
+						<li><a href="LandLordAboutMe" class="scroll">About Me</a></li>
+						<li><a href="" class="scroll" data-toggle="modal"
+							data-target="#myModalLogOut" id="logOutLink">Log out</a></li>
 					</ul>
 					<div class="clearfix"></div>
 				</div>
@@ -98,83 +107,8 @@
 
 	<div class="container-fluid">
 
-		<div class="row">
-
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px"
-								width="30px">
-
-						</div>
-
-
-
-					</div>
-
-				</div>
-
-			</div>
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px"
-								width="30px">
-
-						</div>
-
-
-
-					</div>
-
-				</div>
-
-			</div>
-			<div class="col-md-4">
-				.
-				<div class="card" z-default=30 z-hover=40 height="50px">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="resources/images/commentNotification.png" height="50px">
-						</div>
-						<div class="col-md-7">
-							<h5>Notification about post 1</h5>
-						</div>
-						<div class="col-md-2">
-							<img src="resources/images/accepted.png" height="35px"
-								width="30px">
-
-						</div>
-
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-
 		<hr>
-		<div class="row">
+		<div class="row" id="MyApartments">
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="com.universityHelper.models.Apartment"%>
 			<%
@@ -194,7 +128,8 @@
 
 						</div>
 						<hr style="margin-bottom: 8px;">
-						<img src="resources/images/549008_13121012550017865074_std.png"
+						<img
+							src="resources/uploads/apartment/<%=apt.getApartmentKey()%>/img0.jpg"
 							class="img-responsive"
 							style="margin: auto; margin-top: 0px; width: 100%; height: 150px; padding-left: 7px; padding-right: 7px;"
 							alt="Card image">
@@ -293,19 +228,58 @@
 	<hr>
 
 
-	<div class="row">
-		<div class="col-md-5">
-			<p>THis is home page</p>
-		</div>
+	<div id="about" class="about" style="padding-top: 20px;">
+		<div class="container" style="padding-top: 20px;">
+			<h3 class="title">About Me</h3>
+			<div class="col-md-12 about-left">
+				<p><%=landLord.getAboutMe()%></p>
+			</div>
 
+			<div class="clearfix"></div>
+		</div>
 	</div>
 
+	<div class="modal fade" id="myModalLogOut" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form action="ApartmentLogOut" method="get">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="row">
+							<div class="col-md-3">
+								<img src="resources/images/logout-button-hi.png">
+							</div>
+							<div class="" col-md-9>
+								<h3 class="modal-title">Are you sure to Log out??</h3>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+
+						<button class="btn btn-warning btn-lg" type="submit"
+							id="logOutConfirmButton">Yes</button>
+						<button type="button" class="btn btn-default btn-lg"
+							data-dismiss="modal">No</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 
 	<div class="page-footer"></div>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#nav').localScroll({
+				duration : 800
+			});
+		});
+	</script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="resources/js/jquery-1.9.1.min.js"></script>
+	<script src="resources/js/localScroll.js"></script>
 	<script src="resources/js/holder.js"></script>
 	<script src="resources/js/card-depth.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->

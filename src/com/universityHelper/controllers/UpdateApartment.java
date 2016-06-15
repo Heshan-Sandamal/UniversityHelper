@@ -58,18 +58,21 @@ public class UpdateApartment extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		String apartmentId=request.getParameter("ApartmentId");
-		
-		Apartment apartment=apartmentService.getApartmentDetailsForUpdate(apartmentId);
-		
-		// send AddApartment interface to view layer
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdateApartment.jsp");
+		if (request.getParameter("ApartmentId") != null) {
+			String apartmentId = request.getParameter("ApartmentId");
 
-		request.setAttribute("UniversityList", universityService.getAllUniversities());
-		request.setAttribute("apartment", apartment);
+			Apartment apartment = apartmentService.getApartmentDetailsForUpdate(apartmentId);
 
-		view.forward(request, response);
+			// send AddApartment interface to view layer
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdateApartment.jsp");
+
+			request.setAttribute("UniversityList", universityService.getAllUniversities());
+			request.setAttribute("apartment", apartment);
+
+			view.forward(request, response);
+		}else{
+			response.getWriter().write("Illegal apartment id");
+		}
 
 	}
 
@@ -85,8 +88,8 @@ public class UpdateApartment extends HttpServlet {
 
 		if (apartmentOwnerId != null) {
 			// get details from front end
-			
-			String apartmentKey=request.getParameter("apartmentKey");
+
+			String apartmentKey = request.getParameter("apartmentKey");
 			String name = request.getParameter("name");
 			String address = request.getParameter("address");
 			double lattitude = FloatingDecimal.parseDouble(request.getParameter("lattitude"));
@@ -96,10 +99,9 @@ public class UpdateApartment extends HttpServlet {
 			String university = request.getParameter("university");
 			String studentSex = request.getParameter("studentSex");
 			String[] universityList = request.getParameterValues("univesities");
-			
-			
+
 			System.out.println(studentSex);
-			
+
 			// create Apartment object using submitted details
 			Apartment ap = new Apartment();
 

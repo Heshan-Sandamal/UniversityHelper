@@ -53,13 +53,13 @@ body {
 
 							<div class="form-group">
 								<input type="text" name="studentId" id="id"
-									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("studentId") %>">
+									class="form-control input-sm" placeholder="ID" value="<%= request.getAttribute("studentId") %>" readonly="readonly">
 							</div>
 
 
 							<div class="form-group">
 								<input type="text"  id="name"
-									class="form-control input-sm" placeholder="Apartment Name" value="<%= request.getAttribute("name") %>">
+									class="form-control input-sm" placeholder="Apartment Name" value="<%= request.getAttribute("name") %>" readonly="readonly">
 							</div>
 
 							

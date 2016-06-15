@@ -1,6 +1,7 @@
 package com.universityHelper.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,7 @@ import com.universityHelper.models.LandLord;
 import com.universityHelper.models.LandLordProfile;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.StudentProfile;
+import com.universityHelper.other.Encrypt;
 import com.universityHelper.services.LandLordServiceLocal;
 import com.universityHelper.services.StudentServiceLocal;
 
@@ -45,24 +47,12 @@ public class LandLordSignUp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Student s = new Student();
-		s.setFirstName("hs22");
-		s.setLastName("hhss");
-
-		StudentProfile sp = new StudentProfile();
-		sp.setUserName("heshan5");
-
-		sp.setPassword("ss");
-
-		sp.setStudent(s);
-
-		// studentService.signUpStudent(sp,s);
+	
 
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/LandLordSignUp.jsp");
 		view.forward(request, response);
 
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -75,7 +65,7 @@ public class LandLordSignUp extends HttpServlet {
 
 		LandLordProfile llp = new LandLordProfile();
 		llp.setUserName(request.getParameter("userName"));
-		llp.setPassword(request.getParameter("password"));
+		llp.setPassword(Encrypt.WriteEncrypt(request.getParameter("password")));
 
 		LandLord landLord = new LandLord();
 		landLord.setFirstName(request.getParameter("firstName"));
@@ -95,17 +85,31 @@ public class LandLordSignUp extends HttpServlet {
 		if (!contactNo2.isEmpty()) {
 			contactNoList.add(contactNo2);
 		}
-		
 
 		landLord.setContactNoList(contactNoList);
 
 		llp.setLandLord(landLord);
 		landLord.setLandLordProfile(llp);
 
-		landLordService.addLandLord(landLord, llp);
+		boolean added = landLordService.addLandLord(landLord, llp);
+		if (!added) {
+			response.getWriter().write("User Name Already exists");
+		}else{
+			PrintWriter out = response.getWriter();
 
-		response.getWriter().write("sighUp");
-		// doGet(request, response);
+		    out.println("<html>");
+		    out.println("<head>");
+		    out.println("<title>Registered</title>");
+		    out.println("</head>");
+		    out.println("<body bgcolor=\"white\">");
+		    out.println("<h2>You successfully registered.Please logIn<h2/>");
+		    out.println("<a href='LLLogIn'><h4>Log In</h4></a>");
+		    out.println("</body>");
+		    out.println("</html>");
+		    
+				
+		}
+
 	}
 
 }

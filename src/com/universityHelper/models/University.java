@@ -26,7 +26,7 @@ public class University implements Serializable {
 	@Type(type = "objectid")
 	private String universityId;
 
-	@Column(nullable = false,unique=true)
+	@Column(nullable = false, unique = true)
 	private String name;
 
 	@Column(nullable = false)
@@ -38,10 +38,10 @@ public class University implements Serializable {
 	@Column(nullable = false)
 	private String address;
 
-	@ManyToMany(mappedBy="university",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "university", fetch = FetchType.EAGER)
 	private Set<Apartment> apartmentList = new HashSet<>();
-	
-	@OneToMany(mappedBy="university")
+
+	@OneToMany(mappedBy = "university")
 	private Set<Course> courseList;
 
 	public String getUniversityId() {
@@ -94,27 +94,30 @@ public class University implements Serializable {
 
 	@Override
 	public boolean equals(Object university) {
-		if (this.name.equals(((University) university).name)) {
+		String name=this.name.toLowerCase();
+		String searchName=((University) university).name.toLowerCase();
+		
+		if(name.contains(searchName)  || searchName.contains(name)){
 			return true;
-		} else {
-			return false;
-		}
+		}else{return false;}
+		
 	}
 
 	@Override
 	public int hashCode() {
-		return this.name.hashCode();
+		return 1;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.name;
 	}
-	
-	
+
 	public void setCourseList(Set<Course> courseList) {
 		this.courseList = courseList;
-	}public Set<Course> getCourseList() {
+	}
+
+	public Set<Course> getCourseList() {
 		return courseList;
 	}
 }

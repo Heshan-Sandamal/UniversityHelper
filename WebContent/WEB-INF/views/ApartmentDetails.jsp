@@ -212,11 +212,6 @@ html, body {
 
 					</tr>
 
-					<tr>
-						<td>Distance from university</td>
-						<td>1km</td>
-
-					</tr>
 
 					<tr>
 						<td>Contact No:</td>
@@ -230,9 +225,9 @@ html, body {
 						<td><form action="LLProfile" method="post">
 								<input type="hidden" name="apartmentOwnerId"
 									value="<%=apartment.getLandLordId().getLandLordId()%>">
-								<a href="" onclick="parentNode.submit();return false;"><h6
+								<a href="" onclick="parentNode.submit();return false;"><h4
 										style="font-family: Roboto;"><%=apartment.getLandLordId().getFirstName()%>
-										<%=apartment.getLandLordId().getLastName()%></h6></a>
+										<%=apartment.getLandLordId().getLastName()%></h4></a>
 							</form></td>
 
 					</tr>
@@ -264,7 +259,7 @@ html, body {
 					<tr>
 						<td style="padding-right: 18px;"><input id="input-21e"
 							value="5" type="number" class="rating" min="0" max="5" step="0.5"
-							data-size="xs"></td>
+							data-size="xs" readonly="readonly"></td>
 						<td><button type="button" class="btn btn-info btn-xs"
 								data-toggle="modal" data-target="#ratingModel">Rate
 								this apartment</button></td>

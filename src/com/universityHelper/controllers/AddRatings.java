@@ -20,43 +20,53 @@ import sun.misc.FloatingDecimal;
 @WebServlet("/AddRatings")
 public class AddRatings extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	@EJB
-	private ApartmentServiceLocal apartmentService;
-	
-    public AddRatings() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	@EJB
+	private ApartmentServiceLocal apartmentService;
+
+	public AddRatings() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		String studentId=request.getSession().getAttribute("StudentId").toString();
-		String apartmentId=request.getParameter("apartmentKey");
-		Double rating=FloatingDecimal.parseDouble(request.getParameter("rating"));
-		
-		boolean ratedSuccess=apartmentService.addRatings(studentId,apartmentId,rating);
-		response.getWriter().write("You rated the apartment "+ratedSuccess);
-//		
-//		RequestDispatcher view=request.getRequestDispatcher("ViewApartmentDetails");
-//		request.setAttribute("rateStatus", ratedSuccess);
-//		view.forward(request, response);
-		
+		if (request.getSession().getAttribute("StudentId") != null) {
+			String studentId = request.getSession().getAttribute("StudentId").toString();
+			String apartmentId = request.getParameter("apartmentKey");
+			Double rating = FloatingDecimal.parseDouble(request.getParameter("rating"));
+
+			boolean ratedSuccess = apartmentService.addRatings(studentId, apartmentId, rating);
+			response.getWriter().write("You rated the apartment successfully" );
+		}else{
+			response.getWriter().write("Only logged students allow to rate the apartment" );
+		}
+
+		//
+		// RequestDispatcher
+		// view=request.getRequestDispatcher("ViewApartmentDetails");
+		// request.setAttribute("rateStatus", ratedSuccess);
+		// view.forward(request, response);
+
 	}
 
 }

@@ -29,6 +29,9 @@
       <url-pattern>/DiscussionThread</url-pattern>
       <url-pattern>/SubscribeToApartment</url-pattern>
       <url-pattern>/AddApartmentComments</url-pattern>
+      <url-pattern>/StudentAboutMe</url-pattern>
+      <url-pattern>/SearchApartment</url-pattern>
+      <url-pattern>/AddRatings</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>
       <http-method>POST</http-method>
@@ -56,6 +59,8 @@
       <url-pattern>/AddApartmentImages</url-pattern>
       <url-pattern>/UpdateLandLordDetails</url-pattern>
       <url-pattern>/UpdateApartment</url-pattern>
+      <url-pattern>/LandLordAboutMe</url-pattern>
+      <url-pattern>/SearchApartment</url-pattern>
       <url-pattern>/LLHome</url-pattern>
       <http-method>GET</http-method>
       <http-method>PUT</http-method>

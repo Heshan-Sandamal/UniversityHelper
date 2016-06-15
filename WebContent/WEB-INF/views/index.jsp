@@ -11,6 +11,12 @@
     
     <script src="resources/js/jquery-1.9.1.min.js"></script>
   <script src="resources/js/bootstrap.min.js"></script>
+  <link
+	href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
    
     <script src="resources/js/jquery.flexisel.js"></script>
     <script src="resources/js/jquery.lettering-0.6.1.min.js"></script>
@@ -32,7 +38,7 @@
                     <ul style="list-style: none;padding:0;margin:0;"><h2><li style="background: url('resources/images/landlord.png') no-repeat left top; padding:  10px 100px;height:  65px;">Apartment owner</li></h2></ul>
                     <p>who owns students' apartments</p>
                     <p style="font-size:.9em;"><b>This is a great platform for all of the the apartment owners who are looking for university students for their apartments. This provides an easier and attractive way to display your apartment details and provide access from all over the world. </b> </p>
-                    <a href="LLLogIn"><button type="button" class="btn btn-primary btn-lg">Log In as apartment owner</button></a>
+                    <a href="LLLogIn"><button type="button" class="btn btn-primary btn-lg" id="LLLogInButton">Log In as apartment owner</button></a>
                     <p style="font-size:100%">
                         <a href="LandLordSignUp">Not yet registered as apartment owner.Then sign up</a>
                     </p>
@@ -42,7 +48,7 @@
                     <ul style="list-style: none;padding:0;margin:0;"><h2><li style="background: url('resources/images/Studentsicon.png') no-repeat left top; padding:  10px 65px;height:  65px;">Student</li></h2></ul>
                     <p>University student of Sri Lanka</p>
                     <p style="font-size:.9em;"><b>This application provides two main services which are buidling a network among university students and finding an apartment nearby their university. There are so many features built in this application for the convinience of student.</b> </p>
-                    <a href="StudentLogIn"><button type="button" class="btn btn-success btn-lg">Log In as Student</button></a>
+                    <a href="StudentLogIn"><button type="button" id="studentLogInButton" class="btn btn-success btn-lg">Log In as Student</button></a>
                     <p style="font-size:100%">
                         <a href="StudentSignUp">Not yet registered as a student.Then sign up</a>
                     </p>

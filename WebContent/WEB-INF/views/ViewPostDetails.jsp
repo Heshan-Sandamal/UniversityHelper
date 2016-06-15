@@ -14,29 +14,74 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="resources/css/bootstrap.css" type="text/css"
+	rel="stylesheet" media="all">
+<link href="resources/css/styleStudentProfile.css" type="text/css"
+	rel="stylesheet" media="all">
 <!-- Custom CSS -->
 <link href="resources/css/blog-post.css" rel="stylesheet">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link rel="stylesheet" href="resources/css/swipebox.css">
+<!--//Custom Theme files-->
+<!--js-->
+<script src="resources/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<!--web-fonts-->
+<link
+	href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+<!--start-smooth-scrolling-->
+<script type="text/javascript" src="resources/js/move-top.js"></script>
+<script type="text/javascript" src="resources/js/easing.js"></script>
 
-</head>
 
-<body style="background: url(resources/images/discussion.jpg) no-repeat center 0px;">
-
+<body style="padding-top: 0px;">
 	<!-- Page Content -->
+	<div class="top-nav wow">
+		<div class="container">
+			<div class="navbar-header logo">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					Menu</button>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<div class="menu">
+					<ul class="nav navbar">
+						<li><a href="StudentHome" class="scroll">Home</a></li>
+						<li><a href="SearchApartment" class="scroll">Search
+								Apartment</a></li>
+						<li><a href="MyApartments" class="scroll">My Apartments</a></li>
+						<li><a href="DiscussionThread" class="scroll">
+									Discussion Thread</a></li>
+						<li><a href=AddPost class="scroll">Add New post</a></li>
+						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
+						<li><a href="UpdateStudentDetails" class="scroll">Update
+								Details</a></li>
+						<li><a href="ViewStudents" class="scroll">Student Details</a></li>
+						<li><a href="" class="scroll" data-toggle="modal"
+							data-target="#myModalLogOut">Log out</a></li>
+
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="container">
 
 		<div class="row">
 
 			<!-- Blog Post Content Column -->
+			<div class="col-lg-1"></div>
 			<div class="col-lg-10" style="background-color: white;">
-				<div class="card" z-default=250 z-hover=280 height="200px">
+				<div class="card" z-default=80 z-hover=120 height="200px">
 					<!-- Blog Post -->
 
 
@@ -138,7 +183,8 @@
 								%>
 								<input type="hidden" name="commentId" value="<%=acm.getId()%>">
 								<input type="hidden" name="postId" value="<%=post.getId()%>">
-								<a href="" onclick="parentNode.submit();return false;"><p style="font-size: 11px;">delete</p></a>
+								<a href="" onclick="parentNode.submit();return false;"><p
+										style="font-size: 11px;">delete</p></a>
 
 								<%
 									}
@@ -161,25 +207,15 @@
 			</div>
 			<hr>
 
-			<!-- Footer -->
-			<footer>
-				<div class="row">
-					<div class="col-lg-12">
-						<p>Copyright &copy; Your Website 2014</p>
-					</div>
-				</div>
-				<!-- /.row -->
-			</footer>
-
 		</div>
 		<!-- /.container -->
+	</div>
+	<!-- jQuery -->
+	<script src="resources/js/jquery-1.9.1.min.js"></script>
 
-		<!-- jQuery -->
-		<script src="resources/js/jquery-1.9.1.min.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="resources/js/bootstrap.min.js"></script>
-		<script src="resources/js/card-depth.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/card-depth.js"></script>
 </body>
 
 </html>

@@ -55,6 +55,9 @@ public class UpdateLandLordDetails extends HttpServlet {
 		LandLord landLord = landLordService
 				.getLandLord(request.getSession().getAttribute("ApartmentOwnerId").toString());
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdateLandLordDetails.jsp");
+		
+		landLord.getLandLordProfile().setPassword(Encrypt.readEncrypt(landLord.getLandLordProfile().getPassword()));
+		
 		request.setAttribute("landLord", landLord);
 		view.forward(request, response);
 
@@ -70,7 +73,7 @@ public class UpdateLandLordDetails extends HttpServlet {
 			throws ServletException, IOException {
 		LandLordProfile llp = new LandLordProfile();
 		llp.setUserName(request.getParameter("userName"));
-		llp.setPassword(request.getParameter("password"));
+		llp.setPassword(Encrypt.WriteEncrypt(request.getParameter("password")));
 
 		LandLord landLord = new LandLord();
 		landLord.setLandLordId(request.getSession().getAttribute("ApartmentOwnerId").toString());
@@ -97,8 +100,14 @@ public class UpdateLandLordDetails extends HttpServlet {
 		llp.setLandLord(landLord);
 		landLord.setLandLordProfile(llp);
 
-		landLordService.updateLandLord(landLord, llp);
+		boolean updated = landLordService.updateLandLord(landLord, llp);
 
-		//response.getWriter().write("sighUp");
+		if (updated) {
+			response.sendRedirect("LLHome");
+		} else {
+			response.getWriter().write("Unable to updated details.");
+		}
+
+		// response.getWriter().write("sighUp");
 	}
 }

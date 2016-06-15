@@ -99,52 +99,9 @@
 	</div>
 
 
-	<div id="about" class="about" style="padding-top: 20px;">
-		<div class="container" style="padding-top: 20px;">
-			<h3 class="title">About Me</h3>
-			<div class="col-md-8 about-left">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Suspendisse laoreet sem sit amet dolor luctus pellentesque.
-					Pellentesque eleifend tellus at interdum elementum. Nam egestas
-					molestie elit. Vivamus sed accumsan quam, a mollis magna. Nam
-					aliquet eros eget sapien consequat tincidunt at vel nibh. Duis ut
-					turpis mi. Duis nec scelerisque urna, sit amet varius arcu. Aliquam
-					aliquet sapien quis mauris semper suscipit. Maecenas pharetra
-					dapibus posuere. Praesent odio sem, varius quis dolor vel, maximus
-					dapibus mi. Pellentesque mattis mauris neque. Nam aliquam turpis
-					ante, at cursus massa ullamcorper ut. Proin id diam id nisi
-					sagittis pellentesque sed sit amet eros. In porttitor tempus nulla,
-					a porta purus commodo sed. Praesent hendrerit nisi nunc, ut
-					porttitor justo pellentesque et ac gravida sem mattis. Donec ornare
-					justo nec</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Suspendisse laoreet sem sit amet dolor luctus pellentesque Nam
-					egestas molestie elit. Vivamus sed accumsan quam, a mollis magna.
-					Nam aliquet eros eget sapien consequat</p>
-			</div>
-			<div class="col-md-4 about-right">
-				<ul>
-					<h5>Awards</h5>
-					<li><span class="glyphicon glyphicon-menu-right"></span> Lorem
-						ipsum dolor sit amet cingelit</li>
-					<li><span class="glyphicon glyphicon-menu-right"></span>
-						Curabitur id metus rutrum convallis</li>
-					<li><span class="glyphicon glyphicon-menu-right"></span> Morbi
-						dictum velit vitae porttitor</li>
-					<li><span class="glyphicon glyphicon-menu-right"></span> Fusce
-						at metus id justo ullamcorper</li>
-					<li><span class="glyphicon glyphicon-menu-right"></span>
-						Aliquam ac nisl id justo malesuada</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
 
 	<div class="container-fluid">
 		<h3 class="title">My Other Apartments</h3>
-		<hr>
 		<div class="row">
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="com.universityHelper.models.Apartment"%>
@@ -164,7 +121,7 @@
 
 						</div>
 						<hr style="margin-bottom: 8px;">
-						<img src="resources/images/549008_13121012550017865074_std.png"
+						<img src="resources/uploads/apartment/<%=apt.getApartmentKey()%>/img0.jpg"
 							class="img-responsive"
 							style="margin: auto; margin-top: 0px; width: 100%; height: 150px; padding-left: 7px; padding-right: 7px;"
 							alt="Card image">
@@ -174,10 +131,9 @@
 							<span>
 								<form action="ViewApartmentDetails" method="post">
 									<button type="submit" class="btn btn-info btn-md">
-										View Details 
-									</button>
+										View Details</button>
 									<input type="hidden" name="apartmentKey"
-											value="<%=apt.getApartmentKey()%>">
+										value="<%=apt.getApartmentKey()%>">
 							</span> <span style="float: left; margin-right: 10px;">
 								</form>
 							</span>
@@ -189,18 +145,20 @@
 				}
 			%>
 		</div>
-		<hr>
 
 	</div>
-	<hr>
-
-
-	<div class="row">
-		<div class="col-md-5">
-			<p>THis is home page</p>
+	<div id="about" class="about" style="padding-top: 20px;">
+		<div class="container" style="padding-top: 20px;">
+			<h3 class="title">About Me</h3>
+			<div class="col-md-12 about-left">
+				<p><%=landLord.getAboutMe()%></p>
+			</div>
+			
+			<div class="clearfix"></div>
 		</div>
-
 	</div>
+
+	
 
 	<div class="page-footer"></div>
 

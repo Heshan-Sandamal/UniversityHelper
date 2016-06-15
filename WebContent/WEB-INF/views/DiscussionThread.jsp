@@ -29,7 +29,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -144,14 +146,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<b>Search Discussion Thread</b>
 				</h4>
 			</div>
-			<div class="input-group col-md-8">
-				<input type="text" class="  search-query form-control"
-					placeholder="Search" /> <span class="input-group-btn">
-					<button class="btn btn-danger" type="button">
-						<span class=" glyphicon glyphicon-search"></span>
-					</button>
-				</span>
-			</div>
+			<form action="DiscussionThread" method="post">
+				<div class="input-group col-md-8">
+					<input name="searchVal" type="text" class="  search-query form-control"
+						placeholder="Search" /> <span class="input-group-btn">
+						<button class="btn btn-danger" type="submit">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</form>
 		</div>
 		<hr>
 		<%

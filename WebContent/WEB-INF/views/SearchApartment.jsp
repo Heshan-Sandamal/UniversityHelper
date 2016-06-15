@@ -207,7 +207,7 @@ html, body {
 																							});
 
 																					var contentVal = '<div id="content">'
-																							+ '<img src="resources/images/s1.png" style="width:100px;height:100px;"/>'
+																							+ '<img src="resources/uploads/apartment/'+item["apartmentKey"]+'/img0.jpg" style="width:100px;height:100px;"/>'
 																							+ '<h5 style="padding:0px;margin-top:4px;margin-bottom:1px;">'
 																							+ item["name"]
 																							+ '</h5>'
@@ -332,6 +332,7 @@ html, body {
 					$(this).parents('.btn-group').find('.dropdown-toggle')
 							.html(selText + ' <span class="caret"></span>');
 					$("#pac-input").val(selText);
+					document.getElementById("pac-input").focus();
 					
 				});
 	</script>

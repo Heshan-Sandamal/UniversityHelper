@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.universityHelper.models.Student;
+import com.universityHelper.services.NotificationServiceLocal;
 import com.universityHelper.services.StudentServiceLocal;
 
 /**
@@ -26,6 +27,9 @@ public class StudentHome extends HttpServlet {
 	
 	@EJB
 	StudentServiceLocal studentService;
+	
+	@EJB
+	NotificationServiceLocal notificationService;
 	
     public StudentHome() {
         super();
@@ -56,8 +60,11 @@ public class StudentHome extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String notificationId=request.getParameter("notificationId");
+		boolean deleted=notificationService.deleteNotification(notificationId);
 		doGet(request, response);
+		
 	}
 
 }

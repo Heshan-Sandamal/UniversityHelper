@@ -50,23 +50,27 @@ public class AddApartmentComments extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String apartmentId = request.getParameter("apartmentKey");
-		String studentId = request.getSession().getAttribute("StudentId").toString();
-		String description = request.getParameter("comment");
+		if (request.getSession().getAttribute("StudentId") != null) {
+			String apartmentId = request.getParameter("apartmentKey");
+			String studentId = request.getSession().getAttribute("StudentId").toString();
+			String description = request.getParameter("comment");
 
-		ApartmentComment acm = new ApartmentComment();
-		acm.setDescription(description);
-		// acm.setApartment(apartmentId);
-		acm.setDateAndTime(new Date());
+			ApartmentComment acm = new ApartmentComment();
+			acm.setDescription(description);
+			// acm.setApartment(apartmentId);
+			acm.setDateAndTime(new Date());
 
-		boolean added = apartmentService.addComment(acm, apartmentId, studentId);
-		System.out.println("apartment comment added " + added);
+			boolean added = apartmentService.addComment(acm, apartmentId, studentId);
+			System.out.println("apartment comment added " + added);
 
-		ArrayList<ApartmentComment> commentsList = apartmentService.getApartmentComments(apartmentId);
+			ArrayList<ApartmentComment> commentsList = apartmentService.getApartmentComments(apartmentId);
 
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentComments.jsp");
-		request.setAttribute("commentsList", commentsList);
-		view.forward(request, response);
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/ApartmentComments.jsp");
+			request.setAttribute("commentsList", commentsList);
+			view.forward(request, response);
+		}else{
+			response.getWriter().write("Only logged students allow to comment to the apartment" );
+		}
 	}
 
 }

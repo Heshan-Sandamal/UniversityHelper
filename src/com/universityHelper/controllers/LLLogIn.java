@@ -44,17 +44,7 @@ public class LLLogIn extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// LandLord l=new LandLord();
-		// l.setName("heshan");
-		// l.addContactNo("12121sd");
-		// l.addContactNo("12121s1d");
-		// l.addContactNo("12121sd2");
-		// l.addContactNo("12121s21d");
-		// l.addContactNo("12121svvd");
-		//
-		// String name=landLordService.addLandLord(l);
-		//
-		// response.getWriter().print(name);
+		
 
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp");
 		view.forward(request, response);
@@ -79,6 +69,7 @@ public class LLLogIn extends HttpServlet {
 			request.setAttribute("error", "Wrond password");
 			request.getRequestDispatcher("WEB-INF/views/LLLogIn.jsp").forward(request, response);
 		}else{
+			request.logout();
 			request.login("ApartmentOwner", "12345");
 			response.sendRedirect("LLHome");
 			request.getSession().setAttribute("ApartmentOwnerId",logIn);	

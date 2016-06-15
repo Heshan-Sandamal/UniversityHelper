@@ -84,15 +84,19 @@
 						<div class="card radius shadowDepth1">
 							<div class="card__image border-tlr-radius">
 								<img
-									src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/profile/img1.jpg"
+									src="resources/uploads/apartment/<%=apartment.getApartmentKey()%>/img0.jpg"
 									height="230px" alt="image" class="border-tlr-radius">
 							</div>
 
 							<div class="card__content card__padding">
 								<div class="card__share">
 									<div class="card__social"></div>
+									<form action="MyApartments" method="post">
+										<input type="hidden" name="apartmentKey"
+											value="<%=apartment.getApartmentKey()%>"> <a
+											id="share" class="share-toggle share-icon share-expanded" href="" onclick="parentNode.submit();return false;" title="Unsubscribe apartment"></a>
+									</form>
 
-									<a id="share" class="share-toggle share-icon" href="#"></a>
 								</div>
 
 								<div class="card__meta">

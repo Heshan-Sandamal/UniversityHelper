@@ -42,20 +42,19 @@ public class GetApartments extends HttpServlet {
 
 		// get apartments list from apartment service bean
 
-		String universityName = request.getParameter("university");
+		if (request.getParameter("university") != null) {
+			String universityName = request.getParameter("university");
 
-		
-		
-		JsonObject jsonObject = apartmentService.getApartmentList(universityName);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		System.out.println("Json i"+jsonObject);
-		// send Json object to front end view
-		PrintWriter pr=response.getWriter();
-		pr.print(jsonObject);
-		pr.flush();
+			JsonObject jsonObject = apartmentService.getApartmentList(universityName);
 
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			System.out.println("Json i" + jsonObject);
+			// send Json object to front end view
+			PrintWriter pr = response.getWriter();
+			pr.print(jsonObject);
+			pr.flush();
+		}
 	}
 
 	/**

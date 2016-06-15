@@ -54,8 +54,12 @@ public class ViewMyPosts extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String searchVal=request.getParameter("searchVal");
+		String studentId = request.getSession().getAttribute("StudentId").toString();
+		ArrayList<Post> postList=postService.searchPostsOfStudent(studentId,searchVal);
+		request.setAttribute("postList", postList);
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/MyPosts.jsp");
+		view.forward(request, response);
 	}
 
 }

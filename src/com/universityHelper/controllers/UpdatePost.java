@@ -22,52 +22,59 @@ import com.universityHelper.services.PostServiceLocal;
 @WebServlet("/UpdatePost")
 public class UpdatePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	@EJB
-	PostServiceLocal postService;
-	
-    public UpdatePost() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		String postId=request.getParameter("postId");
-		Post post=postService.viewPostDetails(postId);
-		request.setAttribute("post", post);
-		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdatePost.jsp");
 
-		view.forward(request, response);
-		
-		
-		//response.getWriter().append("Served at: added"+added+" ").append(request.getContextPath());
+	@EJB
+	PostServiceLocal postService;
+
+	public UpdatePost() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		Post post=new Post();
-		String studentId=request.getSession().getAttribute("StudentId").toString();
+
+		if (request.getParameter("postId") != null) {
+			String postId = request.getParameter("postId");
+			Post post = postService.viewPostDetails(postId);
+			request.setAttribute("post", post);
+
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/UpdatePost.jsp");
+
+			view.forward(request, response);
+		}else{
+			response.getWriter().write("Illegal post Id");
+		}
+
+		// response.getWriter().append("Served at: added"+added+"
+		// ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		Post post = new Post();
+		String studentId = request.getSession().getAttribute("StudentId").toString();
 		post.setId(request.getParameter("postId").toString());
 		post.setTopic(request.getParameter("topic").toString());
 		post.setContent(request.getParameter("content").toString());
 		post.setDateTime(new Date());
-		
-		boolean added=postService.updatePost(studentId,post);
+
+		boolean added = postService.updatePost(studentId, post);
 		response.sendRedirect("ViewMyPosts");
 	}
 

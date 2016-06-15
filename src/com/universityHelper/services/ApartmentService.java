@@ -28,6 +28,7 @@ import com.universityHelper.models.LandLord;
 import com.universityHelper.models.LandLordProfile;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.University;
+import com.universityHelper.other.Encrypt;
 
 import javafx.beans.binding.When.ObjectConditionBuilder;
 
@@ -57,10 +58,6 @@ public class ApartmentService implements ApartmentServiceLocal {
 			// find landlord from db and create landLord object
 			LandLord landLord = em.find(LandLord.class, landLordId);
 
-			// University university1 = em.find(University.class,
-			// "57510eea63256f310290a394");
-			// University university2 = em.find(University.class,
-			// "57556b336325f16548ffeeae");3
 
 			String query = "SELECT c FROM University c where ";
 			for (int x = 0; x < universityList.length; x++) {
@@ -173,22 +170,22 @@ public class ApartmentService implements ApartmentServiceLocal {
 	public Apartment getApartmentDetails(String apartmentKey) {
 
 		Apartment apartment = em.find(Apartment.class, apartmentKey);
-		
-		Map<String,Double> ratingList=apartment.getRatings();
-		
-		Collection<Double> values=ratingList.values();
-		
-		double tot=0;
+
+		Map<String, Double> ratingList = apartment.getRatings();
+
+		Collection<Double> values = ratingList.values();
+
+		double tot = 0;
 		for (Double val : values) {
-			tot+=val;
+			tot += val;
 		}
-		
-		double rate=(tot/values.size());
-		rate =Math.round(rate * 100.0) / 100.0;
-		System.out.println("Rate is "+rate);
-		
+
+		double rate = (tot / values.size());
+		rate = Math.round(rate * 100.0) / 100.0;
+		System.out.println("Rate is " + rate);
+
 		apartment.setRate(rate);
-		
+
 		return apartment;
 
 	}
@@ -270,16 +267,12 @@ public class ApartmentService implements ApartmentServiceLocal {
 			}
 		};
 
-		double ratedValue=1;
-		
+		double ratedValue = 1;
+
 		if (apartment.getStudentSubscribers().contains(student)) {
 			Map<String, Double> studentRatings = apartment.getRatings();
-			
+
 			studentRatings.put(studentId, rating);
-			
-			
-			
-			
 
 			em.merge(apartment);
 			return true;
@@ -290,20 +283,25 @@ public class ApartmentService implements ApartmentServiceLocal {
 	}
 
 	@Override
-	public boolean deleteApartment(String apartmentId,String userName,String password) {
-		
-		LandLordProfile exitstingLLOb = em.find(LandLordProfile.class, userName);
-		
-		if(exitstingLLOb.getPassword().equals(password)){
-			Apartment apartment=em.find(Apartment.class, apartmentId);
-			apartment.getRatings().clear();
-			em.remove(apartment);
-			return true;
-		}else{
-			return false;	//wrong password
+	public boolean deleteApartment(String apartmentId, String userName, String password) {
+		try {
+			LandLordProfile exitstingLLOb = em.find(LandLordProfile.class, userName);
+			if (exitstingLLOb == null) {
+				return false;
+			}
+
+			if (Encrypt.readEncrypt(exitstingLLOb.getPassword()).equals(password)) {
+				Apartment apartment = em.find(Apartment.class, apartmentId);
+				apartment.getRatings().clear();
+				em.remove(apartment);
+				return true;
+			} else {
+				return false; // wrong password
+			}
+		} catch (Exception e) {
+			return false;
 		}
-		
-		
+
 	}
 
 	@Override
@@ -315,7 +313,7 @@ public class ApartmentService implements ApartmentServiceLocal {
 	@Override
 	public boolean updateApartment(Apartment ap, String[] universityList) {
 		Apartment apartment = em.find(Apartment.class, ap.getApartmentKey());
-		
+
 		apartment.setName(ap.getName());
 		apartment.setAddress(ap.getAddress());
 		apartment.setAvilablePlaces(ap.getAvilablePlaces());
@@ -324,7 +322,7 @@ public class ApartmentService implements ApartmentServiceLocal {
 		apartment.setLongitude(ap.getLongitude());
 		apartment.setPayment(ap.getPayment());
 		apartment.setStudentSex(ap.getStudentSex());
-		
+
 		String query = "SELECT c FROM University c where ";
 		for (int x = 0; x < universityList.length; x++) {
 			query += "c.name='" + universityList[x] + "'";
@@ -339,18 +337,25 @@ public class ApartmentService implements ApartmentServiceLocal {
 		TypedQuery<University> queryRes = em.createQuery(query, University.class);
 		// query.setParameter(1, );
 		List<University> list = queryRes.getResultList();
-		
+
 		apartment.getUniversity().clear();
 		apartment.setUniversity(new HashSet<>(list));
 		em.merge(apartment);
-		
+
 		return true;
 	}
 
 	@Override
 	public ArrayList<Student> getApartmentSubscribers(String apartmentId) {
-		Apartment aprtment=em.find(Apartment.class, apartmentId);
+		Apartment aprtment = em.find(Apartment.class, apartmentId);
 		return new ArrayList<>(aprtment.getStudentSubscribers());
+	}
+
+	@Override
+	public boolean deleteComment(String commentId) {
+		ApartmentComment acm = em.find(ApartmentComment.class, commentId);
+		em.remove(acm);
+		return true;
 	}
 
 }

@@ -38,10 +38,16 @@ public class Student implements Serializable {
 	private Date dob;
 	private String homeTown;
 	
+	private String aboutMe;public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}public String getAboutMe() {
+		return aboutMe;
+	}
+
 	private String fburl;
-	
+
 	private int examYear;
-	
+
 	private String email;
 
 	public int getExamYear() {
@@ -77,15 +83,26 @@ public class Student implements Serializable {
 	@ManyToOne
 	private Course course;
 
-	@OneToMany(mappedBy="student",orphanRemoval=true)
+	@OneToMany(mappedBy = "student", orphanRemoval = true)
 	private Set<Post> postList;
 
-	@OneToMany(mappedBy="student",orphanRemoval=true)
+	@OneToMany(mappedBy = "student", orphanRemoval = true)
 	private Set<ApartmentComment> apartmentComment;
 
-	@ManyToMany(mappedBy="studentSubscribers")
+	@ManyToMany(mappedBy = "studentSubscribers")
 	private Set<Apartment> subscribedApartments;
-	
+
+	@OneToMany(mappedBy = "student",fetch=FetchType.EAGER)
+	private Set<CommentNotification> commentNotification;
+
+	public void setCommentNotification(Set<CommentNotification> commentNotification) {
+		this.commentNotification = commentNotification;
+	}
+
+	public Set<CommentNotification> getCommentNotification() {
+		return commentNotification;
+	}
+
 	public Set<Comment> getPostComments() {
 		return postComments;
 	}
@@ -94,9 +111,9 @@ public class Student implements Serializable {
 		this.postComments = postComments;
 	}
 
-	@OneToMany(mappedBy="student",orphanRemoval=true)
+	@OneToMany(mappedBy = "student", orphanRemoval = true)
 	private Set<Comment> postComments;
-	
+
 	public Set<Apartment> getSubscribedApartments() {
 		return subscribedApartments;
 	}
@@ -199,13 +216,16 @@ public class Student implements Serializable {
 		}
 
 	}
+
+	@Override
+	public String toString() {
+		return this.studentId;
+	}
 	
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return studentId.hashCode();
 	}
-	
-	
 
 }

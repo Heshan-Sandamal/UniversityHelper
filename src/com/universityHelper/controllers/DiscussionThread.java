@@ -48,8 +48,12 @@ public class DiscussionThread extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String searchVal=request.getParameter("searchVal");
+		ArrayList<Post> postList=postService.searchPosts(searchVal);
+		request.setAttribute("postList", postList);
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/DiscussionThread.jsp");
+		view.forward(request, response);
 	}
 
 }
