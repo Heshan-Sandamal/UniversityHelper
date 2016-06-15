@@ -1,5 +1,6 @@
 <html>
 <head>
+<title>Apartment Owner Sign up</title>
 <link rel="stylesheet" href="resources/css/signUp.css">        
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">   
 <link rel="stylesheet" href="resources/css/bootstrap.css">   

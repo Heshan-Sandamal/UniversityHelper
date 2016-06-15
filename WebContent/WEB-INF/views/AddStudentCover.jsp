@@ -32,7 +32,7 @@ body {
 
 	});
 </script>
-
+<title>Add Student Cover</title>
 </head>
 
 <body

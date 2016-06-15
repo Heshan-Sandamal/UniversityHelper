@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="resources/css/bootstrap.css">   
 <script src="resources/js/jquery-1.9.1.min.js"></script>
 <script src="resources/js/logInScript.js"></script>
+<title>Student LogIn</title>
 </head>
 
 <body style="background:url('resources/images/o-UNIVERSITY-STUDENT-facebook.jpg') no-repeat center center fixed;">

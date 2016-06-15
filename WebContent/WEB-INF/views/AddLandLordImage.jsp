@@ -32,7 +32,7 @@ body {
 
 	});
 </script>
-
+<title>Add Apartment Owner profile pic</title>
 </head>
 
 <body

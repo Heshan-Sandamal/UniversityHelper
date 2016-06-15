@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">   
 <link rel="stylesheet" href="resources/css/bootstrap.css">   
 <script src="resources/js/jquery-1.9.1.min.js"></script>
-
+<title>Apartment Owner LogIn</title>
 </head>
 
 <body style="background: url('resources/images//homeOwner.jpg') no-repeat center center fixed; background-size:100%;-webkit-background-size:100%;">

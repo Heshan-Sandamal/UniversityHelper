@@ -12,12 +12,17 @@
 	rel="stylesheet" media="all">
 <link href="resources/css/styleStudentProfile.css" type="text/css"
 	rel="stylesheet" media="all">
-
-
 <link rel="stylesheet" href="resources/css/materialDesignBlogCard.css">
 
+<link
+	href='//fonts.googleapis.com/css?family=Overlock:400,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>View other Students details</title>
 </head>
 <body>
 	<div class="top-nav wow">
@@ -40,11 +45,13 @@
 								Thread</a></li>
 						<li><a href=AddPost class="scroll">Add New post</a></li>
 						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
-						<li><a href="#skills" class="scroll">My Details</a></li>
+						<li><a href="UpdateStudentDetails" class="scroll">Update
+								Details</a></li>
 						<li><a href="ViewStudents" class="scroll"><h3>
 									<b>Student Details</b>
 								</h3></a></li>
-						<li><a href="ApartmentLogOut" class="scroll">Log out</a></li>
+						<li><a href="" class="scroll" data-toggle="modal"
+							data-target="#myModalLogOut">Log out</a></li>
 					</ul>
 					<div class="clearfix"></div>
 				</div>
@@ -87,11 +94,11 @@
 						<div class="card__content card__padding">
 							<div class="card__share">
 								<div class="card__social">
-									<a class="share-icon facebook" href="<%=student.getFburl()%>" target="_blank"><span
-										class="fa fa-facebook"></span></a> <a class="share-icon twitter"
-										href="#"><span class="fa fa-twitter"></span></a> <a
-										class="share-icon googleplus" href="#"><span
-										class="fa fa-google-plus"></span></a>
+									<a class="share-icon facebook" href="<%=student.getFburl()%>"
+										target="_blank"><span class="fa fa-facebook"></span></a> <a
+										class="share-icon twitter" href="#"><span
+										class="fa fa-twitter"></span></a> <a class="share-icon googleplus"
+										href="#"><span class="fa fa-google-plus"></span></a>
 								</div>
 
 								<a id="share" class="share-toggle share-icon" href="#"></a>
@@ -99,8 +106,9 @@
 
 							<div class="card__meta">
 								<form action="ViewStudentProfile" method="get">
-									<input type="hidden" name="userName" value="<%=student.getStudentProfile().getUserName()%>">
-									<a href="" onclick="parentNode.submit();return false;" ><h4
+									<input type="hidden" name="userName"
+										value="<%=student.getStudentProfile().getUserName()%>">
+									<a href="" onclick="parentNode.submit();return false;"><h4
 											style="font-family: Roboto; line-height: 1.6;"><%=student.getStudentProfile().getUserName()%></h4></a>
 								</form>
 								<h4 style="font-family: Roboto; line-height: 1.6;">
@@ -132,7 +140,34 @@
 
 		</div>
 	</div>
+	<div class="modal fade" id="myModalLogOut" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form action="ApartmentLogOut" method="get">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="row">
+							<div class="col-md-3">
+								<img src="resources/images/logout-button-hi.png">
+							</div>
+							<div class="" col-md-9>
+								<h3 class="modal-title">Are you sure to Log out??</h3>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+
+						<button class="btn btn-warning btn-lg" type="submit">Yes</button>
+						<button type="button" class="btn btn-default btn-lg"
+							data-dismiss="modal">No</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function($) {

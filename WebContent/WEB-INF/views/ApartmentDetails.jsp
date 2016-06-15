@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>Apartment Details</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -143,9 +143,19 @@ html, body {
 	%>
 
 	<div class="row" style="margin-left: 30px;">
-		<h1 class="tlt2">
-			<b><%=apartment.getName()%></b>
-		</h1>
+		<div class="col-md-8">
+			<h1 class="tlt2">
+				<b><%=apartment.getName()%></b>
+			</h1>
+		</div>
+		<div class="col-md-2" style="margin-top: 30px;">
+			 
+			<a href="StudentHome"><img src="resources/images/restart-1.png">Student Home</a>
+		</div>
+		<div class="col-md-2" style="margin-top: 30px;">
+			
+			 <a href="SearchApartment"><img src="resources/images/restart-1.png">Search Apartment</a>
+		</div>
 	</div>
 
 	<div class="col-md-8">
@@ -239,11 +249,9 @@ html, body {
 						<td>
 							<%
 								for (University university : universityList) {
-							%>
-								<%=university.getName()%>,
-							<%
-								}
-							%>
+							%> <%=university.getName()%>, <%
+ 	}
+ %>
 						</td>
 
 					</tr>
@@ -281,9 +289,8 @@ html, body {
 								<input type="hidden" name="apartmentKey"
 									value="<%=apartment.getApartmentKey()%>"> <input
 									type="hidden" name="apartmentName"
-									value="<%=apartment.getName()%>"> <input
-									type="hidden" name="address"
-									value="<%=apartment.getAddress()%>"> <input
+									value="<%=apartment.getName()%>"> <input type="hidden"
+									name="address" value="<%=apartment.getAddress()%>"> <input
 									id="input-21b" value="5" type="number" name="rating"
 									class="rating" min="0" max="5" step="0.5" data-size="xs">
 
@@ -329,9 +336,8 @@ html, body {
 								<input type="hidden" name="apartmentKey"
 									value="<%=apartment.getApartmentKey()%>"> <input
 									type="hidden" name="apartmentName"
-									value="<%=apartment.getName()%>"> <input
-									type="hidden" name="address"
-									value="<%=apartment.getAddress()%>">
+									value="<%=apartment.getName()%>"> <input type="hidden"
+									name="address" value="<%=apartment.getAddress()%>">
 							</form>
 						</td>
 
@@ -351,9 +357,8 @@ html, body {
 									<input type="hidden" name="apartmentKey"
 										value="<%=apartment.getApartmentKey()%>"> <input
 										type="hidden" name="apartmentName"
-										value="<%=apartment.getName()%>"> <input
-										type="hidden" name="address"
-										value="<%=apartment.getAddress()%>">
+										value="<%=apartment.getName()%>"> <input type="hidden"
+										name="address" value="<%=apartment.getAddress()%>">
 									<textarea class="form-control" rows="3" name="comment"></textarea>
 								</div>
 
@@ -408,8 +413,8 @@ html, body {
         }
         
       function initAutocomplete() {
-    	  var lat=Number('${lattitude}');
-    	  var longitude=Number('${longitude}');
+    	  var lat=Number(<%=apartment.getLattitide()%>);
+    	  var longitude=Number(<%=apartment.getLongitude()%>);
 
         map= new google.maps.Map(document.getElementById('map'), {
           center: {lat:lat, lng: longitude},

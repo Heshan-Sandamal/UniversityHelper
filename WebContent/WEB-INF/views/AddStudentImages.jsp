@@ -32,7 +32,7 @@ body {
 
 	});
 </script>
-
+<title>Add Student Profile pic</title>
 </head>
 
 <body

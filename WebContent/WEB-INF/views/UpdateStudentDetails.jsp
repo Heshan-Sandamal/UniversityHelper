@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="resources/css/logInStyle.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-
+<title>Update Student Details</title>
 <script src="resources/js/jquery-1.9.1.min.js"></script>
 <script src="resources/js/logInScript.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>

@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="resources/css/materialDesignBlogCard.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Apartment Subscribers</title>
 </head>
 <body>
 	<div class="top-nav wow">

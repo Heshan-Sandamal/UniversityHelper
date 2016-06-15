@@ -9,7 +9,7 @@
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<title>Places Searchbox</title>
+<title>Search Apartment</title>
 <style>
 html, body {
 	height: 100%;

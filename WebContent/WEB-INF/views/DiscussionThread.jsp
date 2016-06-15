@@ -7,8 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Resume a Personal Category Flat Bootstrap Responsive
-	Website Template | Home :: w3layouts</title>
+<title>Discussion Thread</title>
 <!--mobile apps-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +28,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -102,14 +103,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="SearchApartment" class="scroll">Search
 								Apartment</a></li>
 						<li><a href="MyApartments" class="scroll">My Apartments</a></li>
-						<li><a href="DiscussionThread" class="scroll"><h3><b>Discussion
-								Thread</b></h3></a></li>
+						<li><a href="DiscussionThread" class="scroll"><h3>
+									<b>Discussion Thread</b>
+								</h3></a></li>
 						<li><a href=AddPost class="scroll">Add New post</a></li>
 						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
-						<li><a href="#skills" class="scroll">My Details</a></li>
+						<li><a href="UpdateStudentDetails" class="scroll">Update
+								Details</a></li>
 						<li><a href="ViewStudents" class="scroll">Student Details</a></li>
-						<li><a href="ApartmentLogOut" class="scroll">Log out</a></li>
-						
+						<li><a href="" class="scroll" data-toggle="modal"
+							data-target="#myModalLogOut">Log out</a></li>
+
 					</ul>
 					<div class="clearfix"></div>
 				</div>
@@ -135,7 +139,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--center-->
 	<div class="col-sm-8">
 		<div id="custom-search-input">
-		<div class="input-group col-md-4"><h4><b>Search Discussion Thread</b></h4></div>
+			<div class="input-group col-md-4">
+				<h4>
+					<b>Search Discussion Thread</b>
+				</h4>
+			</div>
 			<div class="input-group col-md-8">
 				<input type="text" class="  search-query form-control"
 					placeholder="Search" /> <span class="input-group-btn">
@@ -187,7 +195,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<hr>
 	</div>
 	<!--/center-->
+	<div class="modal fade" id="myModalLogOut" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form action="ApartmentLogOut" method="get">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="row">
+							<div class="col-md-3">
+								<img src="resources/images/logout-button-hi.png">
+							</div>
+							<div class="" col-md-9>
+								<h3 class="modal-title">Are you sure to Log out??</h3>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+
+						<button class="btn btn-warning btn-lg" type="submit">Yes</button>
+						<button type="button" class="btn btn-default btn-lg"
+							data-dismiss="modal">No</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="resources/js/bootstrap.js"></script>

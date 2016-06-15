@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="resources/css/signUp.css">
 <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-
+<title>Update Apartment Owner Details</title>
 <script src="resources/js/jquery-1.9.1.min.js"></script>
 <script src="resources/js/logInScript.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>

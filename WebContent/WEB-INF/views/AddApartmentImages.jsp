@@ -32,7 +32,7 @@ body {
 
 	});
 </script>
-
+<title>Add Apartment Images</title>
 </head>
 
 <body

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Post</title>
+<title>Update Post</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
