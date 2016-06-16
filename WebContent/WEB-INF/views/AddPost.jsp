@@ -21,13 +21,13 @@
 				<div class="well">
 					<form role="form" action="AddPost" method="post">
 						<h4>Post Title</h4>
-						<input type="text" class="form-control" name="topic" required="required">
+						<input type="text" class="form-control" name="topic" id="topic" required="required">
 						<h4>Post Content</h4>
 						<div class="form-group">
-							<textarea class="form-control" rows="3" name="content" required="required"></textarea>
+							<textarea class="form-control" rows="3" name="content" id="content" required="required"></textarea>
 						</div>
 
-						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="submit" id="submitButton" class="btn btn-success">Submit</button>
 						<a href="StudentHome"><button type="button" class="btn btn-warning">cancel</button></a>	
 					</form>
 					

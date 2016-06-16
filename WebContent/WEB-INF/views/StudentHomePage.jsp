@@ -163,7 +163,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="MyApartments" class="scroll">My Apartments</a></li>
 						<li><a href="DiscussionThread" class="scroll">Discussion
 								Thread</a></li>
-						<li><a href=AddPost class="scroll">Add New post</a></li>
+						<li><a href=AddPost class="scroll" id="newPost">Add New post</a></li>
 						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
 						<li><a href="UpdateStudentDetails" class="scroll">Update
 								Details</a></li>

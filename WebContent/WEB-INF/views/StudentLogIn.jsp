@@ -33,7 +33,7 @@
 
 
 						<button type="submit" name="go"
-							class="btn btn-lg btn-primary btn-block">Sign in</button>
+							class="btn btn-lg btn-primary btn-block" id="formSubmitButton">Sign in</button>
 
 						<div>
 							<a href="StudentSignUp">Create account</a> or <a href=""
