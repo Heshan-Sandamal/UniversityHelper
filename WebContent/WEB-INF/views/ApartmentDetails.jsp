@@ -143,7 +143,7 @@ html, body {
 	%>
 
 	<div class="row" style="margin-left: 30px;">
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<h1 class="tlt2">
 				<b><%=apartment.getName()%></b>
 			</h1>
@@ -155,6 +155,11 @@ html, body {
 		<div class="col-md-2" style="margin-top: 30px;">
 			
 			 <a href="SearchApartment"><img src="resources/images/restart-1.png">Search Apartment</a>
+		</div>
+		
+		<div class="col-md-2" style="margin-top: 30px;">
+			
+			 <a href="WelcomePage"><img src="resources/images/restart-1.png">Welcome Page</a>
 		</div>
 	</div>
 

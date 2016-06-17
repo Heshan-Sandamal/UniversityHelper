@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.universityHelper.models.Course;
 import com.universityHelper.services.CourseServiceLocal;
+import com.universityHelper.services.UniversityServiceLocal;
 
 /**
  * Servlet implementation class AddCourse
@@ -37,27 +39,18 @@ public class AddCourse extends HttpServlet {
 	 *      response)
 	 */
 
-	SessionContext ctx;
+	@EJB
+	UniversityServiceLocal universityService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		Course course = new Course();
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/AddCourse.jsp");
 
-		String university = "University of moratuwa";
+		request.setAttribute("universityList", universityService.getAllUniversities());
 
-		course.setName("Fashion Design");
-		// course.setUniversity("Mora");
-
-		boolean added = courseService.addCourse(course, university);
-
-		if (added) {
-			response.getWriter().write("added success");
-		} else {
-			response.getWriter().write("added faild");
-		}
-		
+		view.forward(request, response);
 
 	}
 
@@ -67,6 +60,27 @@ public class AddCourse extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("a"+request.getParameter("universityName")+"v");
+		if (!request.getParameter("universityName").isEmpty() && request.getParameter("courseName") != null) {
+
+			Course course = new Course();
+
+			String university = request.getParameter("universityName");
+
+			course.setName(request.getParameter("courseName"));
+			// course.setUniversity("Mora");
+
+			boolean added = courseService.addCourse(course, university);
+
+			if (added) {
+				response.getWriter().write("added success");
+			} else {
+				response.getWriter().write("added faild");
+			}
+
+		} else {
+			response.getWriter().write("You must specify university for course");
+		}
 
 	}
 

@@ -110,12 +110,12 @@ body {
 
 							<div class="form-group">
 								<input type="tel" name="contactNo1" id="email"
-									class="form-control input-sm" placeholder="Contact No1:">
+									class="form-control input-sm" placeholder="Contact No1:" maxlength="10">
 							</div>
 
 							<div class="form-group">
 								<input type="tel" name="contactNo2" id="email"
-									class="form-control input-sm" placeholder="Contact No2:">
+									class="form-control input-sm" placeholder="Contact No2:" maxlength="10">
 							</div>
 
 							<input type="submit" value="Register"

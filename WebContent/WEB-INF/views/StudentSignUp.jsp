@@ -99,7 +99,7 @@ body {
 
 							<div class="form-group">
 								<input type="text" name="address" id="email"
-									class="form-control input-sm" placeholder="Address/ Home town" readonly="readonly">
+									class="form-control input-sm" placeholder="Address/ Home town" required="required">
 							</div>
 
 							<div class="form-group">
@@ -120,7 +120,7 @@ body {
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
-									Select University <span class="caret"></span>
+									Select Course <span class="caret"></span>
 								</button>
 								<ul name="university" class="dropdown-menu">
 									<%
@@ -135,7 +135,7 @@ body {
 
 							<div class="form-group">
 								<input type="tel" name="contactNo" id="email"
-									class="form-control input-sm" placeholder="Contact No">
+									class="form-control input-sm" placeholder="Contact No" maxlength="10">
 							</div>
 
 							<div class="form-group">

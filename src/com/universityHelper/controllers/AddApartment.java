@@ -1,9 +1,6 @@
 package com.universityHelper.controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -13,18 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.universityHelper.models.Apartment;
-import com.universityHelper.models.ApartmentKey;
-import com.universityHelper.models.LandLord;
-import com.universityHelper.models.University;
 import com.universityHelper.services.ApartmentServiceLocal;
-import com.universityHelper.services.LandLordServiceLocal;
 import com.universityHelper.services.UniversityServiceLocal;
 
 import sun.misc.FloatingDecimal;
@@ -92,15 +81,13 @@ public class AddApartment extends HttpServlet {
 			String[] universityList = request.getParameterValues("univesities");
 			
 		
-			
+			//check university list is null or not
 			if(universityList==null ||  universityList.length<=0){
 				
 				response.getWriter().write("Unable to add apartment.You must added atleast 1 university for you apartment");
 				//doGet(request, response);
 				return;
 			}
-			
-			System.out.println(studentSex);
 			
 			// create Apartment object using submitted details
 			Apartment ap = new Apartment();
@@ -118,14 +105,12 @@ public class AddApartment extends HttpServlet {
 
 			// send apartment object to apartment service bean to persists
 			boolean aptStatus = apartmentService.addApartment(ap,apartmentOwnerId.toString(), universityList);
-			// Assert.assertTrue(aptStatus);
 
-			// ap.getUniversity().add(arg0)
 
 			if (aptStatus) {
 				response.sendRedirect("LLHome");
 			} else {
-				
+				response.getWriter().write("Unable to add apartment");
 			}
 		}
 

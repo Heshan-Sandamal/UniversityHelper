@@ -167,7 +167,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><a href="ViewMyPosts" class="scroll">My posts</a></li>
 						<li><a href="UpdateStudentDetails" class="scroll">Update
 								Details</a></li>
-						<li><a href="StudentAboutMe" class="scroll">About Me</a></li>
+						<li><a href="StudentAboutMe" class="scroll" id="aboutMe">About Me</a></li>
 						<li><a href="ViewStudents" class="scroll">Student Details</a></li>
 						<li><a href="" class="scroll" data-toggle="modal"
 							data-target="#myModalLogOut">Log out</a></li>
@@ -184,6 +184,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			<%
 				for (CommentNotification com : cn) {
+					String topic=com.getPost().getTopic();
+					if(topic.length()>25){
+						topic=topic.substring(0,25);
+					}
 			%>
 
 			<div class="col-md-4">
@@ -196,7 +200,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="col-md-7">
 							<form action="ViewPostDetails" method="get">
 								<a href="" onclick="parentNode.submit();return false;">
-									<h5><%=com.getPost().getTopic().substring(0, 25)%></h5>
+									<h5><%=topic%></h5>
 									<p><%=com.getContent()%></p> <input type="hidden" name="postId"
 									value="<%=com.getPost().getId()%>">
 								</a>

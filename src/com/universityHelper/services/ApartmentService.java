@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -18,19 +17,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.bson.types.ObjectId;
-
-import com.mongodb.util.JSON;
 import com.universityHelper.models.Apartment;
 import com.universityHelper.models.ApartmentComment;
-import com.universityHelper.models.ApartmentKey;
 import com.universityHelper.models.LandLord;
 import com.universityHelper.models.LandLordProfile;
 import com.universityHelper.models.Student;
 import com.universityHelper.models.University;
 import com.universityHelper.other.Encrypt;
-
-import javafx.beans.binding.When.ObjectConditionBuilder;
 
 /**
  * Session Bean implementation class ApartmentService
@@ -59,6 +52,7 @@ public class ApartmentService implements ApartmentServiceLocal {
 			LandLord landLord = em.find(LandLord.class, landLordId);
 
 
+			//get university objects
 			String query = "SELECT c FROM University c where ";
 			for (int x = 0; x < universityList.length; x++) {
 				query += "c.name='" + universityList[x] + "'";
@@ -90,7 +84,7 @@ public class ApartmentService implements ApartmentServiceLocal {
 			for (University uni : list) {
 
 				apartment.getUniversity().add(uni);
-				// apartment.getUniversity().add(university2);
+
 
 				// set apartment for university
 				if (uni.getApartmentList() == null) {
@@ -100,26 +94,9 @@ public class ApartmentService implements ApartmentServiceLocal {
 				uni.getApartmentList().add(apartment);
 			}
 
-			// university2.getApartmentList().add(apartment);
 			// persists the apartment object to db
 			em.persist(apartment);
 			return true;
-
-			// TypedQuery<Apartment> query = em.createQuery("SELECT c FROM
-			// Apartment c", Apartment.class);
-			// Apartment a = query.getSingleResult();
-			// ApartmentKey gg = new ApartmentKey();
-			// gg.setApartmentId(322);
-			// gg.setOwnerId(landLord.getLandLordId());
-			/*
-			 * if (apt != null) {
-			 * apartment.getApartmentKey().setApartmentId(apt.getApartmentKey().
-			 * getApartmentId() + 1); } else {
-			 * apartment.getApartmentKey().setApartmentId(0); }
-			 */
-
-			// apartment.getApartmentKey().setOwnerId(landLord.getLandLordId());
-			// apartment.getApartmentKey().setApartmentId(321);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,10 +21,10 @@
 				<div class="well">
 					<form role="form" action="StudentAboutMe" method="post">
 						<div class="form-group">
-							<textarea class="form-control" rows="5" name="content" required="required"></textarea>
+							<textarea class="form-control" rows="5" name="content" id="content" required="required"></textarea>
 						</div>
 
-						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="submit" class="btn btn-success" id="submitButton">Submit</button>
 						<a href="StudentHome"><button type="button" class="btn btn-warning">cancel</button></a>	
 					</form>
 					

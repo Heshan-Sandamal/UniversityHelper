@@ -46,13 +46,11 @@ public class StudentService implements StudentServiceLocal {
 			String query = "Select c from Course c where c.name='" + courseName + "'";
 			TypedQuery<Course> queryRes = em.createQuery(query, Course.class);
 
-			// query.setParameter(1, );
 			Course course = queryRes.getSingleResult();
 			if (course == null) {
 				return false;
 			}
-			// Course course = em.find(Course.class,
-			// "574ae72f63250f370c624ed3");
+
 			student.setCourse(course);
 
 			em.persist(studentProfile);
@@ -61,7 +59,7 @@ public class StudentService implements StudentServiceLocal {
 		} else {
 			return false;
 		}
-		// em.getTransaction().rollback();
+
 
 	}
 

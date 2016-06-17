@@ -70,12 +70,12 @@ public class StudentSignUp extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		//create student object
 		Student s = new Student();
 		s.setFirstName(request.getParameter("firstName"));
 		s.setLastName(request.getParameter("lastName"));
 		
-		
-		System.out.print(request.getParameter("birthday"));
+		//set date object
 		SimpleDateFormat dt=new SimpleDateFormat("yyyy-mm-dd");
 		Date birthday = null;
 		try {
@@ -85,6 +85,8 @@ public class StudentSignUp extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
+		//set attributes of student object
 		s.setDob(birthday);
 		
 		s.setHomeTown(request.getParameter("address"));
@@ -94,14 +96,13 @@ public class StudentSignUp extends HttpServlet {
 		s.setEmail(request.getParameter("email"));
 		s.setExamYear(Integer.valueOf(request.getParameter("examYear")));
 		
-		System.out.println("uni is"+request.getParameter("university"));
 
 		StudentProfile sp = new StudentProfile();
 		sp.setUserName(request.getParameter("userName"));
 		
 		String course=request.getParameter("course");
 		
-		
+		//set password of studentProfile object
 
 		sp.setPassword(Encrypt.WriteEncrypt(request.getParameter("password")));
 
@@ -110,7 +111,6 @@ public class StudentSignUp extends HttpServlet {
 		s.setStudentProfile(sp);
 		
 		
-
 		boolean added=studentService.signUpStudent(sp, s,course);
 		
 		if (!added) {

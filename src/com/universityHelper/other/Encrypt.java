@@ -1,6 +1,8 @@
 package com.universityHelper.other;
 
 public class Encrypt {
+	
+	//decode the password
 	public static String readEncrypt(String text) {
 		// String modText="";
 		String[] b = text.split(" ");
@@ -14,6 +16,7 @@ public class Encrypt {
 		return f;
 	}
 
+	//encode the password
 	public static String WriteEncrypt(String text) {
         char[] b = text.toCharArray();
         byte[] blisyt = new byte[text.length()];
